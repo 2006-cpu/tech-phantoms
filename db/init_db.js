@@ -76,14 +76,6 @@ async function populateInitialData() {
   }
 }
 
-id SERIAL PRIMARY KEY,
-              name NOT NULL,
-              description NOT NULL,
-              price NOT NULL,
-              imageURL default,
-              inStock NOT NULL default false,
-              category NOT NULL
-
 buildTables()
   .then(populateInitialData)
   .catch(console.error)
