@@ -6,10 +6,4 @@ apiRouter.get("/", (req, res, next) => {
   });
 });
 
-apiRouter.get("/", (req, res, next) => {
-  res.send({
-    message: "Sending in test3"
-  });
-});
-
 module.exports = apiRouter;
