@@ -118,6 +118,50 @@ async function populateInitialData() {
     console.log('Creating Products')
     await Promise.all(initialSoaps.map(createProduct))
     console.log('Finished creating Products')
+<<<<<<< HEAD
+=======
+    const initialUsers = [
+      {
+        firstName: 'The',
+        lastName: 'Boss',
+        email: 'theboss@example.com',
+        imageURL: '',
+        username: 'theboss',
+        password: 'theboss',
+        isAdmin: true
+      },
+      {
+        firstName: 'Lucky',
+        lastName: 'Ducky',
+        email: 'luckyducky@example.com',
+        imageURL: '',
+        username: 'luckyducky',
+        password: 'luckyducky',
+        isAdmin: false
+      },
+      {
+        firstName: 'Green',
+        lastName: 'Giant',
+        email: 'greengiant@example.com',
+        imageURL: '',
+        username: 'greengiant',
+        password: 'greengiant',
+        isAdmin: false
+      },
+      {
+        firstName: 'Sally',
+        lastName: 'Fields',
+        email: 'sallyfields@example.com',
+        imageURL: '',
+        username: 'sally',
+        password: 'sally',
+        isAdmin: true
+      }
+    ]
+    console.log('Creating Users')
+    await Promise.all(initialUsers.map(createUser))
+    console.log('Finished creating Users')
+>>>>>>> dev
 }catch(error){
   console.error(error)
 }finally{
