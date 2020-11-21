@@ -33,8 +33,8 @@ productsRouter.get('/:productsId/products', async (req, res, next) => {
           res.send(allProducts);
       } else {
           next({
-              name: 'ProductById',
-              message: 'No product by id found.'
+              name: 'ProductsById',
+              message: 'No products by id found.'
           })
       }
     } catch (error) {
