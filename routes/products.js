@@ -1,6 +1,6 @@
 const express = require('express')
 const productsRouter = express.Router()
-const { getAllProducts, getProductById, createProduct } = require('../db/products')
+const { getAllProducts, getProductById} = require('../db/products')
 
 productsRouter.get('/', async (req,res,next)=>{
     try {
