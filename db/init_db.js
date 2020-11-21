@@ -5,7 +5,7 @@ const {
 
 const { 
   createProduct 
-} = require('./Products');
+} = require('./products');
 
 async function buildTables() {
   try {
