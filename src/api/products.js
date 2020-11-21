@@ -14,7 +14,7 @@ productsRouter.get('/', async (req, res, next) => {
         if(!allProducts) {
             next({
                 name: "GetAllProductsError",
-                message: "Could not get any products."
+                message: "Could not get all products."
             });
             return;
         }
