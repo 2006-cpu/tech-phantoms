@@ -1,0 +1,45 @@
+const express = require('express');
+const productsRouter = express.Router();
+const { requireUser } = require('./')
+
+const {
+    createProduct,
+    getAllProducts,
+    getProductById
+} = require('../db');
+
+productsRouter.get('/', async (req, res, next) => {
+    try {
+        const allProducts = await getAllProducts();
+        if(!allProducts) {
+            next({
+                name: "GetAllProductsError",
+                message: "Could not get all products."
+            });
+            return;
+        }
+        res.send(
+            allProducts
+        );
+    } catch (error) {
+      next (error);
+    }
+});
+
+productsRouter.get('/:productsId/products', async (req, res, next) => {
+    try {
+      const allProducts = await getProductById({ id: req.params.activityId });
+      if(allProducts) {
+          res.send(allProducts);
+      } else {
+          next({
+              name: 'ProductById',
+              message: 'No product by id found.'
+          })
+      }
+    } catch (error) {
+      next(error);
+    }
+})
+
+module.exports = productsRouter;
