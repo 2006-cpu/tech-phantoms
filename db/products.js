@@ -1,14 +1,12 @@
 const { client } = require('./index');
 
-async function createProduct({
-    name, description
-}) {
+async function createProduct({name, description, price, imageUrl, inStock, category}) {
     try {
         const { rows: [ product ] } = await client.query (`
             INSERT INTO products(name, description, price, "imageUrl", "inStock", category)
             VALUES($1, $2, $3, $4, $5, $6)
             RETURNING *;
-        `, [name, description]);
+        `, [name, description, price, imageUrl, inStock, category]);
       return product;        
     } catch (error) {
       throw error;
@@ -17,13 +15,11 @@ async function createProduct({
 
 async function getAllProducts() {
     try {
-        const { rows: productIds } = await client.query(`
-        SELECT id
+        const { rows: products } = await client.query(`
+        SELECT *
         FROM products
         `);
-        const products = await Promise.all(productsIds.map(
-            products => getProductById( product.id )
-        ));
+        
       return products;
     } catch (error) {
         throw error;

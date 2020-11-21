@@ -68,7 +68,7 @@ async function populateInitialData() {
       {
       name: "Riley's Favorite Soap",
       description: "A very lovely soap. Riley recommends it for all soaping purposes.",
-      price:"$7.99",
+      price:"7.99",
       imageURL:"placeholder.com",
       inStock: false,
       category: 'Natural'
@@ -76,7 +76,7 @@ async function populateInitialData() {
       {
         name: "Tammy's Favorite Soap",
         description: "A lovely scented soap!",
-        price:"$12.99",
+        price:"12.99",
         imageURL:"placeholder.com",
         inStock: true,
         category: 'Natural'
@@ -84,7 +84,7 @@ async function populateInitialData() {
       {
         name: "Pizza Soap",
         description: "Contains authentic New York pizza grease.",
-        price: "$19.99",
+        price: "19.99",
         imageURL:"placeholder.com",
         inStock: true,
         category: 'Fun'
@@ -92,7 +92,7 @@ async function populateInitialData() {
       {
         name: "Poop Soap",
         description: "You can have our poopy.",
-        price: "$15.99",
+        price: "15.99",
         imageURL: "placeholder.com",
         inStock: false,
         category: 'Fun'
@@ -100,7 +100,7 @@ async function populateInitialData() {
       {
         name: "Gold Soap",
         description: "Yes it's real gold.",
-        price: "$149.99",
+        price: "149.99",
         imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
@@ -109,16 +109,20 @@ async function populateInitialData() {
       {
         name: "Ocean Breeze",
         description: "Made with salt water and embedded with real sea shells.",
-        price: "$49.99",
+        price: "49.99",
         imageUrl: "placeholder.com",
         inStock: true,
         category: 'Decorative'
-
-      }
+      },
     ]
-  } catch (error) {
-    throw error;
-  }
+    console.log('Creating Products')
+    await Promise.all(initialSoaps.map(createProduct))
+    console.log('Finished creating Products')
+}catch(error){
+  console.error(error)
+}finally{
+  console.log('Finished seeding tables')
+}
 }
 
 buildTables()
