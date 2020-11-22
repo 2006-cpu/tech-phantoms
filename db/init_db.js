@@ -2,9 +2,12 @@ const {
   client
   // other db methods 
 } = require('./index');
+const { getAllOrders, createOrder } = require('./orders');
+
+const { createUser } = require('./users');
 
 const { 
-  createProduct 
+  createProduct, getProductById, getAllProducts 
 } = require('./products');
 
 async function buildTables() {
@@ -27,7 +30,7 @@ async function buildTables() {
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       price DECIMAL(10,2) NOT NULL,
-      "imageUrl" TEXT NULL,
+      "imageURL" TEXT NULL,
       "inStock" BOOLEAN NOT NULL DEFAULT false,
       category TEXT NOT NULL
     );
@@ -36,7 +39,7 @@ async function buildTables() {
         "firstName" VARCHAR(255) NOT NULL,
         "lastName" VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        "imageUrl" TEXT NULL,
+        "imageURL" TEXT NULL,
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) UNIQUE NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false
@@ -110,7 +113,7 @@ async function populateInitialData() {
         name: "Ocean Breeze",
         description: "Made with salt water and embedded with real sea shells.",
         price: "49.99",
-        imageUrl: "placeholder.com",
+        imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
       },
@@ -160,6 +163,8 @@ async function populateInitialData() {
     console.log('Creating Users')
     await Promise.all(initialUsers.map(createUser))
     console.log('Finished creating Users')
+
+    
 
 }catch(error){
   console.error(error)
