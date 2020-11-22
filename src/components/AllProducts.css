@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* font-family: 'Bad Script', cursive;
+font-family: 'Thasadith', sans-serif; */
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.allProductsCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    padding: 20px;
+    background-color: rgba(239, 236, 242, 0.879);
+}
+
+.allProductsSingleCard {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(241, 229, 252, 0.879);
+}
+
+.allProductsTitle {
+    text-align: center;
+}
+
