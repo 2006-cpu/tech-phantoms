@@ -1,14 +1,9 @@
-const {
-  client
-  // other db methods 
-} = require('./index');
-const { getAllOrders, createOrder } = require('./orders');
+const { client } = require('./index');
+const { createOrder } = require('./orders');
 
 const { createUser } = require('./users');
 
-const { 
-  createProduct, getProductById, getAllProducts 
-} = require('./products');
+const { createProduct } = require('./products');
 
 async function buildTables() {
   try {
@@ -167,33 +162,27 @@ async function populateInitialData() {
 const initialOrders = [
   {
     status: 'created',
-    userId: 1,
-    datePlaced: 2020/11/21
+    userId: 1
   },
   {
     status: 'created',
-    userId: 2,
-    datePlaced: 2020/11/20
+    userId: 2
   },
   {
     status: 'cancelled',
-    userId: 3,
-    datePlaced: 2020/11/19
+    userId: 3
 },
 {
   status: 'cancelled',
-  userId: 1,
-  datePlaced: 2020/11/19
+  userId: 1
 },
 {
   status: 'completed',
-  userId: 4,
-  datePlaced: 2020/11/18
+  userId: 4
 },
 {
   status: 'completed',
-  userId: 2,
-  datePlaced: 2020/11/21
+  userId: 2
 }
 ]
 

@@ -1,4 +1,5 @@
 const { client } = require('./index')
+const { getUserByUserName } = require('./users')
 
 const getOrderById = async (id)=>{
     try {
@@ -23,14 +24,15 @@ const getAllOrders = async ()=>{
     } catch (error) {
         console.error(error)
     }
-}
+} 
 
-const getOrdersByUser = async ({username})=>{
+const getOrdersByUser = async ({ username })=>{
     try {
+        const {id} = await getUserByUserName(username)
         const {rows: orders} = await client.query(`
             SELECT * FROM orders
-            WHERE username=$1
-        `,[username])
+            WHERE "userId"=$1
+        `,[id])
 
         return orders
     } catch (error) {
@@ -54,12 +56,14 @@ const getOrdersByProduct = async ({id})=>{
 
 const getCartByUser = async ({id})=>{
     try {
-        const {rows: cart} = await client.query(`
+        const {rows: cartOrder} = await client.query(`
             SELECT * FROM orders 
-            WHERE "userId"=$1 AND status=created
+            WHERE "userId"=$1 AND status='created'
         `,[id])
 
-        return cart
+        /*Insert Order_Products fetch code here */
+
+        return cartOrder
     } catch (error) {
         console.error(error)
     }
@@ -69,8 +73,6 @@ const getCartByUser = async ({id})=>{
 status input needs to be 'created, cancelled, or completed'
 */
 const createOrder = async ({status, userId})=>{
-    console.log('status', status)
-    console.log('userId', userId)
     try {
         if(status === 'created'|| status === 'cancelled'|| status === 'completed'){
             
@@ -93,12 +95,11 @@ const createOrder = async ({status, userId})=>{
     }
 }
 
-
 module.exports={
     getOrderById,
     getAllOrders,
     getOrdersByUser,
     getOrdersByProduct,
     getCartByUser,
-    createOrder
+    createOrder,
 }

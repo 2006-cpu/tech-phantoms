@@ -9,8 +9,7 @@
     "client:build": "react-scripts build",
     "server:dev": "nodemon index.js",
     "db:build": "node ./db/init_db",
-    "start": "node index.js",
-    "orders:dev": "nodemon ./db/orders"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
