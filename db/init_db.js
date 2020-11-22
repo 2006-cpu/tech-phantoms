@@ -1,6 +1,5 @@
 const {
   client
-  // other db methods 
 } = require('./index');
 const { getAllOrders, createOrder } = require('./orders');
 
