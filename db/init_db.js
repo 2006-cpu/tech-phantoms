@@ -118,6 +118,7 @@ async function populateInitialData() {
     console.log('Creating Products')
     await Promise.all(initialSoaps.map(createProduct))
     console.log('Finished creating Products')
+    
     const initialUsers = [
       {
         firstName: 'The',
@@ -159,6 +160,45 @@ async function populateInitialData() {
     console.log('Creating Users')
     await Promise.all(initialUsers.map(createUser))
     console.log('Finished creating Users')
+
+
+const initialOrders = [
+  {
+    status: 'created',
+    userId: 1,
+    datePlaced: 2020/11/21
+  },
+  {
+    status: 'created',
+    userId: 2,
+    datePlaced: 2020/11/20
+  },
+  {
+    status: 'cancelled',
+    userId: 3,
+    datePlaced: 2020/11/19
+},
+{
+  status: 'cancelled',
+  userId: 1,
+  datePlaced: 2020/11/19
+},
+{
+  status: 'completed',
+  userId: 4,
+  datePlaced: 2020/11/18
+},
+{
+  status: 'completed',
+  userId: 2,
+  datePlaced: 2020/11/21
+}
+]
+
+console.log('Creating Orders')
+await Promise.all(initialOrders.map(createOrder))
+console.log('Finished creating Orders')
+
 }catch(error){
   console.error(error)
 }finally{
