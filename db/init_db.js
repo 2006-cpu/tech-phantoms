@@ -1,5 +1,7 @@
 const { client } = require('./index');
 const { createOrder } = require('./orders');
+const { client } = require('./index');
+const { getAllOrders, createOrder } = require('./orders');
 
 const { createUser } = require('./users');
 

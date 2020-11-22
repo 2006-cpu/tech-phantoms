@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* font-family: 'Bad Script', cursive;
+font-family: 'Thasadith', sans-serif; */
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100px;
+    padding: 20px;
+    background-color: rgba(233, 215, 250, 0.879);
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100px;
+    padding: 20px;
+    background-color: rgba(218, 200, 235, 0.879);
+}
+
+.normal {
+    text-decoration: none;
+    font-size: 1.5em;
+    
+}
+
+.active {
+    color: rgb(43, 223, 226);
+    text-shadow:2px 2px 2px gray;
+}
