@@ -198,7 +198,7 @@ const initialOrders = [
 ]
 
 console.log('Creating Orders')
-//await Promise.all(initialOrders.map(createOrder))
+await Promise.all(initialOrders.map(createOrder))
 console.log('Finished creating Orders')
 
 }catch(error){

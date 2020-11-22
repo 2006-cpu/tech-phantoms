@@ -65,20 +65,34 @@ const getCartByUser = async ({id})=>{
     }
 }
 
+/*
+status input needs to be 'created, cancelled, or completed'
+*/
 const createOrder = async ({status, userId})=>{
+    console.log('status', status)
+    console.log('userId', userId)
     try {
+        if(status === 'created'|| status === 'cancelled'|| status === 'completed'){
+            
+        const date = new Date()
         const {rows: [order]} = await client.query(`
-
-        INSERT INTO orders 
-        VALUES ($1, $2)
+        INSERT INTO orders(status, "userId", "datePlaced") 
+        VALUES ($1, $2, $3)
         RETURNING *
-        `, [status, userId])
+        `, [status, userId, date])
 
         return order
+    } 
+        else{
+            return {
+                message: "Error: status needs to be 'created', 'cancelled', or 'completed'"
+            }
+        }
     } catch (error) {
         console.error(error)
     }
 }
+
 
 module.exports={
     getOrderById,
