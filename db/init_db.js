@@ -118,7 +118,6 @@ async function populateInitialData() {
     console.log('Creating Products')
     await Promise.all(initialSoaps.map(createProduct))
     console.log('Finished creating Products')
-    
     const initialUsers = [
       {
         firstName: 'The',
@@ -160,7 +159,6 @@ async function populateInitialData() {
     console.log('Creating Users')
     await Promise.all(initialUsers.map(createUser))
     console.log('Finished creating Users')
-
 
 const initialOrders = [
   {
