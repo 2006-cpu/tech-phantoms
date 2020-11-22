@@ -24,8 +24,8 @@ async function buildTables() {
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
-      price DECIMAL(10,2) NOT NULL,
-      "imageURL" TEXT NULL,
+      price INTEGER NOT NULL,
+      "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png',
       "inStock" BOOLEAN NOT NULL DEFAULT false,
       category TEXT NOT NULL
     );
@@ -34,7 +34,7 @@ async function buildTables() {
         "firstName" VARCHAR(255) NOT NULL,
         "lastName" VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        "imageURL" TEXT NULL,
+        "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png',
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) UNIQUE NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false
@@ -49,7 +49,7 @@ async function buildTables() {
         id SERIAL PRIMARY KEY,
         "productId" INTEGER REFERENCES products(id),
         "orderId" INTEGER REFERENCES orders(id),
-        price DECIMAL(10,2) NOT NULL ,
+        price INTEGER NOT NULL ,
         quantity INTEGER NOT NULL DEFAULT 0
       );
     `);
@@ -66,7 +66,7 @@ async function populateInitialData() {
       {
       name: "Riley's Favorite Soap",
       description: "A very lovely soap. Riley recommends it for all soaping purposes.",
-      price:"7.99",
+      price:"799",
       imageURL:"placeholder.com",
       inStock: false,
       category: 'Natural'
@@ -74,7 +74,7 @@ async function populateInitialData() {
       {
         name: "Tammy's Favorite Soap",
         description: "A lovely scented soap!",
-        price:"12.99",
+        price:"1299",
         imageURL:"placeholder.com",
         inStock: true,
         category: 'Natural'
@@ -82,7 +82,7 @@ async function populateInitialData() {
       {
         name: "Pizza Soap",
         description: "Contains authentic New York pizza grease.",
-        price: "19.99",
+        price: "1999",
         imageURL:"placeholder.com",
         inStock: true,
         category: 'Fun'
@@ -90,7 +90,7 @@ async function populateInitialData() {
       {
         name: "Poop Soap",
         description: "You can have our poopy.",
-        price: "15.99",
+        price: "1599",
         imageURL: "placeholder.com",
         inStock: false,
         category: 'Fun'
@@ -98,7 +98,7 @@ async function populateInitialData() {
       {
         name: "Gold Soap",
         description: "Yes it's real gold.",
-        price: "149.99",
+        price: "14999",
         imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
@@ -107,7 +107,7 @@ async function populateInitialData() {
       {
         name: "Ocean Breeze",
         description: "Made with salt water and embedded with real sea shells.",
-        price: "49.99",
+        price: "4999",
         imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
