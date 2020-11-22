@@ -1,4 +1,5 @@
 const { client } = require('./index')
+const { getUserByUserName } = require('./users')
 
 const getOrderById = async (id)=>{
     try {
@@ -23,14 +24,15 @@ const getAllOrders = async ()=>{
     } catch (error) {
         console.error(error)
     }
-}
+} 
 
-const getOrdersByUser = async ({username})=>{
+const getOrdersByUser = async ({ username })=>{
     try {
+        const {id} = await getUserByUserName(username)
         const {rows: orders} = await client.query(`
             SELECT * FROM orders
-            WHERE username=$1
-        `,[username])
+            WHERE "userId"=$1
+        `,[id])
 
         return orders
     } catch (error) {
@@ -54,27 +56,40 @@ const getOrdersByProduct = async ({id})=>{
 
 const getCartByUser = async ({id})=>{
     try {
-        const {rows: cart} = await client.query(`
+        const {rows: cartOrder} = await client.query(`
             SELECT * FROM orders 
-            WHERE "userId"=$1 AND status=created
+            WHERE "userId"=$1 AND status='created'
         `,[id])
 
-        return cart
+        /*Insert Order_Products fetch code here */
+
+        return cartOrder
     } catch (error) {
         console.error(error)
     }
 }
 
+/*
+status input needs to be 'created, cancelled, or completed'
+*/
 const createOrder = async ({status, userId})=>{
     try {
+        if(status === 'created'|| status === 'cancelled'|| status === 'completed'){
+            
+        const date = new Date()
         const {rows: [order]} = await client.query(`
-
-        INSERT INTO orders 
-        VALUES ($1, $2)
+        INSERT INTO orders(status, "userId", "datePlaced") 
+        VALUES ($1, $2, $3)
         RETURNING *
-        `, [status, userId])
+        `, [status, userId, date])
 
         return order
+    } 
+        else{
+            return {
+                message: "Error: status needs to be 'created', 'cancelled', or 'completed'"
+            }
+        }
     } catch (error) {
         console.error(error)
     }
@@ -86,5 +101,5 @@ module.exports={
     getOrdersByUser,
     getOrdersByProduct,
     getCartByUser,
-    createOrder
+    createOrder,
 }
