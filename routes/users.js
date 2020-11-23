@@ -3,7 +3,7 @@ const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET } = process.env || "string";
 const SALT_COUNT = 10;
-const { createUser, getUser, getAllUsers, getUserById, getUserByUserName} = require('../db/users');
+const { createUser, getUser, getUserByUserName} = require('../db/users');
 
 function requireUser(req, res, next) {
     if(!req.user) {
@@ -15,12 +15,10 @@ function requireUser(req, res, next) {
         next();
 };
 
-// -H "Content-Type: application/json" -X POST -d
-
 usersRouter.post('/register', async (req, res, next) => {
-    const { firstName, lastName, email, username, password } = req.body;
+    const { firstName, lastName, email, imageURL, username, password } = req.body;
     try{
-        const _user = await getUserByUsername(username);
+        const _user = await getUserByUserName(username);
         if (_user) {
             next({
                 name: 'UserExistsError',
@@ -54,4 +52,49 @@ usersRouter.post('/register', async (req, res, next) => {
     }    
 });
 
-module.exports = usersRouter
+usersRouter.post('/login', async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+        if (!username || !password) {
+            next({
+                name: "MissingCredentialsError",
+                message: "Please supply both a username and password"
+            });
+        } else {
+
+        const user = await getUser({username, password});
+        req.user = user;
+        if (user) { //we have a valid user, successful login
+            const token = jwt.sign({
+                id: user.id,
+                username: user.username
+                }, process.env.JWT_SECRET, {
+                    expiresIn: '3w'
+                });
+            res.send({ 
+                user, 
+                message: "You're logged in!",
+                token
+            });
+        } else {
+          next({
+            name: 'IncorrectCredentialsError',
+            message: 'Username or password is incorrect',
+            });    
+        }
+    }
+        } catch(error) {
+          console.log(error);
+          next(error);
+        }
+    });
+
+    usersRouter.get('/me', requireUser, async (req, res, next) => {
+        try { 
+        res.send(req.user);
+        } catch (error) {
+         next(error);
+        }
+    });
+
+module.exports = usersRouter;
