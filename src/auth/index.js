@@ -1,6 +1,6 @@
 import axios from 'axios';
 // export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
-export const BASE = 'https://localhost:5000/api'
+export const BASE = 'http://localhost:5000/api'
 
 export const callApi = async ({method, body, url, token}) => {
     try {
@@ -28,7 +28,7 @@ export default function storeCurrentUser(user) {
 }
 
 export function getCurrentUser() {
-    const user = JSON.stringify(localStorage.getItem('currentUser'));
+    const user = JSON.parse(localStorage.getItem('currentUser'));
     return user;
 }
 
@@ -41,7 +41,7 @@ export function storeCurrentToken(token) {
 }
 
 export function getCurrentToken() {
-    const token = JSON.stringify(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     return token;
 }
 
