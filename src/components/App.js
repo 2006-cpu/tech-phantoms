@@ -14,7 +14,7 @@ import './App.css';
 const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
@@ -26,15 +26,15 @@ const App = () => {
       console.log('CHECKtokenLOCAL: ', token);
   }, []);
 
-  useEffect(() => {
-    getSomething()
-      .then(response => {
-        setMessage(response.message);
-      })
-      .catch(error => {
-        setMessage(error.message);
-      });
-  });
+  // useEffect(() => {
+  //   getSomething()
+  //     .then(response => {
+  //       setMessage(response.message);
+  //     })
+  //     .catch(error => {
+  //       setMessage(error.message);
+  //     });
+  // });
 
   useEffect(() => {
     getAllProducts()
@@ -46,32 +46,34 @@ const App = () => {
 
   const goHome = useHistory();
   function returnToHome() {
-    goHome.push("/Home");
+    goHome.push("/AllProducts");
   }
 
   return <>
     <div className="header">
-      <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2>
+      {/* <h1 className="headerText">Hello, World!</h1>
+      <h2 className="headerText">{ message }</h2> */}
+      <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
     </div>
 
     <div className="nav">
-      <NavLink to="/allProducts" className="normal" activeClassName="active">
-        ALL PRODUCTS
+      <NavLink to="/allProducts" className="productsNav" activeClassName="active">
+        SOAP PRODUCTS
       </NavLink>
 
       {!token
       ?
       <Fragment>
-      <div className="pleaseLogIn">Welcome to DOPE SOAP!  Please login or register.</div>
-
+        <div className="pleaseLogIn">
+      Please{' '}
         <NavLink to="/Login" className="login" activeClassName="active">
-          Login
+          LOG IN
         </NavLink>
-
+      {' '}or{' '}
         <NavLink to="/Register" className="register" activeClassName="active">
-          Register
+          REGISTER
         </NavLink>
+       </div>
       </Fragment>
       :
       <Fragment>
@@ -87,6 +89,9 @@ const App = () => {
       </Fragment>
       } 
     </div>
+    <div className="welcomeDiv">Welcome to Dope Soap!<br />
+    Enjoy a clean view of all our products!
+   </div>
    
     <div id="App">
       <Route exact path="/allProducts">
