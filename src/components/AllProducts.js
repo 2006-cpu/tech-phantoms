@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../api';
+import Product from './Product.js';
 import './AllProducts.css'
 
 const AllProducts = (props) => {
     const {allProducts, setAllProducts} = props;
+
 
     useEffect (() => {
         getAllProducts()
@@ -15,22 +17,12 @@ const AllProducts = (props) => {
 
 return <>
     <div className="allProductsCards">
-      <div className="allProductsSingleCard">
         <h1 className="allProductsTitle">ALL PRODUCTS</h1>
-
-        {allProducts.map(({id, name, description, price, imageUrl, inStock, category}) => (
-            <div key={ id } className="productId">
-            <h3 className="productName">Product Name: {name}</h3>
-            <h4 className="productText">Product Description: {description}</h4>
-            <h5 className="productPrice">Price: {price}</h5>
-            <img src={imageUrl} className="productImage" alt="" width="50px" height="50px" />
-            <div className="inStock">
-                <input type="checkbox">In Stock: {inStock}</input>
+            <div className="products">
+            {
+            allProducts.map((product) => <Product key={product.id} product={product} />)
+            }
             </div>
-            <div className="productCategory">Category: {category}</div>
-            </div>
-        ))}
-      </div>
     </div>
 </>
 }

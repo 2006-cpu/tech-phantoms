@@ -13,8 +13,8 @@ export async function getSomething() {
 
 export async function getAllProducts() {
   try {
-    const { data: allProducts } = await axios.get(`${ BASE }/products`);
-    return allProducts;
+    const { data } = await axios.get(`${ BASE }/products`);
+    return data;
   } catch (error) {
     throw error;
   }
@@ -28,3 +28,12 @@ export async function getProduct(id) {
     throw error;
   }
 }
+
+// export async function postUser() {
+//   try {
+//     const { data: user } = await axios.post(`${ BASE }/users/login`, {username, password});
+//     return user;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
