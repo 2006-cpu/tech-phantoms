@@ -1,9 +1,10 @@
 const express = require('express');
-const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
-const {JWT_SECRET } = process.env || "string";
+const { JWT_SECRET }  = process.env;
 const SALT_COUNT = 10;
-const { createUser, getUser, getUserByUserName} = require('../db/users');
+const { createUser, getUser, getUserByUserName } = require('../db/users');
+const usersRouter = express.Router();
+
 
 function requireUser(req, res, next) {
     if(!req.user) {
@@ -11,9 +12,10 @@ function requireUser(req, res, next) {
             name: 'MissingUserError',
             message: 'You must be logged in to perform this action'
         });
-} 
+    } 
         next();
 };
+
 
 usersRouter.post('/register', async (req, res, next) => {
     const { firstName, lastName, email, imageURL, username, password } = req.body;
@@ -24,23 +26,22 @@ usersRouter.post('/register', async (req, res, next) => {
                 name: 'UserExistsError',
                 message: 'A user by that username already exists'
             });
+            return
         } else if (password.length < 8) {
             next({
                 name: 'PasswordLengthError',
                 message: 'Password Too Short!'
             });
+            return
         } else {
-            const user = await createUser({
-                username,
-                password
-            
-            });
-            const token = jwt.sign({
-                id: user.id,
-                username: user.username
-            }, process.env.JWT_SECRET, {
-                expiresIn: '3w'
-            });
+            const user = await createUser({ firstName, lastName, email, imageURL, username, password });
+            const token = jwt.sign({ 
+                id: user.id, 
+                username
+              }, JWT_SECRET, {
+                expiresIn: '1w'
+              })
+            console.log(user)
             res.send({
                 user,
                 message: "Thank you for signing up",
