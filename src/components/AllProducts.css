@@ -19,7 +19,7 @@ font-family: 'Thasadith', sans-serif; */
     background-color: rgba(239, 236, 242, 0.879);
 }
 
-.allProductsSingleCard {
+.products {
     display: flex;
     flex-direction: column;
     width: 400px;

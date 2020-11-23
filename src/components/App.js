@@ -2,15 +2,27 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Router, useHistory } from 'react-router-dom';
 import {
   getAllProducts,
+  getProduct,
   getSomething
 } from '../api';
-import { Product, AllProducts } from './index';
+import { Product, AllProducts, login, register } from './index';
+import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
 import './App.css';
 
 const App = () => {
+  const [user, setUser] = useState('');
+  const [token, setToken] = useState({});
   const [message, setMessage] = useState('');
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    setUser(getCurrentUser());
+      console.log('CHECKuserLOCAL: ', user);
+  
+    setToken(getCurrentToken());
+      console.log('CHECKtokenLOCAL: ', token);
+  }, []);
 
   useEffect(() => {
     getSomething()
@@ -48,9 +60,6 @@ const App = () => {
 
     <div id="App">
       <Route exact path="/allProducts">
-        {
-        allProducts.map((product) => <Product key={product.id} product={product} />)
-        }
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
