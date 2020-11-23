@@ -6,6 +6,10 @@ const server = express();
 const morgan = require('morgan');
 server.use(morgan('dev'));
 
+//CORS for cross-origin requests
+const cors = require('cors')
+server.use(cors())
+
 // handle application/json requests
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());
