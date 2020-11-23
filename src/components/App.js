@@ -32,7 +32,7 @@ const App = () => {
   //     .catch(error => {
   //       setMessage(error.message);
   //     });
-  // });
+  // }, []);
 
   useEffect(() => {
     getAllProducts()

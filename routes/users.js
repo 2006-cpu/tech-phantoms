@@ -3,18 +3,19 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET }  = process.env;
 const SALT_COUNT = 10;
 const { createUser, getUser, getUserByUserName } = require('../db/users');
+const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
 
 
-function requireUser(req, res, next) {
-    if(!req.user) {
-        next({
-            name: 'MissingUserError',
-            message: 'You must be logged in to perform this action'
-        });
-    } 
-        next();
-};
+// function requireUser(req, res, next) {
+//     if(!req.user) {
+//         next({
+//             name: 'MissingUserError',
+//             message: 'You must be logged in to perform this action'
+//         });
+//     } 
+//         next();
+// };
 
 
 usersRouter.post('/register', async (req, res, next) => {
