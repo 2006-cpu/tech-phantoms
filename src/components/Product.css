@@ -8,13 +8,40 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.ProductsDiv {
+.singleProductCard {
     display: flex;
     flex-direction: column;
-    height: 800px;
-    width: 50%;
-    margin-top: 160px;
-    margin-left: 270px;
-    overflow: auto;
-    background-color: rgba(255, 255, 255, 0.879);
+    margin-right: 20px;
+    width: 420px;
+    height: 480px;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.productCardData {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.allProductsImage {
+    position: relative;
+    top: -40px;
+    right: -250px;
+}
+
+.allProductsText {
+    margin-bottom: 20px;
+}
+
+.addToCart {
+    width: 160Px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 1.4em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
 }

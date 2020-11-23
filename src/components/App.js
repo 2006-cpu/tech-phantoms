@@ -1,9 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { BrowserRouter, NavLink, Route, Router, useHistory } from 'react-router-dom';
+import { NavLink, Route, useHistory } from 'react-router-dom';
 import {
-  getAllProducts,
-  getProduct,
-  getSomething
+  getAllProducts
 } from '../api';
 import { Product, AllProducts } from './index';
 import Register from './Register';
@@ -53,12 +51,15 @@ const App = () => {
     <div className="header">
       {/* <h1 className="headerText">Hello, World!</h1>
       <h2 className="headerText">{ message }</h2> */}
-      <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+
+        <NavLink to="/allProducts" className="productsNav" activeClassName="active">
+          <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+        </NavLink>
     </div>
 
     <div className="nav">
       <NavLink to="/allProducts" className="productsNav" activeClassName="active">
-        SOAP PRODUCTS
+        DOPE SOAPS!
       </NavLink>
 
       {!token
@@ -77,7 +78,8 @@ const App = () => {
       </Fragment>
       :
       <Fragment>
-        <button class="logoutButton"onClick={() => {
+        <p className="welcomeUserText">Thank you for logging in!</p>
+        <button className="logoutButton"onClick={() => {
           setToken('');
           setUser('');
           clearCurrentToken();
@@ -104,7 +106,7 @@ const App = () => {
       <Route path="/allProducts/:productId">
         {allProducts && <Product allProducts={allProducts}/>}
         <Product
-          product = {Product}
+          product = {product}
           setProduct = {setProduct}
         />
       </Route>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import storeCurrentUser, {BASE} from '../auth';
-
+import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
+import './Login.css';
 
 export default props => {
   const {token, setToken, user, setUser} = props;
@@ -22,7 +22,8 @@ export default props => {
 
         if(user && user.username){
           setUser(user);
-          storeCurrentUser(user);
+          storeCurrentUser(data.user)
+          storeCurrentToken(data.token)
         }
       } else {
         setShowError(data.message);
@@ -37,13 +38,16 @@ export default props => {
   return <>
   {showError ? showError : null}
   { !token
-    ? <form style={{marginLeft: "90px"}} onSubmit={handleLogin}>
-    <h3>Login Form</h3>
-    <input name="username" type="text" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-    <input type="password" type="text" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
-    <button type="submit">Login</button>
+    ? <form className="loginForm" onSubmit={handleLogin}>
+      <h3 className="loginText">Please Log In</h3>
+      <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
+      <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+      <div className="loginButtonsDiv">
+          <button className="loginButton" type="submit">REGISTER</button>
+          <button className="loginButton" type="submit">CANCEL</button>
+      </div>
     </form>
-    : <h1 style={{textAlign: 'center'}}>Welcome back, {user && user.username}!</h1>
+    : <h1>Welcome back, {user && user.username}!</h1>
 } 
     </>
 };

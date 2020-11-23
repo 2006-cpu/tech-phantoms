@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import storeCurrentUser from '../auth';
-import {BASE} from '../api';
+import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
+import './Register.css';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
@@ -33,7 +33,8 @@ export default props => {
 
                 if(user && user.username) {
                     setUser(user);
-                    storeCurrentUser(user);
+                    storeCurrentUser(data.user)
+                    storeCurrentToken(data.token)
                 }
             } else {
                 setShowError(data.message);
@@ -46,17 +47,20 @@ export default props => {
     return <>
     {showError ? showError : null}
     { !token
-    ? <form style={{marginLeft: "90px"}} onSubmit={handleRegister}>
-    <h3>Registration Form</h3>
-    <input name="imageUrl" type="text" value={imageUrl} onChange={(e) => {setImageUrl(e.target.value)}} />
-    <input name="firstName" type="text" required value={firstName} onChange={(e) => {setFirstName(e.target.value)}} />
-    <input name="lastName" type="text" required value={lastName} onChange={(e) => {setLastName(e.target.value)}} />
-    <input name="email" type="email" required value={email} onChange={(e) => {setEmail(e.target.value)}} />
-    <input name="username" type="text" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-    <input type="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
-    <button type="submit">Register</button>
+    ? <form className="registerForm" onSubmit={handleRegister}>
+        <h3 className="registerText">Please register</h3>
+        <input name="imageUrl" type="text" placeholder="image" value={imageUrl} onChange={(e) => {setImageUrl(e.target.value)}} />
+        <input name="firstName" type="text" placeholder="First name" required value={firstName} onChange={(e) => {setFirstName(e.target.value)}} />
+        <input name="lastName" type="text" placeholder="Last name" required value={lastName} onChange={(e) => {setLastName(e.target.value)}} />
+        <input name="email" type="email" placeholder="email" required value={email} onChange={(e) => {setEmail(e.target.value)}} />
+        <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
+        <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+    <div className="registerButtonsDiv">
+        <button className="registerButton" type="submit">REGISTER</button>
+        <button className="registerButton" type="submit">CANCEL</button>
+    </div>
     </form>
-    : <h1 style={{textAlign: 'center'}}>Thank you for registering, {user && user.username}!</h1>
+    : <h1>Thank you for registering, {user && user.username}!</h1>
     }
     </>
 }

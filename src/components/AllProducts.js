@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getAllProducts } from '../api';
 import Product from './Product.js';
 import './AllProducts.css'
 
 const AllProducts = (props) => {
     const {allProducts, setAllProducts} = props;
-
-
     useEffect (() => {
         getAllProducts()
             .then( response => {
@@ -16,14 +14,11 @@ const AllProducts = (props) => {
     }, []);
 
 return <>
-    <div className="allProductsCards">
-        <h1 className="allProductsTitle">ALL PRODUCTS</h1>
-            <div className="products">
-            {
-            allProducts.map((product) => <Product key={product.id} product={product} />)
-            }
-            </div>
-    </div>
+        <div className="productsGrid">
+        {
+        allProducts.map((product) => <Product key={product.id} product={product} />)
+        }
+        </div>
 </>
 }
 
