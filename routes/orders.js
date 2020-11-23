@@ -1,5 +1,7 @@
 const express = require('express')
 const ordersRouter = express.Router()
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET }  = process.env;
 
 const { getUserById } = require('../db/users')
 
@@ -9,8 +11,6 @@ const { getOrderById,
     getOrdersByProduct,
     getCartByUser,
     createOrder} = require('../db/orders')
-
-const { client } = require('../db')
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
@@ -26,9 +26,9 @@ try {
             console.log(user)
             if (user.isAdmin===true){
                 const orders = await getAllOrders()
-                return orders
+                res.send(orders)
             } else {
-                return {message:'Error: you must be an admin to view all orders'}
+                res.send({message:'Error: you must be an admin to view all orders'})
             }
           }
         }
@@ -51,10 +51,10 @@ ordersRouter.get('/cart', async (req, res, next)=>{
             const user = await getUserById(id)
             console.log(user)
             if (user){
-                const orders = await getCartByUser()
-                return orders
+                const orders = await getCartByUser({id})
+                res.send( orders )
             } else {
-                return {message:'You must be logged in to view your cart'}
+                res.send({message:'You must be logged in to view your cart'})
             }
           }
         }
@@ -64,4 +64,25 @@ ordersRouter.get('/cart', async (req, res, next)=>{
     }
 })
 
+ordersRouter.post('/', async (req,res,next)=>{
+    try {
+        const prefix = 'Bearer ';
+        const auth = req.header('Authorization');
+        if (auth.startsWith(prefix)) {
+        const token = auth.slice(prefix.length);
+        if (token){
+        const { id } = jwt.verify(token, JWT_SECRET);
+          if (id) {
+            const newOrder = await createOrder({status: 'created', userId: id})
+            console.log(newOrder)
+            res.send(newOrder)
+          } else {
+            res.send({message:'You must be logged in to create an order'})
+            }
+        }
+    }
+    } catch (error) {
+        
+    }
+})
 module.exports = ordersRouter

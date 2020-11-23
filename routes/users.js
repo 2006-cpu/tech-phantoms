@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET }  = process.env;
 const SALT_COUNT = 10;
 const { createUser, getUser, getUserByUserName } = require('../db/users');
+const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
 
 
@@ -90,12 +91,35 @@ usersRouter.post('/login', async (req, res, next) => {
         }
     });
 
-    usersRouter.get('/me', requireUser, async (req, res, next) => {
-        try { 
-        res.send(req.user);
+    usersRouter.get('/:userId/orders', async (req, res, next) =>{
+        try {
+            const {userId} = req.params
+            const prefix = 'Bearer ';
+            const auth = req.header('Authorization');
+        if (auth.startsWith(prefix)) {
+            const token = auth.slice(prefix.length);
+        if (token){
+            const { id } = jwt.verify(token, JWT_SECRET);
+            console.log(id)
+            console.log(userId)
+          if (id == userId) {
+            const userOrders = await getOrdersByUser( {id} )
+            res.send(userOrders)
+          }
+        }
+    }
+        } catch (error) {
+            console.log(error)
+        }
+    }) 
+/*
+    usersRouter.get('/me', async (req, res, next) => {
+        try {
+        const user =
+        res.send(user);
         } catch (error) {
          next(error);
         }
-    });
+    });*/
 
 module.exports = usersRouter;

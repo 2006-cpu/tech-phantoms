@@ -26,9 +26,8 @@ const getAllOrders = async ()=>{
     }
 } 
 
-const getOrdersByUser = async ({ username })=>{
+const getOrdersByUser = async ({ id })=>{
     try {
-        const {id} = await getUserByUserName(username)
         const {rows: orders} = await client.query(`
             SELECT * FROM orders
             WHERE "userId"=$1
