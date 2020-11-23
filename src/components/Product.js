@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import allProducts from './AllProducts';
 
 const Product = (props) => {
-    const {id, name, description, price, imageUrl, inStock, category} = props;
+    const {id, name, description, price, imageUrl, inStock, category} = props.product;
   
 
 return <>
