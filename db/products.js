@@ -1,12 +1,12 @@
 const { client } = require('./index');
 
-async function createProduct({name, description, price, imageUrl='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
+async function createProduct({name, description, price, imageURL='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
     try {
         const { rows: [ product ] } = await client.query (`
             INSERT INTO products(name, description, price, "imageURL", "inStock", category)
             VALUES($1, $2, $3, $4, $5, $6)
             RETURNING *;
-        `, [name, description, price, imageUrl, inStock, category]);
+        `, [name, description, price, imageURL, inStock, category]);
       return product;        
     } catch (error) {
       throw error;

@@ -43,7 +43,7 @@ export default props => {
       <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
       <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
       <div className="loginButtonsDiv">
-          <button className="loginButton" type="submit">REGISTER</button>
+          <button className="loginButton" type="submit">LOG IN</button>
           <button className="loginButton" type="submit">CANCEL</button>
       </div>
     </form>

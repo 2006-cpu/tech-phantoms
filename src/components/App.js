@@ -7,7 +7,7 @@ import {
   getAllOrders,
   getSingleOrder
 } from '../api';
-import { Product, AllProducts, login, register, AllOrders, SingleOrders } from './index';
+import { Product, AllProducts, Login, Register, AllOrders, SingleOrders } from './index';
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
 import cart from './cart.png';
 import './App.css';
@@ -156,17 +156,10 @@ const App = (props) => {
       orderId && userId
       ?
       <Fragment>
-        <Route path="/SingleOrder">
+        <Route path="/orders/cart">
           <SingleOrder
           singleOrder = {singleOrder}
           setSingleOrder = {setSingleOrder}
-          />
-        </Route>
-
-        <Route path="/orders/cart">
-          <Cart
-          cart = {cart}
-          setCart = {setCart}
           />
         </Route>
       </Fragment>

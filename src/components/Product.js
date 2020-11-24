@@ -3,7 +3,6 @@ import './Product.css';
 
 const Product = (props) => {
     const {id, name, description, price, imageURL, inStock, category} = props.product;
-    console.log(imageURL)
 return <>
     <div id={`product${id}`} className="singleProductCard">
         <div className="productCardData">
