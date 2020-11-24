@@ -17,11 +17,14 @@ const App = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    setUser(getCurrentUser());
-      console.log('CHECKuserLOCAL: ', user);
-  
-    setToken(getCurrentToken());
-      console.log('CHECKtokenLOCAL: ', token);
+    const currentUser = localStorage.getItem('currentUser')
+    const currentToken = localStorage.getItem('token')
+    if(currentUser && currentToken){
+      const loggedInUser = JSON.parse(currentUser)
+      const loggedInUserToken = JSON.parse(currentToken)
+      setUser(loggedInUser)
+      setToken(loggedInUserToken)
+    }
   }, []);
 
   // useEffect(() => {

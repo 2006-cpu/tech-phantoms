@@ -28,7 +28,8 @@ export default function storeCurrentUser(user) {
 }
 
 export function getCurrentUser() {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = localStorage.getItem('currentUser')
+    const user = JSON.parse();
     return user;
 }
 
@@ -41,7 +42,8 @@ export function storeCurrentToken(token) {
 }
 
 export function getCurrentToken() {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const currentToken = localStorage.getItem('token')
+    const token = JSON.parse(currentToken);
     return token;
 }
 

@@ -1,6 +1,6 @@
 const { client } = require('./index');
 
-async function createProduct({name, description, price, imageUrl, inStock, category}) {
+async function createProduct({name, description, price, imageUrl='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
     try {
         const { rows: [ product ] } = await client.query (`
             INSERT INTO products(name, description, price, "imageURL", "inStock", category)
