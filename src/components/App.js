@@ -1,20 +1,28 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { NavLink, Route, useHistory } from 'react-router-dom';
 import {
-  getAllProducts
+  getAllProducts,
+  getProduct,
+  getSomething,
+  getAllOrders,
+  getSingleOrder
 } from '../api';
-import { Product, AllProducts } from './index';
-import Register from './Register';
-import Login from './Login';
+import { Product, AllProducts, login, register, AllOrders, SingleOrders } from './index';
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
+import cart from './cart.png';
 import './App.css';
+import SingleOrder from './SingleOrder';
 
-const App = () => {
+const App = (props) => {
+  const {orderId, userId} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   // const [message, setMessage] = useState('');
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [singleOrder, setSingleOrder] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setUser(getCurrentUser());
@@ -32,7 +40,7 @@ const App = () => {
   //     .catch(error => {
   //       setMessage(error.message);
   //     });
-  // }, []);
+  // });
 
   useEffect(() => {
     getAllProducts()
@@ -42,20 +50,24 @@ const App = () => {
       })
   }, []);
 
-  const goHome = useHistory();
-  function returnToHome() {
-    goHome.push("/AllProducts");
+  useEffect(() => {
+    getAllOrders()
+      .then( responseAllOrders => {
+        setAllOrders(responseAllOrders)
+      console.log('responseAllOrders: ', responseAllOrders);
+      })
+  }, []);
+
+  const returnToHome = useHistory();
+  function handleClick() {
+    returnToHome.push("/AllProducts");
   }
 
   return <>
-    <div className="header">
-      {/* <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2> */}
-
-        <NavLink to="/allProducts" className="productsNav" activeClassName="active">
-          <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
-        </NavLink>
-    </div>
+    {/* <div className="header">
+      <h1 className="headerText">Hello, World!</h1>
+      <h2 className="headerText">{ message }</h2>
+    </div> */}
 
     <div className="nav">
       <NavLink to="/allProducts" className="productsNav" activeClassName="active">
@@ -84,13 +96,18 @@ const App = () => {
           setUser('');
           clearCurrentToken();
           clearCurrentUser();
-          returnToHome();
+          handleClick();
         }}>
           LOG OUT
         </button>
       </Fragment>
       } 
+
+      <NavLink to="cart" className="cart" activeClassName="active">
+        <img src={cart} alt="cart" width="50px" height="50px" />
+      </NavLink>
     </div>
+
     <div className="welcomeDiv">Welcome to Dope Soap!<br />
     Enjoy a clean view of all our products!
    </div>
@@ -131,6 +148,36 @@ const App = () => {
       :
      <div>Customer Account Info Here</div>
       }
+
+      {
+      orderId && userId
+      ?
+      <Fragment>
+        <Route path="/SingleOrder">
+          <SingleOrder
+          singleOrder = {singleOrder}
+          setSingleOrder = {setSingleOrder}
+          />
+        </Route>
+
+        <Route path="/orders/cart">
+          <Cart
+          cart = {cart}
+          setCart = {setCart}
+          />
+        </Route>
+      </Fragment>
+      :
+      <span>There is no order.</span>
+      }
+
+    <Route path="/AllOrders">
+      <AllOrders
+      allOrders = {allOrders}
+      setAllOrders = {setAllOrders}
+      />
+    </Route>
+
     </div>
   </>
 }
