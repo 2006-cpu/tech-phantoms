@@ -6,9 +6,9 @@ async function createUser({
   firstName,
   lastName,
   email,
-  imageURL,  
+  imageURL="https://i.imgur.com/6CsuY8X.png",  
   username, 
-  password, isAdmin=''
+  password, isAdmin=false
   }) {
     try {
       const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
