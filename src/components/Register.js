@@ -40,7 +40,7 @@ export default props => {
                 setShowError(data.message);
             }
         } catch (error) {
-           console.error(error); 
+          throw error;
         }
     }
 

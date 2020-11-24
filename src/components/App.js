@@ -9,7 +9,6 @@ import {
 } from '../api';
 import { Product, AllProducts, Login, Register, AllOrders, SingleOrders } from './index';
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
-import cart from './cart.png';
 import './App.css';
 import SingleOrder from './SingleOrder';
 
@@ -67,10 +66,14 @@ const App = (props) => {
   }
 
   return <>
-    {/* <div className="header">
-      <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2>
-    </div> */}
+     <div className="header">
+      {/* <h1 className="headerText">Hello, World!</h1>
+      <h2 className="headerText">{ message }</h2> */}
+
+      <NavLink to="/allProducts" className="productsNav" activeClassName="active">
+        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+      </NavLink>
+    </div> 
 
     <div className="nav">
       <NavLink to="/allProducts" className="productsNav" activeClassName="active">
@@ -106,8 +109,8 @@ const App = (props) => {
       </Fragment>
       } 
 
-      <NavLink to="cart" className="cart" activeClassName="active">
-        <img src={cart} alt="cart" width="50px" height="50px" />
+      <NavLink to="/cart" className="cart" activeClassName="active">
+        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" />
       </NavLink>
     </div>
 
@@ -149,7 +152,7 @@ const App = (props) => {
       </Route>
     </Fragment>
       :
-     <div>Customer Account Info Here</div>
+     <div></div>
       }
 
       {
@@ -164,7 +167,11 @@ const App = (props) => {
         </Route>
       </Fragment>
       :
-      <span>There is no order.</span>
+      <Fragment>
+        <Route path="/orders/cart">
+        <span>There is no order.</span>
+        </Route>
+      </Fragment>
       }
 
     <Route path="/AllOrders">
