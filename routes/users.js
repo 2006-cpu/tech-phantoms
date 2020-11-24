@@ -7,15 +7,15 @@ const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
 
 
-function requireUser(req, res, next) {
-    if(!req.user) {
-        next({
-            name: 'MissingUserError',
-            message: 'You must be logged in to perform this action'
-        });
-    } 
-        next();
-};
+// function requireUser(req, res, next) {
+//     if(!req.user) {
+//         next({
+//             name: 'MissingUserError',
+//             message: 'You must be logged in to perform this action'
+//         });
+//     } 
+//         next();
+// };
 
 
 usersRouter.post('/register', async (req, res, next) => {
@@ -91,35 +91,12 @@ usersRouter.post('/login', async (req, res, next) => {
         }
     });
 
-    usersRouter.get('/:userId/orders', async (req, res, next) =>{
-        try {
-            const {userId} = req.params
-            const prefix = 'Bearer ';
-            const auth = req.header('Authorization');
-        if (auth.startsWith(prefix)) {
-            const token = auth.slice(prefix.length);
-        if (token){
-            const { id } = jwt.verify(token, JWT_SECRET);
-            console.log(id)
-            console.log(userId)
-          if (id == userId) {
-            const userOrders = await getOrdersByUser( {id} )
-            res.send(userOrders)
-          }
-        }
-    }
-        } catch (error) {
-            console.log(error)
-        }
-    }) 
-/*
-    usersRouter.get('/me', async (req, res, next) => {
-        try {
-        const user =
-        res.send(user);
-        } catch (error) {
-         next(error);
-        }
-    });*/
+    // usersRouter.get('/me', requireUser, async (req, res, next) => {
+    //     try { 
+    //     res.send(req.user);
+    //     } catch (error) {
+    //      next(error);
+    //     }
+    // });
 
 module.exports = usersRouter;

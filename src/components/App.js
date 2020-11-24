@@ -1,38 +1,41 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { BrowserRouter, NavLink, Route, Router, useHistory } from 'react-router-dom';
+import { NavLink, Route, useHistory } from 'react-router-dom';
 import {
-  getAllProducts,
-  getProduct,
-  getSomething
+  getAllProducts
 } from '../api';
-import { Product, AllProducts, login, register } from './index';
+import { Product, AllProducts } from './index';
+import Register from './Register';
+import Login from './Login';
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
 import './App.css';
 
 const App = () => {
   const [user, setUser] = useState('');
-  const [token, setToken] = useState({});
-  const [message, setMessage] = useState('');
+  const [token, setToken] = useState('');
+  // const [message, setMessage] = useState('');
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    setUser(getCurrentUser());
-      console.log('CHECKuserLOCAL: ', user);
-  
-    setToken(getCurrentToken());
-      console.log('CHECKtokenLOCAL: ', token);
+    const currentUser = localStorage.getItem('currentUser')
+    const currentToken = localStorage.getItem('token')
+    if(currentUser && currentToken){
+      const loggedInUser = JSON.parse(currentUser)
+      const loggedInUserToken = JSON.parse(currentToken)
+      setUser(loggedInUser)
+      setToken(loggedInUserToken)
+    }
   }, []);
 
-  useEffect(() => {
-    getSomething()
-      .then(response => {
-        setMessage(response.message);
-      })
-      .catch(error => {
-        setMessage(error.message);
-      });
-  });
+  // useEffect(() => {
+  //   getSomething()
+  //     .then(response => {
+  //       setMessage(response.message);
+  //     })
+  //     .catch(error => {
+  //       setMessage(error.message);
+  //     });
+  // }, []);
 
   useEffect(() => {
     getAllProducts()
@@ -42,22 +45,59 @@ const App = () => {
       })
   }, []);
 
+  const goHome = useHistory();
+  function returnToHome() {
+    goHome.push("/AllProducts");
+  }
+
   return <>
     <div className="header">
-      <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2>
+      {/* <h1 className="headerText">Hello, World!</h1>
+      <h2 className="headerText">{ message }</h2> */}
+
+        <NavLink to="/allProducts" className="productsNav" activeClassName="active">
+          <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+        </NavLink>
     </div>
 
-  <Route>
     <div className="nav">
-      <NavLink to="/allProducts" className="normal" activeClassName="active">
-        ALL PRODUCTS
+      <NavLink to="/allProducts" className="productsNav" activeClassName="active">
+        DOPE SOAPS!
       </NavLink>
+
+      {!token
+      ?
+      <Fragment>
+        <div className="pleaseLogIn">
+      Please{' '}
+        <NavLink to="/Login" className="login" activeClassName="active">
+          LOG IN
+        </NavLink>
+      {' '}or{' '}
+        <NavLink to="/Register" className="register" activeClassName="active">
+          REGISTER
+        </NavLink>
+       </div>
+      </Fragment>
+      :
+      <Fragment>
+        <p className="welcomeUserText">Thank you for logging in!</p>
+        <button className="logoutButton"onClick={() => {
+          setToken('');
+          setUser('');
+          clearCurrentToken();
+          clearCurrentUser();
+          returnToHome();
+        }}>
+          LOG OUT
+        </button>
+      </Fragment>
+      } 
     </div>
-  </Route>
-
-
-
+    <div className="welcomeDiv">Welcome to Dope Soap!<br />
+    Enjoy a clean view of all our products!
+   </div>
+   
     <div id="App">
       <Route exact path="/allProducts">
         <AllProducts
@@ -69,14 +109,32 @@ const App = () => {
       <Route path="/allProducts/:productId">
         {allProducts && <Product allProducts={allProducts}/>}
         <Product
-          product = {Product}
+          product = {product}
           setProduct = {setProduct}
         />
       </Route>
-    </div>
-  
- 
 
+      {!token
+      ?
+    <Fragment>
+      <Route path="/Login">
+        <Login
+          setUser = {setUser}
+          setToken = {setToken}
+        />
+      </Route>
+
+      <Route path="/Register">
+        <Register
+          setUser = {setUser}
+          setToken = {setToken}
+        />
+      </Route>
+    </Fragment>
+      :
+     <div>Customer Account Info Here</div>
+      }
+    </div>
   </>
 }
 

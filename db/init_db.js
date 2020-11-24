@@ -67,7 +67,6 @@ async function populateInitialData() {
       name: "Riley's Favorite Soap",
       description: "A very lovely soap. Riley recommends it for all soaping purposes.",
       price:"799",
-      imageURL:"placeholder.com",
       inStock: false,
       category: 'Natural'
       },
@@ -75,7 +74,6 @@ async function populateInitialData() {
         name: "Tammy's Favorite Soap",
         description: "A lovely scented soap!",
         price:"1299",
-        imageURL:"placeholder.com",
         inStock: true,
         category: 'Natural'
       },
@@ -83,7 +81,6 @@ async function populateInitialData() {
         name: "Pizza Soap",
         description: "Contains authentic New York pizza grease.",
         price: "1999",
-        imageURL:"placeholder.com",
         inStock: true,
         category: 'Fun'
       },
@@ -91,7 +88,6 @@ async function populateInitialData() {
         name: "Poop Soap",
         description: "You can have our poopy.",
         price: "1599",
-        imageURL: "placeholder.com",
         inStock: false,
         category: 'Fun'
       },
@@ -99,7 +95,6 @@ async function populateInitialData() {
         name: "Gold Soap",
         description: "Yes it's real gold.",
         price: "14999",
-        imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
 
@@ -108,7 +103,6 @@ async function populateInitialData() {
         name: "Ocean Breeze",
         description: "Made with salt water and embedded with real sea shells.",
         price: "4999",
-        imageURL: "placeholder.com",
         inStock: true,
         category: 'Decorative'
       },

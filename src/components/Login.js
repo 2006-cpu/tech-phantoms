@@ -1,32 +1,54 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import {
-//   BrowserRouter as Router,
-//   NavLink
-// } from 'react-router-dom';
-// import storeCurrentUser, { storeCurrentToken, callApi, BASE }  from '../auth';
-// import { postUser } from '../api';
-// import './LogIn.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
+import './Login.css';
 
-// const LogIn = (props) => {
-//   const {setToken, setUser, statusError, setStatusError, token} = props;
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
+export default props => {
+  const {token, setToken, user, setUser} = props;
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showError, setShowError] = useState('');
   
-//     const signIn = async function () {
-//         try {
-//             const userSignIn = await postUser({ url: '/users', token: user.token});
+  const handleLogin = async (event) => {
+    try {
+      event.preventDefault();
+      setShowError('');
+      const {data} = await axios.post(`${BASE}/users/login`, {username, password});
+      if(data && data.token) {
+        setUsername('');
+        setPassword('');
+        setToken(data.token);
+        const user = data.user;
 
-            
-            
-//         } catch (error) {
-//         console.error(error)
-//         throw error;
-//         }
-//     }
+        if(user && user.username){
+          setUser(user);
+          storeCurrentUser(data.user)
+          storeCurrentToken(data.token)
+        }
+      } else {
+        setShowError(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      
+  
+    }
+  }
+  
+  return <>
+  {showError ? showError : null}
+  { !token
+    ? <form className="loginForm" onSubmit={handleLogin}>
+      <h3 className="loginText">Please Log In</h3>
+      <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
+      <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+      <div className="loginButtonsDiv">
+          <button className="loginButton" type="submit">REGISTER</button>
+          <button className="loginButton" type="submit">CANCEL</button>
+      </div>
+    </form>
+    : <h1>Welcome back, {user && user.username}!</h1>
+} 
+    </>
+};
 
-//   return <>
-
-//   </>
-
-// }
