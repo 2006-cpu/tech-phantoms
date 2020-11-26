@@ -2,15 +2,6 @@ import axios from 'axios';
 // export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
 export const BASE = 'http://localhost:5000/api'
 
-// export async function getSomething() {
-//   try {
-//     const { data } = await axios.get('/');
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
-
 export async function getAllProducts() {
   try {
     const { data } = await axios.get(`${ BASE }/products`);
