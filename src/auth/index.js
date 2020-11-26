@@ -3,17 +3,17 @@ export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
 //export const BASE = 'http://localhost:5000/api'
 
 export default function storeCurrentUser(user) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
 }
 
 export function getCurrentUser() {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = localStorage.getItem('user')
     const user = JSON.parse();
     return user;
 }
 
 export function clearCurrentUser() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
 }
 
 export function storeCurrentToken(token) {

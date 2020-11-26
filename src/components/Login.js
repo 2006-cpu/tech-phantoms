@@ -22,14 +22,14 @@ export default props => {
 
         if(user && user.username){
           setUser(user);
-          storeCurrentUser(data.user)
+          storeCurrentUser(user)
           storeCurrentToken(data.token)
         }
       } else {
         setShowError(data.message);
       }
     } catch (error) {
-      console.error(error);
+      throw error;
       
   
     }
