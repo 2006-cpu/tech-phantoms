@@ -3,7 +3,6 @@ import { NavLink, Route, useHistory } from 'react-router-dom';
 import {
   getAllProducts,
   getProduct,
-  getSomething,
   getAllOrders,
   getSingleOrder
 } from '../api';
@@ -16,7 +15,6 @@ const App = (props) => {
   const {orderId, userId} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
-  // const [message, setMessage] = useState('');
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [singleOrder, setSingleOrder] = useState([]);
@@ -34,41 +32,35 @@ const App = (props) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   getSomething()
-  //     .then(response => {
-  //       setMessage(response.message);
-  //     })
-  //     .catch(error => {
-  //       setMessage(error.message);
-  //     });
-  // });
-
-  useEffect(() => {
+  const fetchProducts = () => {
     getAllProducts()
       .then( responseAllProducts => {
         setAllProducts(responseAllProducts)
       console.log('responseAllProducts: ', responseAllProducts);
       })
-  }, []);
+  }
 
-  useEffect(() => {
+  const fetchOrders =() => {
     getAllOrders()
       .then( responseAllOrders => {
         setAllOrders(responseAllOrders)
       console.log('responseAllOrders: ', responseAllOrders);
       })
-  }, []);
+  }
 
-  const returnToHome = useHistory();
+  useEffect(()=>{
+    fetchProducts()
+    fetchOrders()
+  },[])
+
+  const history = useHistory();
   function handleClick() {
-    returnToHome.push("/AllProducts");
+    history.push("/AllProducts");
   }
 
   return <>
      <div className="header">
-      {/* <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2> */}
+     
 
       <NavLink to="/allProducts" className="productsNav" activeClassName="active">
         <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
