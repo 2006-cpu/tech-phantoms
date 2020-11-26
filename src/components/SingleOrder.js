@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './SingleOrder.css';
+import {getSingleOrder} from '../api'
 
-const SingleOrder = (props) => {
-    const {id, userId, datePlaced, productId, orderId, quantity, status, price, } = props.singleOrder;
+const SingleOrder = () => {
+    const [order,setOrder]=useState([])
+
+    useEffect(()=>{
+        getSingleOrder().then(singleOrder=>setOrder(singleOrder))
+    },[])
+
+const {id, userId, datePlaced, productId, orderId, quantity, status, price} = order
 
 return <>
     <div id={`singleOrder${id}`} className="singleOrderCard">

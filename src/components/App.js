@@ -31,7 +31,7 @@ const App = (props) => {
   const [singleOrder, setSingleOrder] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [cart, setCart] = useState([]);
-  const [footer, setFooter] = useState('');
+
 
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
@@ -44,21 +44,26 @@ const App = (props) => {
     }
   }, []);
 
-  useEffect(() => {
+  const fetchProducts = () => {
     getAllProducts()
       .then( responseAllProducts => {
         setAllProducts(responseAllProducts)
       console.log('responseAllProducts: ', responseAllProducts);
       })
-  }, []);
+  }
 
-  useEffect(() => {
+  const fetchOrders =() => {
     getAllOrders()
       .then( responseAllOrders => {
         setAllOrders(responseAllOrders)
       console.log('responseAllOrders: ', responseAllOrders);
       })
-  }, []);
+  }
+
+  useEffect(()=>{
+    fetchProducts()
+    fetchOrders()
+  },[])
 
   return <>
     <div id="App">
@@ -137,12 +142,9 @@ const App = (props) => {
         />
       </Route>
 
-      <Route path="/footer">
-        <Footer
-          footer = {footer}
-          setFooter = {setFooter}
-        />
-      </Route>
+
+        <Footer />
+      
 
     </div>
   </>
