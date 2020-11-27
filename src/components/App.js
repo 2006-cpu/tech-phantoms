@@ -142,6 +142,7 @@ const App = (props) => {
         />
       </Route>
 
+      <div className="backDrop">Backdrop</div>
 
         <Footer />
       
