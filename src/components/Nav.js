@@ -57,7 +57,7 @@ return <>
       } 
 
       <NavLink to="/cart" className="cart" activeClassName="active">
-        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" onCLick={() => {
+        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" onClick={() => {
            handleClick();
         }}/>
       </NavLink>
