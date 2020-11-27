@@ -10,6 +10,7 @@ import { Product, AllProducts, Login, Register, AllOrders, SingleOrders } from '
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
 import './App.css';
 import SingleOrder from './SingleOrder';
+import swal from 'sweetalert';
 
 const App = (props) => {
   const {orderId, userId} = props;
@@ -95,6 +96,7 @@ const App = (props) => {
           clearCurrentToken();
           clearCurrentUser();
           handleClick();
+          swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");
         }}>
           LOG OUT
         </button>

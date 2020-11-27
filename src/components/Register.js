@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Register.css';
+import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
@@ -35,9 +37,17 @@ export default props => {
                     setUser(user);
                     storeCurrentUser(data.user)
                     storeCurrentToken(data.token)
+                    Swal.fire({
+                        position: 'top-left',
+                        icon: 'success',
+                        title: 'Your now Registered!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 }
             } else {
                 setShowError(data.message);
+                swal("Username/Password Already Exists!", "Please Try to Register Again!", "warning");
             }
         } catch (error) {
           throw error;

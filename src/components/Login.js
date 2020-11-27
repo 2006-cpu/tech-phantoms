@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Login.css';
+import swal from 'sweetalert';
 
 export default props => {
   const {token, setToken, user, setUser} = props;
@@ -24,11 +25,13 @@ export default props => {
           setUser(user);
           storeCurrentUser(data.user)
           storeCurrentToken(data.token)
+          swal("You've Successfully Logged in!", "Have fun shopping", "success");
         }
       } else {
         setShowError(data.message);
       }
     } catch (error) {
+      swal("Username/Password is Incorrect", "Please Try and Login Again!", "warning");
       console.error(error);
       
   
