@@ -3,6 +3,7 @@ import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Register.css';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
@@ -36,6 +37,13 @@ export default props => {
                     setUser(user);
                     storeCurrentUser(data.user)
                     storeCurrentToken(data.token)
+                    Swal.fire({
+                        position: 'top-left',
+                        icon: 'success',
+                        title: 'Your now Registered!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 }
             } else {
                 setShowError(data.message);
