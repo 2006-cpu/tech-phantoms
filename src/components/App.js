@@ -19,11 +19,7 @@ import {
   Footer } from './index';
 
 import SingleOrder from './SingleOrder';
-
-import swal from 'sweetalert';
-
 import './App.css';
-
 
 const App = (props) => {
   const {orderId, userId} = props;
@@ -70,60 +66,6 @@ const App = (props) => {
   },[])
 
   return <>
-
-     <div className="header">
-     
-
-      <NavLink to="/allProducts" className="productsNav" activeClassName="active">
-        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
-      </NavLink>
-    </div> 
-
-    <div className="nav">
-      <NavLink to="/allProducts" className="productsNav" activeClassName="active">
-        DOPE SOAPS!
-      </NavLink>
-
-      {!token
-      ?
-      <Fragment>
-        <div className="pleaseLogIn">
-      Please{' '}
-        <NavLink to="/Login" className="login" activeClassName="active">
-          LOG IN
-        </NavLink>
-      {' '}or{' '}
-        <NavLink to="/Register" className="register" activeClassName="active">
-          REGISTER
-        </NavLink>
-       </div>
-      </Fragment>
-      :
-      <Fragment>
-        <p className="welcomeUserText">Thank you for logging in!</p>
-        <button className="logoutButton"onClick={() => {
-          setToken('');
-          setUser('');
-          clearCurrentToken();
-          clearCurrentUser();
-          handleClick();
-          swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");
-        }}>
-          LOG OUT
-        </button>
-      </Fragment>
-      } 
-
-      <NavLink to="/cart" className="cart" activeClassName="active">
-        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" />
-      </NavLink>
-    </div>
-
-    <div className="welcomeDiv">Welcome to Dope Soap!<br />
-    Enjoy a clean view of all our products!
-   </div>
-   
-
     <div id="App">
       <Route>
         <Nav 

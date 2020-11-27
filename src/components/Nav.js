@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { NavLink, Route, useHistory } from 'react-router-dom';
 import { clearCurrentUser, clearCurrentToken } from '../auth/index';
-import './Nav.css';        
+import './Nav.css';
+import swal from 'sweetalert';        
 
 const Nav = (props) => {
     const {nav, setNav, user, setUser, token, setToken} = props;
@@ -50,6 +51,7 @@ return <>
         <p className="welcomeUserText">Thank you for logging in!</p>
         <button className="logoutButton"onClick={() => {
           handleClick();
+          swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");
         }}>
           LOG OUT
         </button>
@@ -57,7 +59,7 @@ return <>
       } 
 
       <NavLink to="/cart" className="cart" activeClassName="active">
-        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" onCLick={() => {
+        <img src="https://i.imgur.com/wpp02kp.png" alt="cart" width="50px" height="50px" onClick={() => {
            handleClick();
         }}/>
       </NavLink>
