@@ -1,29 +1,44 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { NavLink, Route, useHistory } from 'react-router-dom';
+
 import {
   getAllProducts,
   getProduct,
   getAllOrders,
   getSingleOrder
 } from '../api';
-import { Product, AllProducts, Login, Register, AllOrders, SingleOrders } from './index';
-import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
-import './App.css';
+
+import { 
+  Product, 
+  AllProducts, 
+  Nav, 
+  Login, 
+  Register, 
+  AllOrders, 
+  SingleOrders, 
+  Footer } from './index';
+
 import SingleOrder from './SingleOrder';
+
 import swal from 'sweetalert';
+
+import './App.css';
+
 
 const App = (props) => {
   const {orderId, userId} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
+  const [nav, setNav] = useState([]);
   const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [singleOrder, setSingleOrder] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [cart, setCart] = useState([]);
 
+
   useEffect(() => {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = localStorage.getItem('user')
     const currentToken = localStorage.getItem('token')
     if(currentUser && currentToken){
       const loggedInUser = JSON.parse(currentUser)
@@ -54,12 +69,8 @@ const App = (props) => {
     fetchOrders()
   },[])
 
-  const history = useHistory();
-  function handleClick() {
-    history.push("/AllProducts");
-  }
-
   return <>
+
      <div className="header">
      
 
@@ -112,39 +123,38 @@ const App = (props) => {
     Enjoy a clean view of all our products!
    </div>
    
+
     <div id="App">
-      <Route exact path="/allProducts">
-        <AllProducts
-          allProducts = {allProducts}
-          setAllProducts = {setAllProducts}
+      <Route>
+        <Nav 
+          token = {token}
+          setToken = {setToken}
+          user = {user}
+          setUser = {setUser}
         />
       </Route>
 
-      <Route path="/allProducts/:productId">
-        {allProducts && <Product allProducts={allProducts}/>}
-        <Product
-          product = {product}
-          setProduct = {setProduct}
-        />
-      </Route>
-
+      <div className="welcomeDiv">Welcome to Dope Soap!<br />
+        Enjoy a clean view of all our products!
+      </div>
+     
       {!token
       ?
-    <Fragment>
-      <Route path="/Login">
-        <Login
-          setUser = {setUser}
-          setToken = {setToken}
-        />
-      </Route>
+      <Fragment>
+        <Route path="/Login">
+          <Login
+            setUser = {setUser}
+            setToken = {setToken}
+          />
+        </Route>
 
-      <Route path="/Register">
-        <Register
-          setUser = {setUser}
-          setToken = {setToken}
-        />
-      </Route>
-    </Fragment>
+        <Route path="/Register">
+          <Register
+            setUser = {setUser}
+            setToken = {setToken}
+          />
+        </Route>
+      </Fragment>
       :
      <div></div>
       }
@@ -168,12 +178,31 @@ const App = (props) => {
       </Fragment>
       }
 
-    <Route path="/AllOrders">
-      <AllOrders
-      allOrders = {allOrders}
-      setAllOrders = {setAllOrders}
-      />
-    </Route>
+      <Route path="/AllOrders">
+        <AllOrders
+        allOrders = {allOrders}
+        setAllOrders = {setAllOrders}
+        />
+      </Route>
+
+      <Route exact path="/allProducts">
+        <AllProducts
+          allProducts = {allProducts}
+          setAllProducts = {setAllProducts}
+        />
+      </Route>
+
+      <Route path="/allProducts/:productId">
+        {allProducts && <Product allProducts={allProducts}/>}
+        <Product
+          product = {product}
+          setProduct = {setProduct}
+        />
+      </Route>
+
+
+        <Footer />
+      
 
     </div>
   </>

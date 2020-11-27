@@ -23,7 +23,7 @@ export default props => {
 
         if(user && user.username){
           setUser(user);
-          storeCurrentUser(data.user)
+          storeCurrentUser(user)
           storeCurrentToken(data.token)
           swal("You've Successfully Logged in!", "Have fun shopping", "success");
         }
@@ -31,8 +31,12 @@ export default props => {
         setShowError(data.message);
       }
     } catch (error) {
+
       swal("Username/Password is Incorrect", "Please Try and Login Again!", "warning");
       console.error(error);
+
+      throw error;
+
       
   
     }
