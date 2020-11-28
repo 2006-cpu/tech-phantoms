@@ -1,7 +1,7 @@
 const express = require('express')
 const ordersRouter = express.Router()
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET }  = process.env;
+const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
 const { getUserById } = require('../db/users')
 
@@ -22,9 +22,8 @@ try {
         if (token){
         const { id } = jwt.verify(token, JWT_SECRET);
           if (id) {
-            const user = await getUserById(id)
-            console.log(user)
-            if (user.isAdmin===true){
+            
+            if (req.user.isAdmin===true){
                 const orders = await getAllOrders()
                 res.send(orders)
             } else {
@@ -73,7 +72,7 @@ ordersRouter.post('/', async (req,res,next)=>{
         if (token){
         const { id } = jwt.verify(token, JWT_SECRET);
           if (id) {
-            const newOrder = await createOrder({status: 'created', userId: id})
+            const newOrder = await createOrder({userId: id})
             console.log(newOrder)
             res.send(newOrder)
           } else {

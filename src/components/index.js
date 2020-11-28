@@ -3,5 +3,8 @@ export { default as Product } from './Product';
 export { default as AllProducts } from './AllProducts';
 export { default as AllOrders } from './AllOrders';
 export { default as SingleOrder } from './SingleOrder';
+export { default as Nav } from './Nav';
+export { default as Footer } from './Footer';
+export { default as Cart } from './Cart';
 export { default as Login } from './Login';
 export { default as Register } from './Register';

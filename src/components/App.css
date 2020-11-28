@@ -8,54 +8,11 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.header {
-    display: flex;
-    justify-content: center;
+.backDrop {
     width: 100vw;
-    height: 200px;
-    background-color: rgba(233, 215, 250, 0.879);
-}
-
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: 100px;
-    padding: 20px 140px;
-    background-color: rgba(233, 215, 250, 0.879);
-}
-
-.productsNav {
-    margin-left: 130px;
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: rgba(95, 36, 150, 0.879);
-}
-
-.login {
-    font-size: .9em;
-    font-weight: bold;
-    color: rgba(233, 98, 254, 0.851);
-}
-
-.register {
-    font-size: .9em;
-    font-weight: bold;
-    color: rgba(233, 98, 254, 0.851);
-}
-
-.pleaseLogIn {
-    margin-left: 1000px;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: rgba(95, 36, 150, 0.879);
-}
-
-.active {
-    color: rgba(36, 150, 142, 0.879);
-    text-shadow:2px 2px 3px rgba(102, 252, 242, 0.879);
+    height: 100vh;
+    z-index: -2;
+    background-color: #fffaf7;
 }
 
 .welcomeDiv {
@@ -66,25 +23,8 @@ font-family: 'Thasadith', sans-serif; */
     font-size: 2em;
     font-family: 'Bad Script', cursive;
     color: rgba(55, 8, 97, 0.879);
-    background-color: rgba(247, 238, 255, 0.879);
+    /* background-color: rgba(247, 238, 255, 0.879); */
+    background-color: #fee8d4;
 }
 
-.welcomeUserText {
-    position: relative;
-    right: -700px;
-    font-size: 2em;
-    font-family: 'Bad Script', cursive;
-    color: rgba(55, 8, 97, 0.879);
-}
 
-.logoutButton {
-    width: 160Px;
-    height: 40px;
-    margin-left: 20px;
-    border: none;
-    font-size: 1.4em;
-    color: white;
-    border-radius: 3px;
-    background-color: rgba(233, 49, 166, 0.879);
-    border: 2px solid white;
-}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Register.css';
+import swal from 'sweetalert';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
@@ -38,9 +39,11 @@ export default props => {
                 }
             } else {
                 setShowError(data.message);
+                
             }
         } catch (error) {
-           console.error(error); 
+            swal("Username Already Exists", "Please Try and Register Again!", "warning");
+          throw error;
         }
     }
 

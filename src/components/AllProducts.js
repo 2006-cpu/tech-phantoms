@@ -1,17 +1,9 @@
 import React, { useEffect } from 'react';
-import { getAllProducts } from '../api';
 import Product from './Product.js';
 import './AllProducts.css'
 
 const AllProducts = (props) => {
-    const {allProducts, setAllProducts} = props;
-    useEffect (() => {
-        getAllProducts()
-            .then( response => {
-            console.log('AllProducts: ', response);
-            setAllProducts(response)
-            })
-    }, []);
+    const {allProducts} = props;
 
 return <>
         <div className="productsGrid">
