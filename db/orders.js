@@ -74,11 +74,8 @@ status input needs to be 'created, cancelled, or completed'
 
 const createOrder = async ({status='created', userId})=>{
     try {
-        if(status !== 'created'|| status !=='cancelled'|| status !=='completed'){
-            return {
-                message: "Error: status needs to be 'created', 'cancelled', or 'completed'"
-            }
-        }
+        if(status === 'created'|| status === 'cancelled'|| status === 'completed'){
+            
         const date = new Date()
         const {rows: [order]} = await client.query(`
         INSERT INTO orders(status, "userId", "datePlaced") 
@@ -87,8 +84,13 @@ const createOrder = async ({status='created', userId})=>{
         `, [status, userId, date])
 
         return order
-    
-        
+
+    } 
+        else{
+            return {
+                message: "Error: status needs to be 'created', 'cancelled', or 'completed'"
+            } 
+        }
     } catch (error) {
         console.error(error)
     }
