@@ -8,12 +8,13 @@ const Nav = (props) => {
     const {nav, setNav, user, setUser, token, setToken} = props;
 
     const history = useHistory();
+
     function handleClick() {
       setToken('');
       setUser('');
       clearCurrentToken();
       clearCurrentUser();
-      history.push("/home");
+      history.push("/Home");
     }
 
 return <>
