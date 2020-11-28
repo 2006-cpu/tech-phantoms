@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Login.css';
@@ -39,6 +40,11 @@ export default props => {
     }
   }
   
+  const history = useHistory();
+      function navigateToHome() {
+        history.push("/Home");
+      }
+
   return <>
   {showError ? showError : null}
   { !token
@@ -48,7 +54,9 @@ export default props => {
       <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
       <div className="loginButtonsDiv">
           <button className="loginButton" type="submit">LOG IN</button>
-          <button className="loginButton" type="submit">CANCEL</button>
+          <button className="loginButton" type="submit" onClick={() => {
+            navigateToHome();
+          }}>CANCEL</button>
       </div>
     </form>
     : <h1>Welcome back, {user && user.username}!</h1>
