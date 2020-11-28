@@ -16,7 +16,7 @@ ordersRouter.get('/', async (req, res, next)=>{
 try {
     const prefix = 'Bearer ';
         const auth = req.header('Authorization');
-        
+        console.log('Request', req.headers)
         if (auth.startsWith(prefix)) {
         const token = auth.slice(prefix.length);
         if (token){

@@ -71,7 +71,7 @@ const getCartByUser = async ({id})=>{
 /*
 status input needs to be 'created, cancelled, or completed'
 */
-const createOrder = async ({status, userId})=>{
+const createOrder = async ({status='created', userId})=>{
     try {
         if(status === 'created'|| status === 'cancelled'|| status === 'completed'){
             
@@ -87,7 +87,7 @@ const createOrder = async ({status, userId})=>{
         else{
             return {
                 message: "Error: status needs to be 'created', 'cancelled', or 'completed'"
-            }
+            } 
         }
     } catch (error) {
         console.error(error)
