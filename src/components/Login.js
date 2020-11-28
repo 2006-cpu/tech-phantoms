@@ -36,9 +36,6 @@ export default props => {
       console.error(error);
 
       throw error;
-
-      
-  
     }
   }
   
