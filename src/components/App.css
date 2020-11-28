@@ -12,6 +12,7 @@ font-family: 'Thasadith', sans-serif; */
     width: 100vw;
     height: 100vh;
     z-index: -2;
+    background-color: #fffaf7;
 }
 
 .welcomeDiv {

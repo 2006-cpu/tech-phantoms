@@ -16,13 +16,14 @@ import {
   Register, 
   AllOrders, 
   SingleOrders, 
+  Cart,
   Footer } from './index';
 
 import SingleOrder from './SingleOrder';
 import './App.css';
 
 const App = (props) => {
-  const {orderId, userId} = props;
+  const {orderId, userId, cart, setCart} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [nav, setNav] = useState([]);
@@ -30,7 +31,8 @@ const App = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const [singleOrder, setSingleOrder] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
-  const [cart, setCart] = useState([]);
+  
+  
 
 
   useEffect(() => {
@@ -105,7 +107,7 @@ const App = (props) => {
       orderId && userId
       ?
       <Fragment>
-        <Route path="/orders/cart">
+        <Route path="/orders">
           <SingleOrder
           singleOrder = {singleOrder}
           setSingleOrder = {setSingleOrder}
@@ -114,7 +116,7 @@ const App = (props) => {
       </Fragment>
       :
       <Fragment>
-        <Route path="/orders/cart">
+        <Route path="/orders">
         <span>There is no order.</span>
         </Route>
       </Fragment>
@@ -124,6 +126,13 @@ const App = (props) => {
         <AllOrders
         allOrders = {allOrders}
         setAllOrders = {setAllOrders}
+        />
+      </Route>
+
+      <Route path="/orders/cart">
+        <Cart
+          cart = {cart}
+          setCart = {setCart}
         />
       </Route>
 
@@ -142,7 +151,7 @@ const App = (props) => {
         />
       </Route>
 
-      <div className="backDrop">Backdrop</div>
+      <div className="backDrop"></div>
 
         <Footer />
       
