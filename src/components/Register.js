@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Register.css';
 import swal from 'sweetalert';
@@ -47,6 +48,11 @@ export default props => {
         }
     }
 
+    const history = useHistory();
+    function navigateToHome() {
+        history.push("/Home");
+      }
+
     return <>
     {showError ? showError : null}
     { !token
@@ -60,7 +66,9 @@ export default props => {
         <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
     <div className="registerButtonsDiv">
         <button className="registerButton" type="submit">REGISTER</button>
-        <button className="registerButton" type="submit">CANCEL</button>
+        <button className="registerButton" type="submit" onClick={() => {
+            navigateToHome();
+        }}>CANCEL</button>
     </div>
     </form>
     : <h1>Thank you for registering, {user && user.username}!</h1>
