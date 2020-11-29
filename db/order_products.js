@@ -41,7 +41,7 @@ async function addProductToOrder({
 try {
     // if the productId is NOT on the order yet, create a new order_products
     const { rows: [productOrder] } = await client.query(`
-    INSERT INTO product_orders ("productId", "orderId", price, quantity)
+    INSERT INTO order_products ("productId", "orderId", price, quantity)
     VALUES($1, $2, $3, $4)
     RETURNING *
     `, [productId, orderId, price, quantity])
