@@ -5,8 +5,6 @@ const { createUser } = require('./users');
 
 const { createProduct } = require('./products');
 
-const { destroyOrderProduct } = require('./order_products');
-
 async function buildTables() {
   try {
     client.connect();
