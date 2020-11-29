@@ -5,6 +5,8 @@ const { createUser } = require('./users');
 
 const { createProduct } = require('./products');
 
+const { addProductToOrder } = require('./order_products');
+
 async function buildTables() {
   try {
     client.connect();
@@ -230,7 +232,7 @@ const initialOrderProducts = [
 ]
 
 console.log('Creating orderProducts')
-await Promise.all(initialOrderProducts.map(getOrdersByProduct))
+await Promise.all(initialOrderProducts.map(addProductToOrder))
 console.log('Finished creating ordersProducts')
 
 }catch(error){
