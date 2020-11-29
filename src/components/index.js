@@ -5,3 +5,4 @@ export { default as AllOrders } from './AllOrders';
 export { default as SingleOrder } from './SingleOrder';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
+export { default as SingleProduct } from './singleProduct';

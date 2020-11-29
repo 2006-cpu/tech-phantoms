@@ -7,7 +7,7 @@ import {
   getAllOrders,
   getSingleOrder
 } from '../api';
-import { Product, AllProducts, Login, Register, AllOrders, SingleOrders } from './index';
+import { Product, AllProducts, Login, Register, AllOrders, SingleOrders, SingleProduct } from './index';
 import getCurrentUser, { getCurrentToken, clearCurrentUser, clearCurrentToken } from '../auth/index';
 import cart from './cart.png';
 import './App.css';
@@ -18,7 +18,7 @@ const App = (props) => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   // const [message, setMessage] = useState('');
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [allProducts, setAllProducts] = useState([]);
   const [singleOrder, setSingleOrder] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
@@ -67,10 +67,6 @@ const App = (props) => {
   }
 
   return <>
-    {/* <div className="header">
-      <h1 className="headerText">Hello, World!</h1>
-      <h2 className="headerText">{ message }</h2>
-    </div> */}
 
     <div className="nav">
       <NavLink to="/allProducts" className="productsNav" activeClassName="active">
@@ -120,14 +116,13 @@ const App = (props) => {
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
+         
         />
       </Route>
 
-      <Route path="/allProducts/:productId">
-        {allProducts && <Product allProducts={allProducts}/>}
-        <Product
-          product = {product}
-          setProduct = {setProduct}
+      <Route path={`/allProducts/:productId`}>
+        <SingleProduct
+          
         />
       </Route>
 
