@@ -25,7 +25,7 @@ async function buildTables() {
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       price INTEGER NOT NULL,
-      "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png',
+      "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png' NOT NULL,
       "inStock" BOOLEAN NOT NULL DEFAULT false,
       category TEXT NOT NULL
     );
@@ -34,7 +34,7 @@ async function buildTables() {
         "firstName" VARCHAR(255) NOT NULL,
         "lastName" VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png',
+        "imageURL" TEXT DEFAULT 'https://i.imgur.com/6CsuY8X.png' NOT NULL,
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) UNIQUE NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false

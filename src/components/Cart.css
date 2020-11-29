@@ -8,7 +8,7 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.singleOrderDiv {
+.cartView {
     display: flex;
     flex-direction: column;
     width: 70%;

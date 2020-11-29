@@ -21,7 +21,7 @@ return <>
             {
             inStock
             ?
-            <button className="addToCart">Add to cart</button>
+            <button className="productDetails">Details</button>
             :
             <span>Out of stock</span>
             }
