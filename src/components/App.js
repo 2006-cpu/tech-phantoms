@@ -17,7 +17,7 @@ import {
   AllOrders, 
   SingleOrders, 
   Cart,
-  Footer } from './index';
+  Footer, SingleProduct } from './index';
 
 import SingleOrder from './SingleOrder';
 import './App.css';
@@ -140,14 +140,13 @@ const App = (props) => {
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
+         
         />
       </Route>
 
-      <Route path="/allProducts/:productId">
-        {allProducts && <Product allProducts={allProducts}/>}
-        <Product
-          product = {product}
-          setProduct = {setProduct}
+      <Route path={`/allProducts/:productId`}>
+        <SingleProduct
+          
         />
       </Route>
 
