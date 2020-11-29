@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { NavLink, Route, useHistory } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Product.css';
 
 const Product = (props) => {

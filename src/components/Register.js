@@ -19,7 +19,11 @@ export default props => {
         try {
             event.preventDefault();
             setShowError('');
-            const {data} = await axios.post(`${BASE}/users/register`, { imageURL, firstName, lastName, email,  username, password });
+
+            const {data} = await axios.post(`${BASE}/users/register`, { firstName, lastName, email, imageURL, username, password });
+
+            console.log('DATA: ', data);
+
             if(data && data.token) {
                 setImageURL('');
                 setFirstName('');
@@ -28,7 +32,7 @@ export default props => {
                 setUsername('');
                 setPassword('');
                 setToken(data.token);
-                const {user} = data.user;
+                const user = data.user;
 
                 if(user && user.username) {
                     setUser(user);

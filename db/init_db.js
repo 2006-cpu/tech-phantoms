@@ -1,9 +1,11 @@
 const { client } = require('./index');
-const { createOrder } = require('./orders');
+const { createOrder, getOrdersByProduct } = require('./orders');
 
 const { createUser } = require('./users');
 
 const { createProduct } = require('./products');
+
+const { addProductToOrder } = require('./order_products');
 
 async function buildTables() {
   try {
@@ -179,6 +181,55 @@ const initialOrders = [
 console.log('Creating Orders')
 await Promise.all(initialOrders.map(createOrder))
 console.log('Finished creating Orders')
+
+const initialOrderProducts = [
+  {
+    productId: 1,
+    orderId: 1,
+    price: "799",
+    quantity: 1
+  },
+  {
+    productId: 2,
+    orderId: 1,
+    price: "1299",
+    quantity: 1
+  },
+  {
+    productId: 2,
+    orderId: 2,
+    price: "1299",
+    quantity: 2
+  },
+  {
+    productId: 3,
+    orderId: 3,
+    price: "1999",
+    quantity: 3
+  },
+  {
+    productId: 4,
+    orderId: 4,
+    price: "1599",
+    quantity: 1
+  },
+  {
+    productId: 5,
+    orderId: 5,
+    price: "14999",
+    quantity: 2
+  },
+  {
+    productId: 6,
+    orderId: 6,
+    price: "4999",
+    quantity: 4
+  }
+]
+
+console.log('Creating orderProducts')
+await Promise.all(initialOrderProducts.map(addProductToOrder))
+console.log('Finished creating ordersProducts')
 
 }catch(error){
   console.error(error)
