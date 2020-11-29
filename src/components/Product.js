@@ -6,24 +6,26 @@ const Product = (props) => {
     const {id, name, description, price, imageURL, inStock, category} = props.product;
     const {setProductId} = props
 return <>
-    <div id={`product${id}`} className="singleProductCard">
-        <div className="productCardData">
-            <h3 className="productName">{name}</h3>
-            <div className="allProductsCategory">Product category: {category}</div>
+    <div id={`product${id}`} className="indivProductCard">
+        <div className="indivProductCardData">
+            <h3 className="indivProductName">{name}</h3>
+            <div className="indivProductsCategory">Product category: {category}</div>
            
-             <NavLink to={`/allProducts/${id}`}>
-                <img src={imageURL} alt="productImage" className="allProductsImage" /> 
-            </NavLink>
-           
-            <h4 className="allProxductsText">Description: {description}</h4>
-            <h5 className="allProductsPrice">Price: {price}</h5>
+                <NavLink to={`/allProducts/${id}`}>
+                    <img src={imageURL} alt="productImage" className="indivProductsImage" /> 
+                </NavLink>
+
+                <h4 className="indivProductsDescription">Description: {description}</h4>
+                <h5 className="indivProductsPrice">Price: {price}</h5>
 
             {
             inStock
             ?
-            <button className="productDetails">Details</button>
+            <NavLink to={`/allProducts/${id}`}>
+                <button className="productDetailsButton">Details</button>
+            </NavLink>
             :
-            <span>Out of stock</span>
+            <span className="outOfStockText">Out of stock</span>
             }
         </div>
     </div>

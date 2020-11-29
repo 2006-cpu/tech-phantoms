@@ -17,13 +17,14 @@ import {
   AllOrders, 
   SingleOrders, 
   Cart,
-  Footer, SingleProduct } from './index';
+  Footer, 
+  SingleProduct } from './index';
 
 import SingleOrder from './SingleOrder';
 import './App.css';
 
 const App = (props) => {
-  const {orderId, userId, cart, setCart} = props;
+  const {orderId, userId, cart, setCart, singleProduct, setSingleProduct} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [nav, setNav] = useState([]);
@@ -31,9 +32,6 @@ const App = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const [singleOrder, setSingleOrder] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
-  
-  
-
 
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
@@ -115,11 +113,7 @@ const App = (props) => {
         </Route>
       </Fragment>
       :
-      <Fragment>
-        <Route path="/orders">
-        <span>There is no order.</span>
-        </Route>
-      </Fragment>
+          <span></span>
       }
 
       <Route path="/AllOrders">
@@ -146,7 +140,8 @@ const App = (props) => {
 
       <Route path={`/allProducts/:productId`}>
         <SingleProduct
-          
+          singleProduct = {singleProduct}
+          setSingleProduct = {setSingleProduct}
         />
       </Route>
 

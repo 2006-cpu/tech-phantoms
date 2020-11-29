@@ -116,7 +116,6 @@ async function populateInitialData() {
         firstName: 'The',
         lastName: 'Boss',
         email: 'theboss@example.com',
-        imageURL: '',
         username: 'theboss',
         password: 'theboss',
         isAdmin: true
@@ -125,7 +124,6 @@ async function populateInitialData() {
         firstName: 'Lucky',
         lastName: 'Ducky',
         email: 'luckyducky@example.com',
-        imageURL: '',
         username: 'luckyducky',
         password: 'luckyducky',
         isAdmin: false
@@ -134,7 +132,6 @@ async function populateInitialData() {
         firstName: 'Green',
         lastName: 'Giant',
         email: 'greengiant@example.com',
-        imageURL: '',
         username: 'greengiant',
         password: 'greengiant',
         isAdmin: false
@@ -143,7 +140,6 @@ async function populateInitialData() {
         firstName: 'Sally',
         lastName: 'Fields',
         email: 'sallyfields@example.com',
-        imageURL: '',
         username: 'sally',
         password: 'sally',
         isAdmin: true

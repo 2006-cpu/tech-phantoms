@@ -7,36 +7,34 @@ import swal from 'sweetalert';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [imageURL, setImageURL] = useState("https://i.imgur.com/6CsuY8X.png");
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [imageURL, setImageURL] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [showError, setShowError] = useState('');
 
     const handleRegister = async (event) => {
         try {
             event.preventDefault();
             setShowError('');
-            const {data} = await axios.post(`${BASE}/users/register`, { firstName, lastName, email, imageURL, username, password });
-
-            console.log('DATA: ', data);
-
+            const {data} = await axios.post(`${BASE}/users/register`, { imageURL, firstName, lastName, email,  username, password });
             if(data && data.token) {
-                setUsername('');
-                setPassword('');
+                setImageURL('');
                 setFirstName('');
                 setLastName('');
                 setEmail('');
-                setImageURL('');
+                setUsername('');
+                setPassword('');
                 setToken(data.token);
-                const {user} = data;
+                const {user} = data.user;
 
                 if(user && user.username) {
                     setUser(user);
                     storeCurrentUser(data.user)
                     storeCurrentToken(data.token)
+                    swal("Thank you for registering!", "Have fun shopping", "success");
                 }
             } else {
                 setShowError(data.message);
@@ -44,6 +42,7 @@ export default props => {
             }
         } catch (error) {
             swal("Username Already Exists", "Please Try and Register Again!", "warning");
+            console.error(error)
           throw error;
         }
     }
@@ -58,12 +57,13 @@ export default props => {
     { !token
     ? <form className="registerForm" onSubmit={handleRegister}>
         <h3 className="registerText">Please register</h3>
-        <input name="imageURL" type="text" placeholder="image" value={imageURL} onChange={(e) => {setImageURL(e.target.value)}} />
+        <input name="imageURL" type="text" placeholder="image" onChange={(e) => {setImageURL(e.target.value)}} />
         <input name="firstName" type="text" placeholder="First name" required value={firstName} onChange={(e) => {setFirstName(e.target.value)}} />
         <input name="lastName" type="text" placeholder="Last name" required value={lastName} onChange={(e) => {setLastName(e.target.value)}} />
         <input name="email" type="email" placeholder="email" required value={email} onChange={(e) => {setEmail(e.target.value)}} />
         <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-        <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+        <input name="password" type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+
     <div className="registerButtonsDiv">
         <button className="registerButton" type="submit">REGISTER</button>
         <button className="registerButton" type="submit" onClick={() => {

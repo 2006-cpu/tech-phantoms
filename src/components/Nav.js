@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react';
-import { NavLink, Route, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { clearCurrentUser, clearCurrentToken } from '../auth/index';
+import swal from 'sweetalert'; 
 import './Nav.css';
-import swal from 'sweetalert';        
+       
 
 const Nav = (props) => {
-    const {nav, setNav, user, setUser, token, setToken} = props;
+    const {user, setUser, token, setToken} = props;
+    const {username, imageURL} = user;
 
     const history = useHistory();
 
@@ -16,6 +18,9 @@ const Nav = (props) => {
       clearCurrentUser();
       history.push("/Home");
     }
+
+    console.log('imageURL: ', imageURL);
+    console.log('USER: ', user);
 
 return <>
     <div className="header">
@@ -49,7 +54,10 @@ return <>
       </Fragment>
       :
       <Fragment>
-        <p className="welcomeUserText">Thank you for logging in!</p>
+
+        <img src={imageURL} className="loginUserImage" alt="UserImage" width="auto" height="50px" />
+        <p className="loginUsername">{username}</p>
+        
         <button className="logoutButton"onClick={() => {
           handleClick();
           swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");

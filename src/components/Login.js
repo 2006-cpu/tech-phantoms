@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
 import './Login.css';
@@ -24,7 +24,7 @@ export default props => {
 
         if(user && user.username){
           setUser(user);
-          storeCurrentUser(user)
+          storeCurrentUser(data.user)
           storeCurrentToken(data.token)
           swal("You've Successfully Logged in!", "Have fun shopping", "success");
         }
@@ -32,26 +32,25 @@ export default props => {
         setShowError(data.message);
       }
     } catch (error) {
-
       swal("Username/Password is Incorrect", "Please Try and Login Again!", "warning");
       console.error(error);
-
       throw error;
     }
   }
-  
+
   const history = useHistory();
       function navigateToHome() {
         history.push("/Home");
       }
-
+  
   return <>
   {showError ? showError : null}
   { !token
     ? <form className="loginForm" onSubmit={handleLogin}>
       <h3 className="loginText">Please Log In</h3>
       <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-      <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+      <input name="password" type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+
       <div className="loginButtonsDiv">
           <button className="loginButton" type="submit">LOG IN</button>
           <button className="loginButton" type="submit" onClick={() => {
@@ -60,7 +59,7 @@ export default props => {
       </div>
     </form>
     : <h1>Welcome back, {user && user.username}!</h1>
-} 
+  } 
     </>
 };
 

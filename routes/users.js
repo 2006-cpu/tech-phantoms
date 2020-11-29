@@ -19,7 +19,7 @@ const usersRouter = express.Router();
 
 
 usersRouter.post('/register', async (req, res, next) => {
-    const { firstName, lastName, email, imageURL, username, password } = req.body;
+    const { imageURL, firstName, lastName, email, username, password } = req.body;
     try{
         const _user = await getUserByUserName(username);
         if (_user) {
@@ -35,7 +35,7 @@ usersRouter.post('/register', async (req, res, next) => {
             });
             return
         } else {
-            const user = await createUser({ firstName, lastName, email, imageURL, username, password });
+            const user = await createUser({ imageURL, firstName, lastName, email, username, password });
             const token = jwt.sign({ 
                 id: user.id, 
                 username
