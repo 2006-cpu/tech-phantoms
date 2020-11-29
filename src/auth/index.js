@@ -1,5 +1,5 @@
 import axios from 'axios';
-// export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
+//export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
 export const BASE = 'http://localhost:5000/api'
 
 export default function storeCurrentUser(user) {

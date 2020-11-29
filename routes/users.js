@@ -19,7 +19,7 @@ const usersRouter = express.Router();
 
 
 usersRouter.post('/register', async (req, res, next) => {
-    const { firstName, lastName, email, imageURL, username, password } = req.body;
+    const { imageURL, firstName, lastName, email, username, password } = req.body;
     try{
         const _user = await getUserByUserName(username);
         if (_user) {

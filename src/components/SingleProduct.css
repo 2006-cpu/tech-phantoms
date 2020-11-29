@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* font-family: 'Bad Script', cursive;
-font-family: 'Thasadith', sans-serif; */
-
 * {
     margin: 0;
     font-family: 'Thasadith', sans-serif;
 }
 
-.indivProductCard {
+.singleProductCard {
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -16,10 +13,10 @@ font-family: 'Thasadith', sans-serif; */
     background-color: #F8EEE7;
 }
 
-.indivProductCardData {
+.productCardData {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 700px;
     height: 500px;
     padding: 40px;
     background-color: white;
@@ -28,46 +25,48 @@ font-family: 'Thasadith', sans-serif; */
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
 }
 
-.indivProductName {
+.productName {
     text-align: center;
     font-size: 2em;
     color: rgba(55, 8, 97, 0.879);
 }
 
-.indivProductsCategory {
+.allProductsCategory {
     text-align: center;
     font-size: 1.5em;
     color: rgba(55, 8, 97, 0.879);
 }
 
-.indivProductsImage {
-    margin-top: 20px;
+.innerProductCardInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.allProductsImage {
     width: 40%;
     height:auto;
 }
 
-.indivProductsDescription {
-    margin-top: 30px;
+.allProductsDescription {
+    margin-top: 80px;
+    margin-left: 30px;
     color: rgba(55, 8, 97, 0.879);
 }
 
-.indivProductsPrice {
-    margin-top: 20px;
+.allProductsPrice {
+    margin-top: 40px;
+    margin-left: 30px;
     color: rgba(55, 8, 97, 0.879);
 }
 
-.outOfStockText {
+.addToCartButton {
     position: absolute;
-    bottom: -280px;
-    font-size: 1.2em;
-    color: rgba(55, 8, 97, 0.879);
-}
-
-.productDetailsButton {
-    position: absolute;
-    bottom: -530px;
+    bottom: -480px;
+    left: 450px;
     width: 160Px;
     height: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
     font-size: 1.4em;
     color: white;
     border-radius: 3px;

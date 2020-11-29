@@ -7,12 +7,12 @@ import swal from 'sweetalert';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [imageURL, setImageURL] = useState("https://i.imgur.com/6CsuY8X.png");
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [imageURL, setImageURL] = useState("https://i.imgur.com/6CsuY8X.png");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [showError, setShowError] = useState('');
 
     const handleRegister = async (event) => {
@@ -25,19 +25,20 @@ export default props => {
             console.log('DATA: ', data);
 
             if(data && data.token) {
-                setUsername('');
-                setPassword('');
+                setImageURL('');
                 setFirstName('');
                 setLastName('');
                 setEmail('');
-                setImageURL('');
+                setUsername('');
+                setPassword('');
                 setToken(data.token);
-                const {user} = data;
+                const user = data.user;
 
                 if(user && user.username) {
                     setUser(user);
                     storeCurrentUser(data.user)
                     storeCurrentToken(data.token)
+                    swal("Thank you for registering!", "Have fun shopping", "success");
                 }
             } else {
                 setShowError(data.message);
@@ -45,6 +46,7 @@ export default props => {
             }
         } catch (error) {
             swal("Username Already Exists", "Please Try and Register Again!", "warning");
+            console.error(error)
           throw error;
         }
     }
@@ -64,7 +66,8 @@ export default props => {
         <input name="lastName" type="text" placeholder="Last name" required value={lastName} onChange={(e) => {setLastName(e.target.value)}} />
         <input name="email" type="email" placeholder="email" required value={email} onChange={(e) => {setEmail(e.target.value)}} />
         <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-        <input type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+        <input name="password" type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+
     <div className="registerButtonsDiv">
         <button className="registerButton" type="submit">REGISTER</button>
         <button className="registerButton" type="submit" onClick={() => {
