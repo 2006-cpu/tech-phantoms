@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
 const { getUserById } = require('../db/users')
+const { addProductToOrder, getOrderProductsByOrderId } = require('../db/order_products');
 
 const { getOrderById,
     getAllOrders,
@@ -84,4 +85,51 @@ ordersRouter.post('/', async (req,res,next)=>{
         
     }
 })
+
+ordersRouter.post('/:orderId/products', async (req, res, next) => {
+    try {
+
+        const {orderId} = req.params
+       // const {productId, price, quantity} = req.body
+        const{productId, quantity} = req.body
+        const orderProducts = await getOrderProductsByOrderId(orderId)
+        let totalQuantity
+        console.log("ORDERID", orderId)
+        console.log("PRODUCTID", productId)
+        orderProducts.forEach(product=>{
+            if(product.productId == productId){
+                console.log("YOUR IF STATEMENT WORKS")
+                totalQuantity = Number(quantity) + Number(product.quantity)
+                console.log('TOTALQUANTITY', totalQuantity)
+                res.send({message: "YAY"})    
+            }else{
+                console.log("YOUR IF STATEMENT DOESN'T WORK")
+                res.send({message: "NAY"})    
+            }
+        })
+        
+        /*
+        const prefix = 'Bearer ';
+        const auth = req.header('Authorization');
+        if (auth.startsWith(prefix)) {
+        const token = auth.slice(prefix.length);
+        if (token){
+        const { id } = jwt.verify(token, JWT_SECRET);
+          if (id) {
+            
+
+            const newOrderProduct = await addProductToOrder({productId, orderId, price, quantity})
+            console.log(newOrderProduct)
+            res.send(newOrderProduct)
+          } else {
+            res.send({message:'You must be logged in to create an order'})
+            }
+        }
+    }*/
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
+
 module.exports = ordersRouter

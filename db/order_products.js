@@ -64,9 +64,26 @@ async function destroyOrderProduct(id) {
         throw error;
     }
 };
+
+// ***********************************************************************************
+
+async function getOrderProductsByOrderId(orderId){
+    try {
+        const {rows: orderProducts} = await client.query(`
+            SELECT * FROM order_products
+            WHERE "orderId" = $1
+        `,[orderId])
+        console.log('ORDERPRODUCTS',orderProducts)
+        return orderProducts
+    } catch (error) {
+        console.error(error)
+    }
+}
 module.exports={
     getOrderProductById,
     updateOrderProduct,
     addProductToOrder,
-    destroyOrderProduct
+    destroyOrderProduct,
+    getOrderProductsByOrderId
+
 }
