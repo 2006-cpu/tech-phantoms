@@ -46,6 +46,7 @@ export default props => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+                navigateToHome();
                 }
             } else {
                 setShowError(data.message);

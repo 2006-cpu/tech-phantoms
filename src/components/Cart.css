@@ -8,10 +8,43 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.cartView {
+.cartDiv {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.cartItems {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
     height: 500px;
-    background-color: rgb(248, 244, 252);
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.cartCheckout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 80px;
+    margin-top: 50px;
+    margin-left: 680px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
 }

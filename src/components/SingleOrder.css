@@ -8,10 +8,28 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.singleOrderDiv {
+.orderCardData {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    height: 500px;
-    background-color: rgb(248, 244, 252);
+    width: 500px;
+    height: 670px;
+    margin: 20px;
+    padding: 20px; 
+    color: rgba(55, 8, 97, 0.879);
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.ordersButton {
+    width: 160Px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 1.4em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
 }
