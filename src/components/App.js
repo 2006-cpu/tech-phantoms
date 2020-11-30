@@ -3,9 +3,7 @@ import { NavLink, Route, useHistory } from 'react-router-dom';
 
 import {
   getAllProducts,
-  getProduct,
-  getAllOrders,
-  getSingleOrder
+  getAllOrders
 } from '../api';
 
 import { 
@@ -18,13 +16,14 @@ import {
   SingleOrders, 
   Cart,
   Footer, 
-  SingleProduct } from './index';
+  SingleProduct,
+  SingleUser } from './index';
 
 import SingleOrder from './SingleOrder';
 import './App.css';
 
 const App = (props) => {
-  const {orderId, userId, cart, setCart, singleProduct, setSingleProduct} = props;
+  const {orderId, userId, cart, setCart, singleProduct, setSingleProduct, singleUser, setSingleUser} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [nav, setNav] = useState([]);
@@ -98,7 +97,18 @@ const App = (props) => {
         </Route>
       </Fragment>
       :
-     <div></div>
+     <div>
+      <Fragment>
+        <Route path="/SingleUser">
+          <Register
+            setUser = {setUser}
+            setToken = {setToken}
+            singleUser = {singleUser}
+            setSingleUser = {setSingleUser}
+          />
+        </Route>
+      </Fragment>
+     </div>
       }
 
       {

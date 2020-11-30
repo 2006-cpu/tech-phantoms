@@ -57,6 +57,10 @@ return <>
 
         <img src={imageURL} className="loginUserImage" alt="UserImage" width="auto" height="50px" />
         <p className="loginUsername">{username}</p>
+
+        {/* <NavLink to="/singleUser" className="singleUser" activeClassName="active">
+          User Account
+        </NavLink> */}
         
         <button className="logoutButton"onClick={() => {
           handleClick();
