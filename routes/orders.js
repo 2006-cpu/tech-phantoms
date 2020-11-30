@@ -90,18 +90,20 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
     try {
 
         const {orderId} = req.params
-       // const {productId, price, quantity} = req.body
-        const{productId, quantity} = req.body
+        const {productId, price, quantity} = req.body
+        
         const orderProducts = await getOrderProductsByOrderId(orderId)
         let totalQuantity
+        let totalPrice
         console.log("ORDERID", orderId)
         console.log("PRODUCTID", productId)
         orderProducts.forEach(product=>{
             if(product.productId == productId){
                 console.log("YOUR IF STATEMENT WORKS")
                 totalQuantity = Number(quantity) + Number(product.quantity)
+                totalPrice = Number(totalQuantity) * Number(price)
                 console.log('TOTALQUANTITY', totalQuantity)
-                res.send({message: "YAY"})    
+                res.send({message: "YAY"})
             }else{
                 console.log("YOUR IF STATEMENT DOESN'T WORK")
                 res.send({message: "NAY"})    
