@@ -13,13 +13,13 @@ import {
   Login, 
   Register, 
   AllOrders, 
-  SingleOrders, 
+  SingleOrder, 
   Cart,
   Footer, 
   SingleProduct,
   SingleUser } from './index';
 
-import SingleOrder from './SingleOrder';
+// import SingleOrder from './SingleOrder';
 import './App.css';
 
 const App = (props) => {
@@ -134,13 +134,10 @@ const App = (props) => {
       </Route>
 
       <Route path="/orders/cart">
-        <Cart
-          cart = {cart}
-          setCart = {setCart}
-        />
+        <Cart/>
       </Route>
 
-      <Route exact path="/allProducts">
+      <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}

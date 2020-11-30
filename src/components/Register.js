@@ -39,6 +39,7 @@ export default props => {
                     storeCurrentUser(data.user)
                     storeCurrentToken(data.token)
                     swal("Thank you for registering!", "Have fun shopping", "success");
+                    navigateToHome();
                 }
             } else {
                 setShowError(data.message);

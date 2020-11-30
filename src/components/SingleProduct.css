@@ -7,6 +7,7 @@
 
 .singleProductCard {
     display: flex;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
     padding: 40px;
@@ -48,7 +49,6 @@
 }
 
 .descrPriceQuantityDiv {
-    /* border: 1px solid gray; */
     margin: 0px;
 }
 
@@ -64,22 +64,20 @@
     color: rgba(55, 8, 97, 0.879);
 }
 
-/* .quantitiesList {
-    position: relative;
-    right: -50px;
-} */
-
-.addToCartButton {
-    position: absolute;
-    bottom: -280px;
+.addToCart {
     left: 450px;
-    width: 160Px;
+    width: 180px;
     height: 40px;
-    margin-top: 20px;
-    margin-left: 30px;
-    font-size: 1.4em;
+    margin-top: 50px;
+    margin-left: 160px;
+    font-size: 1.3em;
     color: white;
     border-radius: 3px;
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
+}
+
+.cart {
+    color: white;
+    text-decoration: none;
 }

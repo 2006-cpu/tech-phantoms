@@ -38,9 +38,9 @@ export async function getSingleOrder(id) {
   }
 }
 
-export async function getOrdersCart(cart) {
+export async function getOrdersCart() {
   try {
-    const { data } = await axios.get (`${ BASE }/orders/${cart}`);
+    const { data } = await axios.get (`${ BASE }/orders/cart`);
     return data;
   } catch (error) {
     throw error;
