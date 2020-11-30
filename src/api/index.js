@@ -47,11 +47,11 @@ export async function getOrdersCart(cart) {
   }
 }
 
-// export async function postUser() {
-//   try {
-//     const { data: user } = await axios.post(`${ BASE }/users/login`, {username, password});
-//     return user;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export async function getUser(id) {
+  try {
+    const { data: user } = await axios.get(`${ BASE }/users/me/${id}`);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}

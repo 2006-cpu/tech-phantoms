@@ -47,6 +47,11 @@
     height:auto;
 }
 
+.descrPriceQuantityDiv {
+    /* border: 1px solid gray; */
+    margin: 0px;
+}
+
 .allProductsDescription {
     margin-top: 80px;
     margin-left: 30px;
@@ -59,9 +64,14 @@
     color: rgba(55, 8, 97, 0.879);
 }
 
+/* .quantitiesList {
+    position: relative;
+    right: -50px;
+} */
+
 .addToCartButton {
     position: absolute;
-    bottom: -480px;
+    bottom: -280px;
     left: 450px;
     width: 160Px;
     height: 40px;
