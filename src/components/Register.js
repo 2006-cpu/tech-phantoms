@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
+import { BASE } from '../api';
+import storeCurrentUser, { storeCurrentToken } from '../auth';
 import './Register.css';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
