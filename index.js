@@ -24,7 +24,7 @@ server.use('/api', require('./routes'));
 
 
 
-
+/*
 
 
 const { resolve } = require("path");
@@ -56,7 +56,7 @@ server.post("/create-payment-intent", async (req, res) => {
 
 
 
-
+*/
 
 
 // by default serve up the react app if we don't recognize the route

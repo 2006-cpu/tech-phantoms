@@ -1,6 +1,6 @@
 import axios from 'axios';
-export const BASE = 'http://warm-savannah-72362.herokuapp.com/api'
-// export const BASE = 'http://localhost:5000/api';
+export const BASE = '/api'
+
 
 export async function getAllProducts() {
   try {
@@ -14,6 +14,7 @@ export async function getAllProducts() {
 export async function getProduct(id) {
   try {
     const { data: product } = await axios.get(`${ BASE }/products/${id}`);
+
     return product;
   } catch (error) {
     throw error;

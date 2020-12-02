@@ -17,6 +17,12 @@ const SingleProduct =  (props) => {
           })
       }, [])
     const {id, name, category, imageURL, description, price, inStock} = product
+
+    if(product===''){
+        return <div>
+            <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
+        </div>
+    } else {
 return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
         <div className="productCardData">
@@ -45,6 +51,7 @@ return <>
         </div>
     </div>
 </>
+}
 }
 export default SingleProduct;
 
