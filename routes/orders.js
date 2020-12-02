@@ -100,7 +100,7 @@ ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
             console.log("user in patch", user);
             const order = await getOrderById(id);
             console.log("Order in patch", order);
-            if(id === orderId) {
+            if(id === userId) {
             const updatedOrder = await updateOrder({id, ...fields})
             console.log("updatedOrder", updatedOrder)
             res.send(updatedOrder)}
@@ -117,6 +117,7 @@ ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
 
   ordersRouter.delete('/orders/:orderId', async (req, res, next) => {
     try {
+        const {orderId} = req.params;
         const prefix = 'Bearer ';
         const auth = req.header('Authorization');
         if (auth.startsWith(prefix)) {
@@ -126,10 +127,10 @@ ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
           if (id) {
             const user = await getUserById(id);
             console.log("user in delete", user);
-            const order = await getOrderById(id);
+            const order = await getOrderById(orderId);
             console.log("Order in delete", order);
-            if(id === orderId) {
-            const cancelledOrder = await cancelOrder(id)
+            if(id === userId) {
+            const cancelledOrder = await cancelOrder(orderId)
             console.log("cancelledOrder", cancelledOrder)
             res.send(cancelledOrder)}
           } else {
