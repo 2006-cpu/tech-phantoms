@@ -1,9 +1,12 @@
 const express = require('express')
 const orderProductsRouter = express.Router()
 const jwt = require('jsonwebtoken');
+const { getOrdersByUser } = require('../db/orders');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
-const { addProductToOrder, destroyOrderProduct } = require('../db/order_products');
+const { addProductToOrder, updateOrderProduct, destroyOrderProduct, getOrderProductById } = require('../db/order_products');
+
+const { getUserById, getUser } = require('../db/users')
 
 orderProductsRouter.post('/orders/:orderId/products', async (req, res, next) => {
     try {
@@ -30,6 +33,7 @@ orderProductsRouter.post('/orders/:orderId/products', async (req, res, next) => 
 
 orderProductsRouter.patch('/order_products/:orderProductId', async (req, res, next) => {
   try {
+    const {orderProductId} = req.params;
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
       if (auth.startsWith(prefix)) {
@@ -37,9 +41,16 @@ orderProductsRouter.patch('/order_products/:orderProductId', async (req, res, ne
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
         if (id) {
+          const user = await getUserById(id);
+          console.log("user in orderProducts patch", user);
+          const userOrder = await getCartByUser({id});
+          console.log("userOrder in OP patch", userOrder);
+          const orderProduct = await getOrderProductById(orderProductId);
+          if (orderProduct.orderId===userOrder.id) {
+          
           const updatedOrderProduct = await updateOrderProduct({id, price, quantity})
-          console.log(updatedOrderProduct)
-          res.send(updatedOrderProduct)
+          console.log("updatedOrderProduct in patch", updatedOrderProduct)
+          res.send(updatedOrderProduct)}
         } else {
           res.send({message:'You must be logged in to update an order'})
           }
@@ -53,6 +64,7 @@ orderProductsRouter.patch('/order_products/:orderProductId', async (req, res, ne
 
 orderProductsRouter.delete('/order_products/:orderProductId', async (req, res, next) => {
   try {
+    const {orderProductId} = req.params;
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
       if (auth.startsWith(prefix)) {
@@ -60,9 +72,16 @@ orderProductsRouter.delete('/order_products/:orderProductId', async (req, res, n
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
         if (id) {
+
+          const user = await getUserById(id);
+          console.log("user in orderProducts delete", user);
+          const userOrder = await getCartByUser({id});
+          console.log("userOrder in OP delete", userOrder);
+          const orderProduct = await getOrderProductById(orderProductId);
+          if (orderProduct.orderId===userOrder.id) {
           const deletedOrderProduct = await destroyOrderProduct(id)
           console.log(deletedOrderProduct)
-          res.send(deletedOrderProduct)
+          res.send(deletedOrderProduct)}
         } else {
           res.send({message:'You must be the owner of this order to delete it'})
           }
