@@ -24,7 +24,7 @@ const SingleUser = (props) => {
         function navigateToHome() {
             history.push("/Home");
         }
-
+ 
 return <>
     {!token
     ? <p className="signInForAccount">Please sign in to access account.</p>

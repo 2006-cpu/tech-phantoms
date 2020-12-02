@@ -17,7 +17,8 @@ import {
   Cart,
   Footer, 
   SingleProduct,
-  SingleUser } from './index';
+  SingleUser,
+  Checkout } from './index';
 
 // import SingleOrder from './SingleOrder';
 import './App.css';
@@ -135,6 +136,10 @@ const App = (props) => {
 
       <Route path="/orders/cart">
         <Cart/>
+      </Route>
+
+      <Route path="/orders/checkout">
+        <Checkout/>
       </Route>
 
       <Route exact path={["/allProducts", "/Home"]}>
