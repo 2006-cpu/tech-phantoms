@@ -1,6 +1,6 @@
 import axios from 'axios';
-export const BASE = 'https://warm-savannah-72362.herokuapp.com/api'
-//export const BASE = 'http://localhost:5000/api';
+export const BASE = '/api'
+
 
 export async function getAllProducts() {
   try {
@@ -13,7 +13,8 @@ export async function getAllProducts() {
 
 export async function getProduct(id) {
   try {
-    const { data: product } = await axios.get (`${ BASE }/products/${id}`);
+    const { data: product } = await axios.get(`${ BASE }/products/${id}`);
+
     return product;
   } catch (error) {
     throw error;
@@ -31,7 +32,7 @@ export async function getAllOrders() {
 
 export async function getSingleOrder(id) {
   try {
-    const { data: order } = await axios.get (`${ BASE }/orders/${id}`);
+    const { data: order } = await axios.get(`${ BASE }/orders/${id}`);
     return order;
   } catch (error) {
     throw error;
@@ -40,7 +41,7 @@ export async function getSingleOrder(id) {
 
 export async function getOrdersCart() {
   try {
-    const { data } = await axios.get (`${ BASE }/orders/cart`);
+    const { data } = await axios.get(`${ BASE }/orders/cart`);
     return data;
   } catch (error) {
     throw error;

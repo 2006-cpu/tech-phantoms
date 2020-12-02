@@ -93,3 +93,20 @@ heroku run npm run db:build
 Which will run `npm run db:build` on the heroku server.
 
 Once that command runs, you can type `heroku open` to get a browser to open up locally with your full-stack application running remotely.
+
+
+# Accept a Card Payment
+
+Build a simple checkout form to collect card details. Included are some basic build and run scripts you can use to start up the application.
+
+## Running the sample
+
+1. Build the application
+
+```npm install```
+
+ 2. Run the application
+
+```npm start```
+
+3. Go to [localhost:5000/](localhost:5000/)

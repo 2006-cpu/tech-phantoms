@@ -55,7 +55,7 @@ const getOrdersByProduct = async ({id})=>{
 
 const getCartByUser = async ({id})=>{
     try {
-        const {rows: cartOrder} = await client.query(`
+        const {rows: [cartOrder] } = await client.query(`
             SELECT * FROM orders 
             WHERE "userId"=$1 AND status='created'
         `,[id])
