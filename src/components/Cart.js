@@ -15,7 +15,6 @@ return <>
     <div className="cartDiv">
         <div className="cartItems">
             <SingleOrder order = {cart}/>
-            {/* <NavLink to="/checkout" className="cartCheckout">Place Order</NavLink> */}
         </div>
     </div>
 </>

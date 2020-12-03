@@ -87,7 +87,7 @@ ordersRouter.post('/', async (req,res,next)=>{
     }
 });
 
-ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
+ordersRouter.patch('/:orderId', async (req, res, next) => {
     try {
         const prefix = 'Bearer ';
         const auth = req.header('Authorization');
@@ -115,7 +115,7 @@ ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
     }
   });
 
-  ordersRouter.delete('/orders/:orderId', async (req, res, next) => {
+  ordersRouter.delete('/:orderId', async (req, res, next) => {
     try {
         const {orderId} = req.params;
         const prefix = 'Bearer ';
@@ -143,5 +143,29 @@ ordersRouter.patch('/orders/:orderId', async (req, res, next) => {
         next(error);
     }
   });
+
+
+ordersRouter.post('/:orderId/products', async (req, res, next) => {
+    try {
+        const prefix = 'Bearer ';
+        const auth = req.header('Authorization');
+        if (auth.startsWith(prefix)) {
+        const token = auth.slice(prefix.length);
+        if (token){
+        const { id } = jwt.verify(token, JWT_SECRET);
+          if (id) {
+            const newOrderProduct = await addProductToOrder({productId, orderId, price, quantity})
+            console.log(newOrderProduct)
+            res.send(newOrderProduct)
+          } else {
+            res.send({message:'You must be logged in to create an order'})
+            }
+        }
+    }
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
 
 module.exports = ordersRouter

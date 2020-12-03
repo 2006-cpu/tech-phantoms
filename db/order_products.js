@@ -16,8 +16,15 @@ async function getOrderProductById(id) {
 
 // ***********************************************************************************
 
-async function updateOrderProduct({ id, price, quantity }) {
+async function updateOrderProduct({ id, price, quantity}) {
     try {
+      const origOP = await getOrderProductById(id)
+      if (!price){
+          price= origOP.price
+      }
+      if (!quantity){
+          quantity= origOP.quantity
+      }
       const { rows: [orderProduct] } = await client.query(`
       UPDATE order_products op
       SET price=$2, quantity=$3
@@ -64,6 +71,8 @@ async function destroyOrderProduct(id) {
         throw error;
     }
 };
+
+
 module.exports={
     getOrderProductById,
     updateOrderProduct,
