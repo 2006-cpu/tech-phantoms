@@ -17,7 +17,8 @@ import {
   Cart,
   Footer, 
   SingleProduct,
-  SingleUser } from './index';
+  SingleUser,
+  Checkout } from './index';
 
 // import SingleOrder from './SingleOrder';
 import './App.css';
@@ -61,7 +62,7 @@ const App = (props) => {
 
   useEffect(()=>{
     fetchProducts()
-    fetchOrders()
+    //fetchOrders()
   },[])
 
   return <>
@@ -99,18 +100,26 @@ const App = (props) => {
       :
      <div>
       <Fragment>
-        <Route path="/SingleUser">
-          <Register
+        <Route path="/myprofile">
+          {/*
+          <SingleUser
             setUser = {setUser}
             setToken = {setToken}
             singleUser = {singleUser}
             setSingleUser = {setSingleUser}
           />
+          */}
         </Route>
       </Fragment>
      </div>
       }
 
+      {
+      /*
+      user.isAdmin ?
+      <AdminTools/>:<></>
+        */
+      }
       {
       orderId && userId
       ?
@@ -137,6 +146,12 @@ const App = (props) => {
         <Cart/>
       </Route>
 
+      {/*
+      <Route path="/orders/checkout">
+        <Checkout/>
+      </Route>
+      */}
+      
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}

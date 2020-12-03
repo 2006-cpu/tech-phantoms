@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import storeCurrentUser, { storeCurrentToken, BASE } from '../auth';
+import { BASE } from '../api';
+import storeCurrentUser, { storeCurrentToken } from '../auth';
 import './Register.css';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
+import { nextTick } from 'process';
 
 export default props => {
     const {token, setToken, user, setUser} = props;
@@ -21,6 +23,9 @@ export default props => {
             event.preventDefault();
             setShowError('');
 
+            if(imageURL===''){
+                setImageURL("https://i.imgur.com/6CsuY8X.png")
+            }
             const {data} = await axios.post(`${BASE}/users/register`, { firstName, lastName, email, imageURL, username, password });
 
             console.log('DATA: ', data);
@@ -42,20 +47,25 @@ export default props => {
                     Swal.fire({
                         position: 'absolute',
                         icon: 'success',
-                        title: 'Your now Registered!!',
+                        title: "You're now Registered!!",
                         showConfirmButton: false,
                         timer: 1500
                       });
                 navigateToHome();
                 }
             } else {
-                setShowError(data.message);
+                throw data.message
                 
             }
         } catch (error) {
-            swal("Username Already Exists", "Please Try and Register Again!", "warning");
-            console.error(error)
-          throw error;
+            Swal.fire({
+                position: 'absolute',
+                icon: 'warning',
+                title: error,
+                showConfirmButton: false,
+                timer: 1500
+              });
+              return error
         }
     }
 

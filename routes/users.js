@@ -23,13 +23,13 @@ usersRouter.post('/register', async (req, res, next) => {
     try{
         const _user = await getUserByUserName(username);
         if (_user) {
-            next({
+            res.send({
                 name: 'UserExistsError',
                 message: 'A user by that username already exists'
             });
             return
         } else if (password.length < 8) {
-            next({
+            res.send({
                 name: 'PasswordLengthError',
                 message: 'Password Too Short!'
             });

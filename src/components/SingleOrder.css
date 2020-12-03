@@ -23,6 +23,11 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 .ordersButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     width: 160Px;
     height: 40px;
     margin-top: 20px;

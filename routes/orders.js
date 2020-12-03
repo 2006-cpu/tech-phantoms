@@ -3,7 +3,7 @@ const ordersRouter = express.Router()
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
-const { getUserById } = require('../db/users')
+const { getUserById, getUser } = require('../db/users')
 const { addProductToOrder, getOrderProductsByOrderId } = require('../db/order_products');
 
 const { getOrderById,
@@ -11,7 +11,9 @@ const { getOrderById,
     getOrdersByUser,
     getOrdersByProduct,
     getCartByUser,
-    createOrder} = require('../db/orders')
+    createOrder,
+    updateOrder,
+    cancelOrder} = require('../db/orders')
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
