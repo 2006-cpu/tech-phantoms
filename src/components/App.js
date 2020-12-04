@@ -15,9 +15,8 @@ import {
   Cart,
   Footer, 
   SingleProduct,
-  SingleUser,
   AdminTools,
-  AllUsers } from './index';
+  AllUsers} from './index';
 
 import './App.css';
 
@@ -89,11 +88,8 @@ const App = () => {
       :
      <div>
       <Fragment>
-        <Route path="/Account">
-          <SingleUser 
-            user = {user}
-          />
-         
+        <Route path="/myprofile">
+          
         </Route>
       </Fragment>
      </div>
@@ -124,7 +120,6 @@ const App = () => {
       <Route path="/orders/cart">
         <Cart/>
       </Route>
-      
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
