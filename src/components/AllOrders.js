@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { getAllOrders } from '../api';
+import React, {useState, useEffect} from 'react';
 import SingleOrder from './SingleOrder.js';
+import {getAllOrders} from '../api';
 import './AllOrders.css'
 
 const AllOrders = (props) => {
-    const {allOrders, setAllOrders} = props;
-    useEffect (() => {
+    const [allOrders, setAllOrders] = useState([]);
+
+    const fetchOrders =() => {
         getAllOrders()
-            .then( response => {
-            console.log('allOrders: ', response);
-            setAllOrders(response)
-            })
-    }, []);
+          .then( responseAllOrders => {
+            setAllOrders(responseAllOrders)
+          console.log('responseAllOrders: ', responseAllOrders);
+          })
+      }
+
+      useEffect (() => {
+          fetchOrders();
+      }, [])
 
     return <>
         <div className="allOrders">
             {
-            allOrders.map((singleOrder) => <SingleOrder key={singleOrder.cart} />)
+            allOrders.map((order) => <SingleOrder key={order.id} 
+            order={order} />)
             }
         </div>
-
     </>
 }
 

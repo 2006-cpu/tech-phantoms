@@ -10,4 +10,6 @@ export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as SingleProduct } from './singleProduct';
 export { default as SingleUser } from './SingleUser';
-export { default as Checkout } from './Checkout';
+export { default as AdminTools } from './AdminTools';
+export { default as AllUsers } from './AllUsers';
+export { default as Order } from './Order';

@@ -57,14 +57,17 @@ async function createUser({
 
 async function getAllUsers() {
     try {
-      const {rows: [user]} = await client.query(`
+      const {rows: allUsers} = await client.query(`
     SELECT * FROM users;
     `);
-    if (!user) {
+    if (!allUsers) {
       return null; 
     }
-    delete user.password;
-    return user;
+
+    allUsers.forEach((user) => {
+      delete user.password
+    })
+    return allUsers;
     } catch (error) {
       throw error;
     }

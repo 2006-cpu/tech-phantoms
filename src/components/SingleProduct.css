@@ -44,8 +44,8 @@
 }
 
 .allProductsImage {
-    width: 40%;
-    height:auto;
+    width: auto;
+    height: 25%;
 }
 
 .descrPriceQuantityDiv {

@@ -44,7 +44,6 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 .productsNav {
-    /* flex: 2 5; */
     font-size: 1.1em;
     font-weight: bold;
     color: #fee7ff;
@@ -83,14 +82,14 @@ font-family: 'Thasadith', sans-serif; */
     color: rgba(55, 8, 97, 0.879);
 }
 
+.loginUserImage {
+    margin-right: 20px;
+}
+
 .loginUsername {
     font-family: 'Bad Script', cursive;
     font-size: 2em;
     color: rgba(55, 8, 97, 0.879);
-    margin-right: 20px;
-}
-
-.loginUserImage {
     margin-right: 20px;
 }
 
@@ -122,4 +121,168 @@ font-family: 'Thasadith', sans-serif; */
 
 .activeLogo {
     text-decoration: none;
+}
+
+
+@media screen and (max-width: 1440px) {
+    .clickForSoaps {
+        font-size: 1.3em;
+    }
+
+    .loginUsername {
+        font-size: 1.8em;
+    }
+
+    .pleaseLogIn {
+        font-size: 1.4em;
+    }
+
+    .logoutButton {
+        font-size: 1.3em;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .cartImage {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pleaseLogIn {
+        width: 250px;
+        font-size: 1.2em;
+        margin-right: 60px;
+    }
+
+    .clickForSoaps {
+        font-size: 1.2em;
+    }
+
+    .logoNav {
+        margin-left: 0px;
+    }
+
+    .loginUserImage {
+        position: absolute;
+        top: 30px;
+        right: 125px;
+        width: 30px;
+        height: auto;
+    }
+    
+    .loginUsername {
+        position: absolute;
+        top: 20px;
+        right: 65px;
+        font-size: 1.2em;
+        margin-right: 20px;
+    }
+
+    .cartImage {
+        position: absolute;
+        top: 20px;
+        right: -10px;
+        margin-right: 60px;
+        margin-left: 40px;
+    }
+    
+    .logoutButton {
+        width: 140Px;
+        height: 30px;
+        margin-right: 50px;
+        font-size: 1.2em;
+        color: #F8EEE7;
+        border-radius: 3px;
+        background-color: #a507ab;
+        border: 2px solid #F8EEE7;
+    }
+    
+    .clickForSoaps {
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .header {
+        height: 180px;
+    }
+
+    .logoNav {
+        margin-top: 20px;
+        margin-left: 0px;
+        text-decoration: none;
+        width: 140px;
+        height: auto;
+    }
+
+    .loginUserImage {
+        position: absolute;
+        top: 30px;
+        right: 110px;
+        width: 30px;
+        height: auto;
+    }
+    
+    .loginUsername {
+        position: absolute;
+        top: 20px;
+        right: 50px;
+        font-size: 1.2em;
+    }
+
+    .cartImage {
+        margin-right: 40px;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 120px;
+    }
+
+    .logoutButton {
+        margin-right: 0px;
+        margin-bottom: 20px;
+        width: 120Px;
+        height: 30px;
+        font-size: 1.2em;
+    }
+    
+    .clickForSoaps {
+        margin-top: 20px;
+        margin-left: 0px;
+        font-size: 1em;
+    }
+
+    .pleaseLogIn {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-left: 60px;
+        margin-bottom: 20px;
+        width: 250px;
+        font-size: 1.2em;
+    }
+
+}
+
+@media screen and (max-width: 375) {
+    /* .header {
+        width: 375px;
+        border: 2px solid gray;
+    }
+
+    .nav {
+        width: 375px;
+        border: 2px solid gray;
+    }
+
+    .welcomeUserText {
+        width: 375px;
+    } */
 }

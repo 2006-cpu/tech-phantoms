@@ -1,13 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { NavLink, Route, useHistory } from 'react-router-dom';
+import {  Route } from 'react-router-dom';
 
 import {
   getAllProducts,
-  getAllOrders
 } from '../api';
 
 import { 
-  Product, 
   AllProducts, 
   Nav, 
   Login, 
@@ -18,21 +16,16 @@ import {
   Footer, 
   SingleProduct,
   SingleUser,
-  Checkout } from './index';
+  AdminTools,
+  AllUsers } from './index';
 
-// import SingleOrder from './SingleOrder';
 import './App.css';
 
-const App = (props) => {
-  const {orderId, userId, cart, setCart, singleProduct, setSingleProduct, singleUser, setSingleUser} = props;
+const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
-  const [nav, setNav] = useState([]);
-  const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [singleOrder, setSingleOrder] = useState([]);
-  const [allOrders, setAllOrders] = useState([]);
-
+ 
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
     const currentToken = localStorage.getItem('token')
@@ -52,17 +45,8 @@ const App = (props) => {
       })
   }
 
-  const fetchOrders =() => {
-    getAllOrders()
-      .then( responseAllOrders => {
-        setAllOrders(responseAllOrders)
-      console.log('responseAllOrders: ', responseAllOrders);
-      })
-  }
-
   useEffect(()=>{
     fetchProducts()
-    //fetchOrders()
   },[])
 
   return <>
@@ -75,6 +59,11 @@ const App = (props) => {
           setUser = {setUser}
         />
       </Route>
+
+      {
+      user.isAdmin ?
+      <AdminTools/>:<></>
+      }
 
       <div className="welcomeDiv">Welcome to Dope Soap!<br />
         Enjoy a clean view of all our products!
@@ -100,34 +89,27 @@ const App = (props) => {
       :
      <div>
       <Fragment>
-        <Route path="/myprofile">
-          {/*
-          <SingleUser
-            setUser = {setUser}
-            setToken = {setToken}
-            singleUser = {singleUser}
-            setSingleUser = {setSingleUser}
+        <Route path="/Account">
+          <SingleUser 
+            user = {user}
           />
-          */}
+         
         </Route>
       </Fragment>
      </div>
       }
+      <Route path="/allUsers">
+        <AllUsers />
+      </Route>
 
       {
-      /*
-      user.isAdmin ?
-      <AdminTools/>:<></>
-        */
-      }
-      {
-      orderId && userId
+      user.id
       ?
       <Fragment>
         <Route path="/orders">
           <SingleOrder
-          singleOrder = {singleOrder}
-          setSingleOrder = {setSingleOrder}
+          singleOrder = ''
+          setSingleOrder = ''
           />
         </Route>
       </Fragment>
@@ -135,22 +117,13 @@ const App = (props) => {
           <span></span>
       }
 
-      <Route path="/AllOrders">
-        <AllOrders
-        allOrders = {allOrders}
-        setAllOrders = {setAllOrders}
-        />
+      <Route path="/allOrders">
+        <AllOrders />
       </Route>
 
       <Route path="/orders/cart">
         <Cart/>
       </Route>
-
-      {/*
-      <Route path="/orders/checkout">
-        <Checkout/>
-      </Route>
-      */}
       
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
@@ -161,10 +134,7 @@ const App = (props) => {
       </Route>
 
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct
-          singleProduct = {singleProduct}
-          setSingleProduct = {setSingleProduct}
-        />
+        <SingleProduct />
       </Route>
 
       <div className="backDrop"></div>

@@ -2,19 +2,25 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SingleOrder.css';
 
-const SingleOrder = (props) => {
-    const {order} = props;
-    const {id, userId, datePlaced, status} = order;
+const SingleOrder = (props) => { 
+    const {id, userId, datePlaced, status} = props.order;
 
 return <>
-    <div className="orderCardData">
+    <div id={`order${id}`} className="orderCardData">
         <h3 className="userId">CustomerName: {userId}</h3>
         <div className="datePlaced">Date of order: {datePlaced}</div>
-        <div className="orderId">Order number: {id}</div>
         <div className="status">Status: {status}</div>
-          <NavLink to="/checkout" className="ordersButton">Place Order</NavLink>
+
+        {
+        id
+        ?
+        <NavLink to={`/allOrders/${id}`} className="ordersButton">
+            <button className="detailsButton">Details</button>
+        </NavLink>
+        :
+        <span className="noOrderText">No order found {id}</span>
+        }
     </div>
 </>
 }
-
 export default SingleOrder;

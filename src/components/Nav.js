@@ -25,7 +25,7 @@ const Nav = (props) => {
 return <>
     <div className="header">
       <NavLink to="/allProducts" className="logoNav" activeClassName="activeLogo">
-        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" className="logoNav" width="auto" height="240px" />
       </NavLink>
     </div> 
 
