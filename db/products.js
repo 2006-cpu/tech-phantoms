@@ -1,4 +1,5 @@
 const { client } = require('./index');
+const { updateOrder } = require('./orders');
 
 async function createProduct({name, description, price, imageURL='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
     try {
@@ -39,8 +40,35 @@ async function getProductById(productId) {
     }
 }
 
+const updateProduct = async ({id, ...fields})=>{
+    const setString = Object.keys(fields).map(
+        (key, index) => `"${ key }"=$${ index + 1}`
+    ).join(', ');
+    
+    const objVal = Object.values(fields)
+    if( setString.length === 0){
+        return;
+    }
+    console.log ("objVal updateProduct", objVal);
+    objVal.push(id);
+
+    try {
+        const {rows: [product]} = await client.query(`
+            UPDATE products
+            SET ${setString}
+            WHERE id = $${objVal.length}
+            RETURNING *;
+        `, objVal);
+        console.log("PRODUCT", product);
+        return product;
+    } catch (error) {
+        throw error;
+    }
+};
+
 module.exports = {
     createProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    updateProduct
 }
