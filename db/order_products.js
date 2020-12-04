@@ -1,6 +1,6 @@
 const { client } = require('./index');
 
-
+const { getAllOrders, getOrderById } = require('./orders')
 async function getOrderProductById(id) {
     try {
       const { rows: [orderProduct] } = await client.query(`
@@ -40,12 +40,27 @@ async function addProductToOrder({
 }) {
 try {
     // if the productId is NOT on the order yet, create a new order_products
+    const orderProducts = await getOrderProductsByOrderId(orderId)
+    if( orderProducts.length === 0){
     const { rows: [productOrder] } = await client.query(`
     INSERT INTO order_products ("productId", "orderId", price, quantity)
     VALUES($1, $2, $3, $4)
     RETURNING *
     `, [productId, orderId, price, quantity])
+    console.log('PRODUCTORDER', productOrder)
     return productOrder;
+    } else{
+        for(let i=0; i<orderProducts.length; i++){
+
+            if(orderProducts[i].productId == productId){
+               return
+            }else{
+                return 
+            }
+        }
+
+
+    }
     } catch (error) {
     }
 };

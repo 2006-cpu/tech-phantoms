@@ -13,7 +13,8 @@ const { getOrderById,
     getCartByUser,
     createOrder,
     updateOrder,
-    cancelOrder} = require('../db/orders')
+    cancelOrder} = require('../db/orders');
+const { getProductById } = require('../db/products');
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
@@ -97,21 +98,44 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
         const orderProducts = await getOrderProductsByOrderId(orderId)
         let totalQuantity
         let totalPrice
+        console.log("ORDERPRODUCTS", orderProducts)
         console.log("ORDERID", orderId)
         console.log("PRODUCTID", productId)
-        orderProducts.forEach(product=>{
-            if(product.productId == productId){
-                console.log("YOUR IF STATEMENT WORKS")
-                totalQuantity = Number(quantity) + Number(product.quantity)
-                totalPrice = Number(totalQuantity) * Number(price)
-                console.log('TOTALQUANTITY', totalQuantity)
-                res.send({message: "YAY"})
-            }else{
-                console.log("YOUR IF STATEMENT DOESN'T WORK")
-                res.send({message: "NAY"})    
+        if( orderProducts.length === 0){
+            console.log("CART IS EMPTY")
+            totalPrice = Number(totalQuantity) * Number(price)
+            const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity})
+            console.log("ADDEDPRODUCT1", addedProduct)
+            res.send(addedProduct)
+            return
+        } else{
+            for(let i=0; i<orderProducts.length; i++){
+                console.log('RUNNING')
+
+                if(orderProducts[i].productId == productId){
+                    console.log("Product is already in cart")
+                    totalQuantity = Number(quantity) + Number(orderProducts[i].quantity)
+                    totalPrice = Number(totalQuantity) * Number(price)
+                    console.log('TOTALQUANTITY', totalQuantity)
+                    const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity: totalQuantity})
+                    console.log("ADDEDPRODUCT2", addedProduct)
+                    res.send(addedProduct)
+                    return
+                }else{
+                    console.log("CART EXISTS BUT DOES NOT HAVE PRODUCT ")
+                    console.log("QUANTITY", quantity, Number(quantity))
+                    console.log("PRICE", price, Number(price))
+                    totalPrice = Number(quantity) * Number(price)
+                    console.log("TOTALPRICE", totalPrice)
+                    const prod = {orderId, productId, price: totalPrice, quantity}
+                    console.log("PROD", prod)
+                    const addedProduct = await addProductToOrder(prod)
+                    console.log("ADDEDPRODUCT3", addedProduct)
+                    res.send(addedProduct)
+                    return 
+                }
             }
-        })
-        
+    }
         /*
         const prefix = 'Bearer ';
         const auth = req.header('Authorization');
