@@ -1,5 +1,6 @@
 const { client } = require('./index');
-
+const { getOrderProductById } = require('./order_products');
+const { getOrderById } = require('./orders');
 async function createProduct({name, description, price, imageURL='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
     try {
         const { rows: [ product ] } = await client.query (`
@@ -40,13 +41,13 @@ async function getProductById(productId) {
 }
 
 async function destroyProduct({id}) {
-    //make sure to delete all the order_products whose product is the one being deleted.
-//  make sure the orders for the order_products being deleted do not have a status = completed
     try {
-        // if(order.status === 
-        //     'completed'){
-        //         return;
-        //     }
+        const order = await getOrderById(id);
+        if(order.status === 
+            'completed'){
+                console.log("This order has been completed")
+                return;
+            }
         await client.query(`
         DELETE from order_products
         WHERE "productId"=$1
@@ -63,7 +64,7 @@ async function destroyProduct({id}) {
         throw error;
     }
 }
-// destroyProduct({id: 3, name: "pizza soap", description: "Contains authentic New York pizza grease.", price: 1999});
+
 module.exports = {
     createProduct,
     getAllProducts,
