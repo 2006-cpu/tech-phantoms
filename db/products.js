@@ -39,8 +39,34 @@ async function getProductById(productId) {
     }
 }
 
+async function destroyProduct({id}) {
+    //make sure to delete all the order_products whose product is the one being deleted.
+//  make sure the orders for the order_products being deleted do not have a status = completed
+    try {
+        // if(order.status === 
+        //     'completed'){
+        //         return;
+        //     }
+        await client.query(`
+        DELETE from order_products
+        WHERE "productId"=$1
+        RETURNING *;
+        `, [id]);
+        const { rows: [product] } = await client.query (`
+        DELETE from products
+        WHERE id=$1
+        RETURNING *;
+        `, [id]);
+        console.log("****PRODUCT", product);
+        return product;
+    } catch (error) {
+        throw error;
+    }
+}
+// destroyProduct({id: 3, name: "pizza soap", description: "Contains authentic New York pizza grease.", price: 1999});
 module.exports = {
     createProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    destroyProduct
 }
