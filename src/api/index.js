@@ -21,9 +21,10 @@ export async function getProduct(id) {
   }
 }
 
-export async function getAllOrders() {
+export default async function getAllOrders() {
   try {
     const { data } = await axios.get(`${ BASE }/orders`);
+      console.log('GETORDERS: ', data);
     return data;
   } catch (error) {
     throw error;

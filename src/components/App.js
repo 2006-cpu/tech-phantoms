@@ -103,10 +103,7 @@ const App = () => {
       ?
       <Fragment>
         <Route path="/orders">
-          <SingleOrder
-          singleOrder = ''
-          setSingleOrder = ''
-          />
+          <AllOrders />
         </Route>
       </Fragment>
       :

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import SingleOrder from './SingleOrder.js';
-import {getAllOrders} from '../api';
+import getAllOrders from '../api';
 import './AllOrders.css'
 
-const AllOrders = (props) => {
+const AllOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
 
     const fetchOrders =() => {
