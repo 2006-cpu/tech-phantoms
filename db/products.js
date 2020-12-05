@@ -48,7 +48,6 @@ const updateProduct = async ({id, ...fields})=>{
     if( setString.length === 0){
         return;
     }
-    console.log ("objVal updateProduct", objVal);
     objVal.push(id);
 
     try {
@@ -58,7 +57,6 @@ const updateProduct = async ({id, ...fields})=>{
             WHERE id = $${objVal.length}
             RETURNING *;
         `, objVal);
-        console.log("PRODUCT", product);
         return product;
     } catch (error) {
         throw error;
@@ -83,7 +81,6 @@ async function destroyProduct({id}) {
         WHERE id=$1
         RETURNING *;
         `, [id]);
-        console.log("****PRODUCT", product);
         return product;
     } catch (error) {
         throw error;
