@@ -33,10 +33,8 @@ productsRouter.post('/', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
-      console.log("user in Products post", user);
         if (id && user.isAdmin===true) {
           const createdProduct = await createProduct({name, description, price, imageURL, inStock, category})
-          console.log("createdProduct in post", createdProduct);
           res.send(createdProduct)
         } else {
           res.send({message:'You must be an admin to create a product'})
@@ -60,10 +58,8 @@ productsRouter.delete('/:productId', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
-      console.log("user in Products DELETE", user);
         if (id && user.isAdmin===true) {
           const deletedProduct = await destroyProduct({id})
-          console.log("destroyProduct in DELETE", deletedProduct);
           res.send(deletedProduct)
         } else {
           res.send({message:'You must be an admin to delete a product'})
@@ -87,10 +83,8 @@ productsRouter.patch('/:productId', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
-      console.log("user in Products PATCH", user);
         if (id && user.isAdmin===true) {
           const updatedProduct = await updateProduct({id, ...fields})
-          console.log("updatedProduct in PATCH", updatedProduct);
           res.send(updatedProduct)
         } else {
           res.send({message:'You must be an admin to updated a product'})
@@ -114,10 +108,8 @@ productsRouter.get('/:productId/orders', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
-      console.log("user in Products GET", user);
         if (id && user.isAdmin===true) {
           const orders = await getOrdersByProduct({id})
-          console.log("ORDERS in get", orders);
           res.send(orders)
         } else {
           res.send({message:'You must be an admin to view these orders'})
