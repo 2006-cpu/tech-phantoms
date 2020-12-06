@@ -2,21 +2,10 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' } = process.env ; 
 const SALT_COUNT = 10;
-const { createUser, getUser, getUserByUserName } = require('../db/users');
+const { createUser, getUser, getUserByUserName, getUserById } = require('../db/users');
 const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
-
-
- function requireUser(req, res, next) {
-     if(!req.user) {
-         next({
-             name: 'MissingUserError',
-             message: 'You must be logged in to perform this action'
-         });
-     } 
-         next();
- };
-
+const { requireUser, requireAdmin } = require('./utils');
 
 usersRouter.post('/register', async (req, res, next) => {
     const { imageURL, firstName, lastName, email, username, password } = req.body;
@@ -98,6 +87,26 @@ usersRouter.post('/login', async (req, res, next) => {
      } catch (error) {
       next(error);
      }
+ });
+
+ usersRouter.patch('/:userId', requireUser, requireAdmin, async (req, res, next) => {
+    try {
+    const { userId } = req.params;
+    const { firstName, lastName, email, imageURL, username, password, isAdmin } = req.body;
+    const user = await getUserById(id);
+    if(!user) {
+        next({
+            name: 'notfound',
+            message: "This user was not found"
+        });
+        return;
+    } else {
+        const updatedUser = await updateUser({id, ...fields});
+        res.send(updatedUser);
+    }
+} catch (error) {
+    next(error);
+}
  });
 
 module.exports = usersRouter;
