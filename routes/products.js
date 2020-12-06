@@ -23,6 +23,7 @@ productsRouter.get('/:productId', async (req,res,next)=>{
     }
 })
 
+//Only admins can create a new product
 productsRouter.post('/', async (req,res,next) => {
     try {
       const prefix = 'Bearer ';
@@ -48,6 +49,7 @@ productsRouter.post('/', async (req,res,next) => {
     }
 });
     
+//Only admins can delete a product
 productsRouter.delete('/:productId', async (req,res,next) => {
     try {
       const {productId} = req.params;
