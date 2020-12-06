@@ -8,13 +8,21 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.orderCardData {
+.userAccountCard {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.userAccountData {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 700px;
     height: 500px;
-    margin: 20px;
-    padding: 20px; 
+    padding: 40px;
     color: rgba(55, 8, 97, 0.879);
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
@@ -22,26 +30,25 @@ font-family: 'Thasadith', sans-serif; */
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
 }
 
-.ordersButton {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+.userAccountTitle {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.userAccountImage {
+    height: auto;
+    width: 80px;
+    margin-bottom: 40px;
+}
+
+.userAccountEditButton {
+    margin-top: 30px;
     width: 160Px;
     height: 40px;
-    margin-top: 20px;
-    margin-left: 30px;
     font-size: 1.4em;
+    font-weight: bold;
     color: white;
     border-radius: 3px;
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
-}
-
-.detailsButton {
-    font-size: .9em;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(158, 120, 196, 0.879);
 }

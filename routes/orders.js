@@ -16,24 +16,28 @@ const { getOrderById,
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
-    const prefix = 'Bearer ';
-        const auth = req.header('Authorization');
-        console.log('Request', req.headers)
-        if (auth.startsWith(prefix)) {
-        const token = auth.slice(prefix.length);
-        if (token){
-        const { id } = jwt.verify(token, JWT_SECRET);
-          if (id) {
+  const orders = await getAllOrders()
+    console.log('REQUSER<<<: ', req.user);
+               res.send(orders)
+
+    // const prefix = 'Bearer ';
+    //     const auth = req.header('Authorization');
+    //     console.log('Request', req.headers)
+    //     if (auth.startsWith(prefix)) {
+    //     const token = auth.slice(prefix.length);
+    //     if (token){
+    //     const { id } = jwt.verify(token, JWT_SECRET);
+    //       if (id) {
             
-            if (req.user.isAdmin===true){
-                const orders = await getAllOrders()
-                res.send(orders)
-            } else {
-                res.send({message:'Error: you must be an admin to view all orders'})
-            }
-          }
-        }
-    }
+    //         if (req.user.isAdmin===true){
+    //             const orders = await getAllOrders()
+    //             res.send(orders)
+    //         } else {
+    //             res.send({message:'Error: you must be an admin to view all orders'})
+    //         }
+    //       }
+    //     }
+    // }
 } catch (error) {
     console.error(error)
 }

@@ -21,16 +21,17 @@ export async function getProduct(id) {
   }
 }
 
-export async function getAllOrders() {
+export default async function getAllOrders() {
   try {
     const { data } = await axios.get(`${ BASE }/orders`);
+      console.log('GETORDERS: ', data);
     return data;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getSingleOrder(id) {
+export async function getOrder(id) {
   try {
     const { data: order } = await axios.get(`${ BASE }/orders/${id}`);
     return order;
@@ -42,6 +43,16 @@ export async function getSingleOrder(id) {
 export async function getOrdersCart() {
   try {
     const { data } = await axios.get(`${ BASE }/orders/cart`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getAllUsers() {
+  try {
+    const { data } = await axios.get(`${ BASE }/users`);
+    console.log('USERS-DATA: ', data);
     return data;
   } catch (error) {
     throw error;

@@ -1,13 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { NavLink, Route, useHistory } from 'react-router-dom';
+import {  Route } from 'react-router-dom';
 
 import {
   getAllProducts,
-  getAllOrders
 } from '../api';
 
 import { 
-  Product, 
   AllProducts, 
   Nav, 
   Login, 
@@ -17,21 +15,17 @@ import {
   Cart,
   Footer, 
   SingleProduct,
-  SingleUser} from './index';
+  AdminTools,
+  AllUsers,
+  UserAccount} from './index';
 
-// import SingleOrder from './SingleOrder';
 import './App.css';
 
-const App = (props) => {
-  const {orderId, userId, cart, setCart, singleProduct, setSingleProduct, singleUser, setSingleUser} = props;
+const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
-  const [nav, setNav] = useState([]);
-  const [product, setProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [singleOrder, setSingleOrder] = useState([]);
-  const [allOrders, setAllOrders] = useState([]);
-
+ 
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
     const currentToken = localStorage.getItem('token')
@@ -51,14 +45,6 @@ const App = (props) => {
       })
   }
 
-  const fetchOrders =() => {
-    getAllOrders()
-      .then( responseAllOrders => {
-        setAllOrders(responseAllOrders)
-      console.log('responseAllOrders: ', responseAllOrders);
-      })
-  }
-
   useEffect(()=>{
     fetchProducts()
   },[])
@@ -73,6 +59,11 @@ const App = (props) => {
           setUser = {setUser}
         />
       </Route>
+
+      {
+      user.isAdmin ?
+      <AdminTools/>:<></>
+      }
 
       <div className="welcomeDiv">Welcome to Dope Soap!<br />
         Enjoy a clean view of all our products!
@@ -98,52 +89,45 @@ const App = (props) => {
       :
      <div>
       <Fragment>
-        <Route path="/myprofile">
-          
+        <Route path="/userAccount">
+          <UserAccount
+            user = {user}
+          />
         </Route>
       </Fragment>
      </div>
       }
+      <Route path="/allUsers">
+        <AllUsers />
+      </Route>
 
       {
-      orderId && userId
+      user.id
       ?
       <Fragment>
         <Route path="/orders">
-          <SingleOrder
-          singleOrder = {singleOrder}
-          setSingleOrder = {setSingleOrder}
-          />
+          <AllOrders />
         </Route>
       </Fragment>
       :
           <span></span>
       }
 
-      <Route path="/AllOrders">
-        <AllOrders
-        allOrders = {allOrders}
-        setAllOrders = {setAllOrders}
-        />
+      <Route path="/allOrders">
+        <AllOrders />
       </Route>
 
       <Route path="/orders/cart">
         <Cart/>
       </Route>
-
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
-         
         />
       </Route>
-
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct
-          singleProduct = {singleProduct}
-          setSingleProduct = {setSingleProduct}
-        />
+        <SingleProduct />
       </Route>
 
       <div className="backDrop"></div>
