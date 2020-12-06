@@ -31,9 +31,9 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 .userImage {
-    width: 35%;
+    width: 80px;
     height: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .userFirstName {

@@ -17,6 +17,7 @@ const { getOrderById,
 ordersRouter.get('/', async (req, res, next)=>{
 try {
   const orders = await getAllOrders()
+    console.log('REQUSER<<<: ', req.user);
                res.send(orders)
 
     // >>>>>>>>>>>>>>>TO BE ADJUSTED<<<<<<<<<<<<<<<<<<<<<<<<<<<

@@ -56,7 +56,13 @@ return <>
       <Fragment>
 
         <img src={imageURL} className="loginUserImage" alt="UserImage" width="auto" height="50px" />
+
+        <div className="userDataNav">
         <p className="loginUsername">{username}</p>
+        <NavLink to="/userAccount" className="userAccountLink">
+          Account
+        </NavLink>
+        </div>
 
         <button className="logoutButton"onClick={() => {
           handleClick();

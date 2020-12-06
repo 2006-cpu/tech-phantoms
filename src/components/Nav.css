@@ -29,7 +29,7 @@ font-family: 'Thasadith', sans-serif; */
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100px;
+    height: 130px;
     color: rgba(55, 8, 97, 0.879);
     background-color: #d587cc;
 }
@@ -86,11 +86,31 @@ font-family: 'Thasadith', sans-serif; */
     margin-right: 20px;
 }
 
+.userDataNav {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    color: rgba(126, 70, 174, 0.879);
+    margin-right: 20px;
+}
+
 .loginUsername {
+    margin-top: -15px;
+    margin-right: 20px;
+    height: 50px;
     font-family: 'Bad Script', cursive;
     font-size: 2em;
     color: rgba(55, 8, 97, 0.879);
-    margin-right: 20px;
+}
+
+.userAccountLink {
+    margin-top: 30px;
+    line-height: 1;
+    height: 35px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: rgba(55, 8, 97, 0.879);
+    text-shadow: 2px 2px 2px rgba(229, 206, 249, 0.879);
 }
 
 .logoutButton {
@@ -130,7 +150,13 @@ font-family: 'Thasadith', sans-serif; */
     }
 
     .loginUsername {
-        font-size: 1.8em;
+        font-size: 1.5em;
+    }
+
+    .userAccountLink {
+        font-size: 1em;
+        height: 30px;
+        margin-top: 10px;
     }
 
     .pleaseLogIn {
@@ -166,24 +192,34 @@ font-family: 'Thasadith', sans-serif; */
 
     .loginUserImage {
         position: absolute;
-        top: 30px;
-        right: 125px;
+        top: 25px;
+        right: 130px;
         width: 30px;
         height: auto;
     }
     
     .loginUsername {
         position: absolute;
-        top: 20px;
-        right: 65px;
-        font-size: 1.2em;
+        top: 25px;
+        right: 50px;
+        font-size: 1.1em;
         margin-right: 20px;
+    }
+
+    .userAccountLink {
+        position: absolute;
+        top: 43px;
+        right: 60px;
+        font-size: .6em;
+        margin-right: 20px;
+        height: 22px;
+        text-shadow: 2px 2px 1px rgba(55, 8, 97, 0.879);;
     }
 
     .cartImage {
         position: absolute;
         top: 20px;
-        right: -10px;
+        right: -30px;
         margin-right: 60px;
         margin-left: 40px;
     }

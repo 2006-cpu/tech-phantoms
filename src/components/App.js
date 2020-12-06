@@ -16,7 +16,8 @@ import {
   Footer, 
   SingleProduct,
   AdminTools,
-  AllUsers} from './index';
+  AllUsers,
+  UserAccount} from './index';
 
 import './App.css';
 
@@ -88,8 +89,10 @@ const App = () => {
       :
      <div>
       <Fragment>
-        <Route path="/myprofile">
-          
+        <Route path="/userAccount">
+          <UserAccount
+            user = {user}
+          />
         </Route>
       </Fragment>
      </div>
@@ -121,10 +124,8 @@ const App = () => {
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
-         
         />
       </Route>
-
       <Route path={`/allProducts/:productId`}>
         <SingleProduct />
       </Route>
