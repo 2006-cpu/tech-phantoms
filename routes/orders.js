@@ -19,7 +19,8 @@ try {
   const orders = await getAllOrders()
                res.send(orders)
 
-
+    // >>>>>>>>>>>>>>>TO BE ADJUSTED<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
     // const prefix = 'Bearer ';
     //     const auth = req.header('Authorization');
     //     console.log('Request', req.headers)

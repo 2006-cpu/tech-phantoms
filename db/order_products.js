@@ -54,10 +54,11 @@ try {
     `, [productId, orderId, price, quantity])
     return productOrder;
     } catch (error) {
+        throw error;
     }
 };
 
-// ***********************************************************************************
+//***********************************************************************************
 
 async function destroyOrderProduct(id) {
     try {
