@@ -8,13 +8,13 @@ const Cart = () => {
     const [cart, setCart] = useState([]);
     
     useEffect(() => {
-        getOrdersCart().then(singleOrder => setCart(singleOrder))
+        getOrdersCart().then(singleOrder => setCart(singleOrder)).then(console.log("CART", cart))
     }, [])
 
 return <>
     <div className="cartDiv">
         <div className="cartItems">
-            <SingleOrder order = {cart}/>
+            
             {/* <NavLink to="/checkout" className="cartCheckout">Place Order</NavLink> */}
         </div>
     </div>
