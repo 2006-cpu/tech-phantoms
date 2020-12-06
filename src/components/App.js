@@ -65,9 +65,7 @@ const App = () => {
       <AdminTools/>:<></>
       }
 
-      <div className="welcomeDiv">Welcome to Dope Soap!<br />
-        Enjoy a clean view of all our products!
-      </div>
+    
      
       {!token
       ?

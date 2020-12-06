@@ -28,11 +28,15 @@ const Cart = (props) => {
 return <>
     <div className="cartDiv">
         <div className="cartItems">
-        <h3 className="userId">{username}'s Cart</h3>
+        <h2 className="userId">{username}'s Cart</h2>
         {
-            cart.map((product)=>{
-                return<div>
-                    
+            cart.map((cartProduct)=>{
+                const {product, price, quantity} = cartProduct
+                return<div className = 'cartProduct'>
+                    <img src={product.imageURL} className='productImage'></img>
+                    <h3>{product.name}</h3>
+                    <span>Quantity:{quantity}</span>
+                    <span>Price: {price}</span>
                 </div>
             })
         }
