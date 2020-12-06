@@ -1,5 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { NavLink, Route, useHistory } from 'react-router-dom';
+import React from 'react';
 import Product from './Product.js';
 import './AllProducts.css'
 

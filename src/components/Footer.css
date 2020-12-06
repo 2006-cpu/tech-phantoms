@@ -12,12 +12,37 @@ font-family: 'Thasadith', sans-serif; */
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
+  font-size: 1.4em;
+  position: fixed;
   bottom: 0;
   left: 0;
-  /* z-index: -1; */
+  right: 0;
   width: 100%;
   height: 100px;
+  z-index: 2;
   color: rgba(55, 8, 97, 0.879);
   background-color: #d587cc;
 }
+
+@media screen and (max-width: 1440px) {
+  .footer {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    position: relative;
+    bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    position: relative;
+    bottom: 0px;
+  }
+}
+
+
+

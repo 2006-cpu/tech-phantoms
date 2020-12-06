@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' } = process.env ; 
 const SALT_COUNT = 10;
-const { createUser, getUser, getUserByUserName, getUserById } = require('../db/users');
+const { createUser, getUser, getUserByUserName, getUserById, getAllUsers } = require('../db/users');
 const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
@@ -80,6 +80,18 @@ usersRouter.post('/login', async (req, res, next) => {
           next(error);
         }
     });
+    
+
+usersRouter.get('/', async (req, res, next) => {
+    try {
+        const allUsers = await getAllUsers();
+        console.log('ALLUSERS: ', allUsers);
+        res.send(allUsers)
+    } catch (error) {
+      res.send(error);
+    }
+});
+
 
  usersRouter.get('/me', requireUser, async (req, res, next) => {
      try { 

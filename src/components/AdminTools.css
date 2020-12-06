@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* font-family: 'Bad Script', cursive;
+font-family: 'Thasadith', sans-serif; */
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.adminNav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+    background-color: #F8EEE7;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: 1px solid #DDD;
+    box-shadow: inset 0 2px 3px #6e1271ba, 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
+
+.adminText {
+    font-size: 1.3em;
+    font-weight: bold;
+    font-family: 'Bad Script', cursive;
+    color: #500852;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.adminProductsNav {
+    font-size: 1.4em;
+    color: #7a0d7e;
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+.adminOrdersNav {
+    font-size: 1.4em;
+    color: #7a0d7e;
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+.adminUsersNav {
+    font-size: 1.4em;
+    color: #7a0d7e;
+    text-decoration: none;
+    margin-right: 80px;
+}
+
+.adminActive {
+    font-weight: bold;
+    color: #05a5a3;
+    text-shadow: 1px 1px 3px #3df0ed;
+}
+
+
+@media screen and (max-width: 768px) {
+    .adminNav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .adminUsersNav {
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .adminText {
+        font-size: 1.2em;
+    }
+
+    .adminProductsNav, .adminUsersNav, .adminOrdersNav {
+        font-size: 1.2em;
+    }
+}

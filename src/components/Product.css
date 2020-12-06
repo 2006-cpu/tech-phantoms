@@ -10,10 +10,12 @@ font-family: 'Thasadith', sans-serif; */
 
 .indivProductCard {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     padding: 40px;
     background-color: #F8EEE7;
+    /* border: 2px solid gray; */
 }
 
 .indivProductCardData {
@@ -74,3 +76,30 @@ font-family: 'Thasadith', sans-serif; */
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
 }
+
+@media screen and (max-width: 1440px) {
+    .indivProductName {
+        font-size: 1.8em;
+    }
+
+    .indivProductsCategory {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 1024) {
+    .indivProductCard {
+        display: flex;
+        width: auto;
+        height: 100%;
+        padding: 40px;
+        background-color: #F8EEE7;
+        /* border: 2px solid gray; */
+    }
+}
+
+/* @media screen and (max-width: 375) {
+    .indivProductCardData {
+
+    }
+} */
