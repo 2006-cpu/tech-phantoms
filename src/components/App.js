@@ -105,7 +105,7 @@ const App = () => {
       user.id
       ?
       <Fragment>
-        <Route path="/orders">
+        <Route exact path="/orders">
           <AllOrders />
         </Route>
       </Fragment>
