@@ -105,6 +105,7 @@ usersRouter.post('/login', async (req, res, next) => {
         res.send(updatedUser);
     }
 } catch (error) {
+    console.log(error);
     next(error);
 }
  });
