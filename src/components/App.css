@@ -30,3 +30,22 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 
+@media screen and (max-width: 1440px) {
+    .welcomeDiv {
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .backDrop {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .welcomeDiv {
+        height: 160px;
+        padding: 40px;
+        font-size: 1.3em;
+    }
+}
