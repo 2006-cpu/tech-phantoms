@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
 const { getUserById, getUser } = require('../db/users')
+const { addProductToOrder, getOrderProductsByOrderId } = require('../db/order_products');
 
 const { getOrderById,
     getAllOrders,
@@ -12,7 +13,8 @@ const { getOrderById,
     getCartByUser,
     createOrder,
     updateOrder,
-    cancelOrder} = require('../db/orders')
+    cancelOrder} = require('../db/orders');
+const { getProductById } = require('../db/products');
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
@@ -91,6 +93,47 @@ ordersRouter.post('/', async (req,res,next)=>{
     } catch (error) {
         
     }
+})
+
+ordersRouter.post('/:orderId/products', async (req, res, next) => {
+    try {
+
+        const {orderId} = req.params
+        const {productId, price, quantity} = req.body
+        
+        const orderProducts = await getOrderProductsByOrderId(orderId)
+        let totalQuantity
+        let totalPrice
+
+        if( orderProducts.length === 0){
+            totalPrice = Number(totalQuantity) * Number(price)
+            const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity})
+            res.send(addedProduct)
+            return
+        } else{
+            for(let i=0; i<orderProducts.length; i++){
+
+                if(orderProducts[i].productId == productId){
+                    totalQuantity = Number(quantity) + Number(orderProducts[i].quantity)
+                    totalPrice = Number(totalQuantity) * Number(price)
+                    const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity: totalQuantity})
+                    res.send(addedProduct)
+                    return
+                    
+                }else if(i===orderProducts.length-1 && orderProducts[i].productId !== productId){
+
+                    totalPrice = Number(quantity) * Number(price)
+                    const prod = {orderId, productId, price: totalPrice, quantity}
+                    const addedProduct = await addProductToOrder(prod)
+                    res.send(addedProduct)
+                    return 
+                }
+            }
+    }
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
 });
 
 ordersRouter.patch('/:orderId', async (req, res, next) => {
@@ -149,29 +192,4 @@ ordersRouter.patch('/:orderId', async (req, res, next) => {
         next(error);
     }
   });
-
-
-ordersRouter.post('/:orderId/products', async (req, res, next) => {
-    try {
-        const prefix = 'Bearer ';
-        const auth = req.header('Authorization');
-        if (auth.startsWith(prefix)) {
-        const token = auth.slice(prefix.length);
-        if (token){
-        const { id } = jwt.verify(token, JWT_SECRET);
-          if (id) {
-            const newOrderProduct = await addProductToOrder({productId, orderId, price, quantity})
-            console.log(newOrderProduct)
-            res.send(newOrderProduct)
-          } else {
-            res.send({message:'You must be logged in to create an order'})
-            }
-        }
-    }
-    } catch (error) {
-        console.log(error);
-        next(error);
-    }
-});
-
 module.exports = ordersRouter
