@@ -25,7 +25,7 @@ const Nav = (props) => {
 return <>
     <div className="header">
       <NavLink to="/allProducts" className="logoNav" activeClassName="activeLogo">
-        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" width="300px" height="240px" />
+        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" className="logoNav" width="auto" height="240px" />
       </NavLink>
     </div> 
 
@@ -56,12 +56,14 @@ return <>
       <Fragment>
 
         <img src={imageURL} className="loginUserImage" alt="UserImage" width="auto" height="50px" />
-        <p className="loginUsername">{username}</p>
 
-        {/* <NavLink to="/singleUser" className="singleUser" activeClassName="active">
-          User Account
-        </NavLink> */}
-        
+        <div className="userDataNav">
+        <p className="loginUsername">{username}</p>
+        <NavLink to="/userAccount" className="userAccountLink">
+          Account
+        </NavLink>
+        </div>
+
         <button className="logoutButton"onClick={() => {
           handleClick();
           swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");

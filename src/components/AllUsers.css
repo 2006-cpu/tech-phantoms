@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* Our fonts:
-font-family: 'Bad Script', cursive;
+/* font-family: 'Bad Script', cursive;
 font-family: 'Thasadith', sans-serif; */
 
 * {
@@ -9,21 +8,20 @@ font-family: 'Thasadith', sans-serif; */
     font-family: 'Thasadith', sans-serif;
 }
 
-.productsGrid {
+.allUsersGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    /* grid-gap: 1em; */
+    grid-gap: 1em;
     width: 100vw;
     height: 100vh;
+    padding: 40px;
     z-index: 1;
-    /* padding: 20px; */
     background-color: #F8EEE7;
-    /* border: 2px solid gray; */
 }
 
-
-@media screen and (max-width: 1024px) {
-    .productsGrid {
+@media screen and (max-width: 768px) {
+    .allUsersGrid {
+        padding-left: 180px;
         height: 100%;
     }
 }

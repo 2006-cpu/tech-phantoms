@@ -7,3 +7,22 @@ font-family: 'Thasadith', sans-serif; */
     margin: 0;
     font-family: 'Thasadith', sans-serif;
 }
+
+.allOrders {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    /* padding: 20px; */
+    background-color: #F8EEE7;
+    /* border: 2px solid gray; */
+}
+
+
+@media screen and (max-width: 1024px) {
+    .allOrders {
+        height: 100%;
+    }
+}

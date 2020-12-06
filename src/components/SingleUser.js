@@ -1,47 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useParams } from "react-router";
-import { getUser } from '../api';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './SingleUser.css';
 
 const SingleUser = (props) => {
-    const {user, setUser, token, setToken} = props;
-    const {userId} = useParams()
-    console.log('ID', userId)
-    const [singleUser, setSingleUser] = useState;
-    console.log('singleUSER: ', singleUser);
+    const {id, imageURL, firstName, lastName, email, username, password, isAdmin} = props.user;
 
-    useEffect(() => {
-        getUser(userId)
-            .then( responseUser => {
-                setSingleUser(responseUser)
-            console.log('responseUser: ', responseUser);
-            })
-    }, []);
-    const {imageURL, firstName, lastName, email, username, password} = singleUser;
-
-    const history = useHistory();
-        function navigateToHome() {
-            history.push("/Home");
-        }
- 
 return <>
-    {!token
-    ? <p className="signInForAccount">Please sign in to access account.</p>
-    : <div id={`singleUser${userId}`} className="singleUserCard">
+<div className="singleUserCard">
+   <div id={`singleUser${id}`} className="singleUserId">
         <div className="userCardData">
-        <img src={imageURL} alt="userImage" className="userImage" />
-        <h3 className="userFirstName">{firstName}</h3>
-        <h3 className="userLastName">{lastName}</h3>
-        <h2 className="userEmail">{email}</h2>
-        <h2 className="username">{username}</h2>
-        <h2 className="password">{password}</h2>
+            <img src={imageURL} alt="userImage" className="userImage" />
+            <h4 className="userFirstName">{firstName}</h4>
+            <h4 className="userLastName">{lastName}</h4>
+            <h4 className="userEmail">{email}</h4>
+            <h4 className="username">{username}</h4>
+            <h4 className="password">{password}</h4>
+            <h4 className="isAdmin">{isAdmin}</h4>
+
+                {
+                id
+                ?
+                <NavLink to={`/allUsers/${id}`} className="singleUserId">
+                <button className="singleUserEditButton">Edit</button>
+                </NavLink>
+                :
+                <h4 className="noSingleUser">{id} not found</h4>
+                }
         </div>
-        <button className="userReturnHome" type="submit" onClick={() => {
-            navigateToHome();
-        }}>Home</button>
     </div>
-    }
+</div>
 </>
 }
 export default SingleUser;

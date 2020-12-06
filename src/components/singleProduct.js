@@ -3,19 +3,20 @@ import { useParams } from "react-router";
 import { NavLink } from 'react-router-dom';
 import { getProduct } from '../api';
 import './SingleProduct.css';
-const SingleProduct =  (props) => {
+
+const SingleProduct =  () => {
     const {productId}= useParams()
     console.log('ID', productId)
     const [product,setProduct] = useState({})
-    const {token} = props;
-    console.log(product)
+    console.log('product: ', product)
+    
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
             setProduct(responseProduct)
           console.log('responseProduct: ', responseProduct);
           })
-      }, [])
+    }, [])
     const {id, name, category, imageURL, description, price, inStock} = product
 
     if(product===''){

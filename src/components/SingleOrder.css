@@ -11,8 +11,8 @@ font-family: 'Thasadith', sans-serif; */
 .orderCardData {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 670px;
+    width: 400px;
+    height: 500px;
     margin: 20px;
     padding: 20px; 
     color: rgba(55, 8, 97, 0.879);
@@ -37,4 +37,11 @@ font-family: 'Thasadith', sans-serif; */
     border-radius: 3px;
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
+}
+
+.detailsButton {
+    font-size: .9em;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(158, 120, 196, 0.879);
 }
