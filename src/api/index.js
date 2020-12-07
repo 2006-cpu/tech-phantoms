@@ -67,3 +67,22 @@ export async function getUser(id) {
     throw error;
   }
 }
+
+export async function getAllReviews() {
+  try {
+    const { data } = await axios.get(`${ BASE }/reviews`);
+    console.log('REVIEWS-DATA: ', data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getReview(id) {
+  try {
+    const { data: review } = await axios.get(`${ BASE }/reviews/${id}`);
+    return review;
+  } catch (error) {
+    throw error;
+  }
+}

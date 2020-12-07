@@ -48,6 +48,13 @@ font-family: 'Thasadith', sans-serif; */
     font-size: 1.4em;
     color: #7a0d7e;
     text-decoration: none;
+    margin-right: 40px;
+}
+
+.adminReviewsNav {
+    font-size: 1.4em;
+    color: #7a0d7e;
+    text-decoration: none;
     margin-right: 80px;
 }
 

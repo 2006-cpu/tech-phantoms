@@ -17,7 +17,8 @@ import {
   SingleProduct,
   AdminTools,
   AllUsers,
-  UserAccount} from './index';
+  UserAccount,
+  AllReviews} from './index';
 
 import './App.css';
 
@@ -25,6 +26,7 @@ const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
  
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
@@ -113,26 +115,45 @@ const App = () => {
           <span></span>
       }
 
+      {
+      user.isAdmin
+      ?
+      <>
       <Route path="/allOrders">
         <AllOrders />
       </Route>
 
-      <Route path="/orders/cart">
-        <Cart/>
+      <Route path="/allReviews">
+        <allReviews 
+          allReviews = {allReviews}
+          setAllReviews = {setAllReviews}
+        />
       </Route>
+      </>
+      :
+      <span></span>
+      }
+
+      <Route path="/orders/cart">
+        <Cart />
+      </Route>
+
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
         />
       </Route>
+
       <Route path={`/allProducts/:productId`}>
         <SingleProduct />
       </Route>
 
+ 
+
       <div className="backDrop"></div>
 
-        <Footer />
+      <Footer />
       
 
     </div>

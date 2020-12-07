@@ -1,6 +1,7 @@
 const { client } = require('./index');
 const { getOrderProductById } = require('./order_products');
 const { getOrderById } = require('./orders');
+
 async function createProduct({name, description, price, imageURL='https://i.imgur.com/6CsuY8X.png', inStock, category}) {
     try {
         const { rows: [ product ] } = await client.query (`
