@@ -7,12 +7,15 @@ const { createProduct } = require('./products');
 
 const { addProductToOrder } = require('./order_products');
 
+const { createReviews } = require('./reviews');
+
 async function buildTables() {
   try {
     client.connect();
     
     console.log('Dropping All Tables...');
     await client.query(`
+      DROP TABLE IF EXISTS reviews;
       DROP TABLE IF EXISTS order_products;
       DROP TABLE IF EXISTS orders;
       DROP TABLE IF EXISTS users;
@@ -54,6 +57,14 @@ async function buildTables() {
         price INTEGER NOT NULL ,
         quantity INTEGER NOT NULL DEFAULT 0
       );
+      CREATE TABLE reviews(
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        content VARCHAR(255) NOT NULL,
+        stars INTEGER(0,5) NOT NULL,
+        "userId" INTEGER REFERENCES users(id),
+        "productId" INTEGER REFERENCES products(id)
+      )
     `);
     console.log('Finished creating tables!');
   } catch (error) {
@@ -230,6 +241,35 @@ const initialOrderProducts = [
 console.log('Creating orderProducts')
 await Promise.all(initialOrderProducts.map(addProductToOrder))
 console.log('Finished creating ordersProducts')
+
+const initialReviews = [
+  {
+    title: "Fabulous!",
+    content: "My skin feels great!",
+    stars: 5,
+    userId: 2,
+    productId: 4
+  },
+  {
+    title: "The Best!",
+    content: "Best soap ever!",
+    stars: 5,
+    userId: 3,
+    productId: 5
+  },
+  {
+    title: "Top of the line!",
+    content: "Best seller!",
+    stars: 4,
+    userId: 1,
+    productId: 2
+  }
+
+]
+
+console.log('Creating reviews')
+await Promise.all(initialReviews.map(createReview))
+console.log('Finished creating reviews')
 
 }catch(error){
   console.error(error)

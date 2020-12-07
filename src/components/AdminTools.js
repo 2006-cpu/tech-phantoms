@@ -22,6 +22,10 @@ return <>
         <NavLink to="/allUsers" className="adminUsersNav" activeClassName="adminActive">
             Users
         </NavLink>
+
+        <NavLink to="/allReviews" className="adminReviewsNav" activeClassName="adminActive">
+            Reviews
+        </NavLink>
     </div>
 </>
 }
