@@ -17,7 +17,8 @@ import {
   SingleProduct,
   AdminTools,
   AllUsers,
-  UserAccount} from './index';
+  UserAccount
+  } from './index';
 
 import './App.css';
 
@@ -61,8 +62,12 @@ const App = () => {
       </Route>
 
       {
-      user.isAdmin ?
-      <AdminTools/>:<></>
+      user.isAdmin 
+      ?
+      <>
+      <AdminTools/>
+      </>
+      :<></>
       }
 
       <div className="welcomeDiv">Welcome to Dope Soap!<br />
@@ -97,43 +102,50 @@ const App = () => {
       </Fragment>
      </div>
       }
-      <Route path="/allUsers">
-        <AllUsers />
-      </Route>
-
-      {
-      user.id
-      ?
-      <Fragment>
-        <Route exact path="/orders">
-          <AllOrders />
-        </Route>
-      </Fragment>
-      :
-          <span></span>
-      }
-
-      <Route path="/allOrders">
-        <AllOrders />
-      </Route>
 
       <Route path="/orders/cart">
         <Cart/>
       </Route>
+
+      {
+      user.isAdmin 
+      ?
+      <>
+      <Route path="/allOrders">
+        <AllOrders />
+      </Route>
+
+      <Route path="/allUsers">
+        <AllUsers />
+      </Route>
+      </>
+      :<></>
+      }
+
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
         />
       </Route>
+
       <Route path={`/allProducts/:productId`}>
         <SingleProduct />
       </Route>
+
+      {/* {
+      user.isAdmin
+      ?
+      <EditProduct />
+      :
+      <></>
+      } */}
 
       <div className="backDrop"></div>
 
         <Footer />
       
+
 
     </div>
   </>
