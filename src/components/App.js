@@ -99,20 +99,8 @@ const App = () => {
         <AllUsers />
       </Route>
 
-      {
-      user.id
-      ?
-      <Fragment>
-        <Route exact path="/orders">
-          <AllOrders />
-        </Route>
-      </Fragment>
-      :
-          <span></span>
-      }
-
       <Route path="/allOrders">
-        <AllOrders />
+        <AllOrders token={token}/>
       </Route>
 
       <Route path="/orders/cart">

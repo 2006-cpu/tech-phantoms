@@ -3,11 +3,12 @@ import SingleOrder from './SingleOrder.js';
 import getAllOrders from '../api';
 import './AllOrders.css'
 
-const AllOrders = () => {
+const AllOrders = (props) => {
+    const {token} = props
     const [allOrders, setAllOrders] = useState([]);
 
     const fetchOrders =() => {
-        getAllOrders()
+        getAllOrders(token)
           .then( responseAllOrders => {
             setAllOrders(responseAllOrders)
           console.log('responseAllOrders: ', responseAllOrders);
