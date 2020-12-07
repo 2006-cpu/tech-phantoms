@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+
 export const BASE = '/api'
 
 
@@ -76,4 +78,17 @@ export async function addProductToCart(orderId, product, quantity){
   } catch (error) {
     throw error
   }
+}
+
+export async function removeProductFromCart(orderId, productId, token){
+  try {
+    console.log('GETTING', `${BASE}/order_products/${orderId}/${productId}`)
+    const orderProductId = await axios.get(`${BASE}/order_products/${orderId}/${productId}`)
+    console.log('ID', orderProductId.data.id)
+    const {data} = await axios.delete(`${BASE}/order_products/${orderProductId.data.id}`,{headers: {'Authorization': 'Bearer '+token}})
+    return data
+  } catch (error) {
+    
+  }
+
 }
