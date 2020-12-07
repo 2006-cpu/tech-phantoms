@@ -196,22 +196,3 @@ return <>
 }
 
 export default SingleProduct;
-
-
-
-
-            // const response = await fetch(`${BASE}/products/${productId}`, {
-            //     method: 'DELETE',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // });
-            // const deleteProduct = await response.json();
-
-
-            // if(deleteProduct) {
-            //     getAllProducts();
-            // } else {
-            //     setShowError(response.message);
-            // }

@@ -17,12 +17,16 @@ import {
   SingleProduct,
   AdminTools,
   AllUsers,
-  UserAccount
+  UserAccount,
+  EditProduct,
+  CreateProduct
   } from './index';
 
 import './App.css';
+// import CreateProduct from './CreateProduct';
 
-const App = () => {
+const App = (props) => {
+  const {createProduct, setCreateProduct} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
@@ -135,13 +139,14 @@ const App = () => {
         <SingleProduct token={token} isAdmin={user.isAdmin}/>
       </Route>
 
-      {/* {
-      user.isAdmin
-      ?
-      <EditProduct />
-      :
-      <></>
-      } */}
+      <Route path={`/createProduct`}>
+        <CreateProduct 
+          createProduct = {createProduct}
+          setCreateProduct = {setCreateProduct}
+        />
+      </Route>
+     
+  
 
       <div className="backDrop"></div>
 

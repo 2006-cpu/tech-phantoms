@@ -49,7 +49,7 @@ const EditProduct = () => {
     }
 
 return <>
-<div className="editForm">
+<div className="editProductForm">
     <form className="editProduct" onSubmit={handleEditProduct}>
 
         <input name="name" type="text" placeholder="name" value={name} onChange={(event) => {
