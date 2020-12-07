@@ -68,3 +68,12 @@ export async function getUser(id) {
     throw error;
   }
 }
+
+export async function addProductToCart(orderId, product, quantity){
+  try {
+    const {data} = await axios.post(`${BASE}/orders/${orderId}/products`,{productId: product.id, price: product.price, quantity})
+    return data
+  } catch (error) {
+    throw error
+  }
+}

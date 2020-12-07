@@ -1,29 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import { NavLink } from 'react-router-dom';
-import { getProduct } from '../api';
+import { getProduct, getOrdersCart, addProductToCart } from '../api';
 import './SingleProduct.css';
+import Swal from 'sweetalert2';
 
-const SingleProduct =  () => {
+const SingleProduct =  (props) => {
     const {productId}= useParams()
-    console.log('ID', productId)
+    const {token} = props
     const [product,setProduct] = useState({})
-    console.log('product: ', product)
-    
+    const [cart,setCart] = useState([])
+    const [quantity, setQuantity] = useState(1)
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
             setProduct(responseProduct)
           console.log('responseProduct: ', responseProduct);
           })
+        getOrdersCart(token).then(response=>{
+            setCart(response)
+            console.log('CART', response)})
     }, [])
+
     const {id, name, category, imageURL, description, price, inStock} = product
 
-    if(product===''){
-        return <div>
-            <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
-        </div>
-    } else {
+    const addToCart = async (event)=>{
+        try {
+            event.preventDefault()
+            const addedProduct = await addProductToCart(cart.id,product,quantity)
+            console.log('ADDED PRODUCT TO CART', addedProduct)
+            if(addedProduct){
+                Swal.fire({
+                    position: 'absolute',
+                    icon: 'success',
+                    title: name+" added to cart!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+if(product===''){
+    return <div>
+        <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
+    </div>
+} else {
 return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
         <div className="productCardData">
@@ -39,10 +62,12 @@ return <>
                     inStock
                     ?
                     <>
-                    <NavLink to="/orders/cart" className="cart">
-                    <button className="addToCart">
-                        Add To Cart  </button>
-                    </NavLink>
+                    <form onSubmit={addToCart}>
+                    <input name="quantity" type="number" min="1" value={quantity} onChange={(e) => {setQuantity(e.target.value)}} />
+                    <button type='submit' className="addToCart">
+                        Add To Cart  
+                    </button>
+                    </form>
                     </>
                     :
                     <h3 className="outOfStock">In Stock: {inStock}</h3>

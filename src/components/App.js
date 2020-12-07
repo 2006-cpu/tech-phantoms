@@ -113,7 +113,7 @@ const App = () => {
         />
       </Route>
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct />
+        <SingleProduct token={token}/>
       </Route>
 
       <div className="backDrop"></div>
