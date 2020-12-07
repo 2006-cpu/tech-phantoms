@@ -1,16 +1,16 @@
 const express = require('express')
 const orderProductsRouter = express.Router()
 const jwt = require('jsonwebtoken');
-const { getOrdersByUser } = require('../db/orders');
+const { getCartByUser } = require('../db/orders');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
-const { addProductToOrder, updateOrderProduct, destroyOrderProduct, getOrderProductById } = require('../db/order_products');
+const { addProductToOrder, updateOrderProduct, destroyOrderProduct, getOrderProductById, getOrderProductIdByOrderAndProduct} = require('../db/order_products');
 
 const { getUserById, getUser } = require('../db/users')
 
 
 
-orderProductsRouter.patch('/order_products/:orderProductId', async (req, res, next) => {
+orderProductsRouter.patch('/:orderProductId', async (req, res, next) => {
   try {
     const {orderProductId} = req.params;
       const prefix = 'Bearer ';
@@ -41,8 +41,9 @@ orderProductsRouter.patch('/order_products/:orderProductId', async (req, res, ne
   }
 });
 
-orderProductsRouter.delete('/order_products/:orderProductId', async (req, res, next) => {
+orderProductsRouter.delete('/:orderProductId', async (req, res, next) => {
   try {
+    console.log('DELETING')
     const {orderProductId} = req.params;
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
@@ -51,14 +52,14 @@ orderProductsRouter.delete('/order_products/:orderProductId', async (req, res, n
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
         if (id) {
-
           const user = await getUserById(id);
           console.log("user in orderProducts delete", user);
           const userOrder = await getCartByUser({id});
           console.log("userOrder in OP delete", userOrder);
           const orderProduct = await getOrderProductById(orderProductId);
+          console.log('ORDERPRODUCT', orderProduct)
           if (orderProduct.orderId===userOrder.id) {
-          const deletedOrderProduct = await destroyOrderProduct(id)
+          const deletedOrderProduct = await destroyOrderProduct(orderProduct.id)
           console.log(deletedOrderProduct)
           res.send(deletedOrderProduct)}
         } else {
@@ -72,4 +73,13 @@ orderProductsRouter.delete('/order_products/:orderProductId', async (req, res, n
   }
 });
 
+orderProductsRouter.get('/:orderId/:productId', async (req, res, next)=>{
+  try {
+    const {orderId, productId}= req.params
+    const orderProductId = await getOrderProductIdByOrderAndProduct(orderId, productId)
+    res.send(orderProductId)
+  } catch (error) {
+    console.error(error)
+  }
+})
 module.exports = orderProductsRouter
