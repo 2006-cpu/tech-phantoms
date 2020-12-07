@@ -6,6 +6,9 @@ const AllProducts = (props) => {
     const {allProducts} = props;
 
 return <>
+        <div className="welcomeDiv">Welcome to Dope Soap!<br />
+        Enjoy a clean view of all our products!
+        </div>
         <div className="productsGrid">
         {
         allProducts.map((product) => <Product key={product.id} product={product} />)

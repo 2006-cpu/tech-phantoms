@@ -65,9 +65,7 @@ const App = () => {
       <AdminTools/>:<></>
       }
 
-      <div className="welcomeDiv">Welcome to Dope Soap!<br />
-        Enjoy a clean view of all our products!
-      </div>
+    
      
       {!token
       ?
@@ -101,24 +99,12 @@ const App = () => {
         <AllUsers />
       </Route>
 
-      {
-      user.id
-      ?
-      <Fragment>
-        <Route exact path="/orders">
-          <AllOrders />
-        </Route>
-      </Fragment>
-      :
-          <span></span>
-      }
-
       <Route path="/allOrders">
-        <AllOrders />
+        <AllOrders token={token}/>
       </Route>
 
       <Route path="/orders/cart">
-        <Cart/>
+        <Cart token={token} user={user}/>
       </Route>
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts

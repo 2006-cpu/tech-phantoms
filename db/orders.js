@@ -1,5 +1,7 @@
 const { client } = require('./index')
 const { getUserByUserName } = require('./users')
+const {getOrderProductsByOrderId} = require('./order_products')
+const { getProductById } = require('./products')
 
 const getOrderById = async (id)=>{
     try {
@@ -7,7 +9,9 @@ const getOrderById = async (id)=>{
             SELECT * FROM orders
             WHERE id=$1
         `,[id])
+        const orderProducts = await getOrderProductsByOrderId({orderId: cartOrder.id})
 
+        order.products = orderProducts
         return order
     } catch (error) {
         console.error(error)
@@ -19,8 +23,18 @@ const getAllOrders = async ()=>{
         const {rows: orders} = await client.query(`
             SELECT * FROM orders
         `)
-
-        return orders
+        const completeOrders = await Promise.all(orders.map(async order=>{
+            const orderProducts = await getOrderProductsByOrderId(order.id)
+            const products = await Promise.all(orderProducts.map(async (orderProduct) =>{
+    
+                const product = await getProductById(orderProduct.productId)
+                return product
+            }))
+            order.orderProducts = orderProducts
+            order.products = products
+            return order
+        }))
+        return completeOrders
     } catch (error) {
         console.error(error)
     }
@@ -32,7 +46,16 @@ const getOrdersByUser = async ({ id })=>{
             SELECT * FROM orders
             WHERE "userId"=$1
         `,[id])
-
+        orders.forEach(async order=>{
+            const orderProducts = await getOrderProductsByOrderId(order.id)
+            const products = await Promise.all(orderProducts.map(async (orderProduct) =>{
+    
+                const product = await getProductById(orderProduct.productId)
+                return product
+            }))
+            order.orderProducts = orderProducts
+            order.products = products
+        })
         return orders
     } catch (error) {
         console.error(error)
@@ -60,8 +83,15 @@ const getCartByUser = async ({id})=>{
             WHERE "userId"=$1 AND status='created'
         `,[id])
 
-        /*Insert Order_Products fetch code here */
+        const orderProducts = await getOrderProductsByOrderId(cartOrder.id)
+        const products = await Promise.all(orderProducts.map(async (orderProduct) =>{
 
+            const product = await getProductById(orderProduct.productId)
+            return product
+        }))
+        cartOrder.orderProducts = orderProducts
+        cartOrder.products = products
+        console.log("CART", cartOrder)
         return cartOrder
     } catch (error) {
         console.error(error)

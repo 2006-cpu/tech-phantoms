@@ -27,7 +27,8 @@ font-family: 'Thasadith', sans-serif; */
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
-    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+    padding: 2rem;
 }
 
 .cartCheckout {
@@ -47,4 +48,20 @@ font-family: 'Thasadith', sans-serif; */
     border-radius: 3px;
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
+}
+
+.userId{text-transform: uppercase;}
+
+.productImage{
+    height: 50%;
+    width: auto;
+}
+
+.cartProduct{
+    display: flex;
+    height: 15rem;
+    width: 80%;
+    border: 2px solid rgba(229, 194, 255, 0.879);
+    align-items:center;
+
 }

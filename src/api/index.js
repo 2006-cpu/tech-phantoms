@@ -21,9 +21,9 @@ export async function getProduct(id) {
   }
 }
 
-export default async function getAllOrders() {
+export default async function getAllOrders(token) {
   try {
-    const { data } = await axios.get(`${ BASE }/orders`);
+    const { data } = await axios.get(`${ BASE }/orders`,{ headers: {'Authorization':'Bearer '+token} });
       console.log('GETORDERS: ', data);
     return data;
   } catch (error) {
@@ -40,9 +40,10 @@ export async function getOrder(id) {
   }
 }
 
-export async function getOrdersCart() {
+export async function getOrdersCart(token) {
   try {
-    const { data } = await axios.get(`${ BASE }/orders/cart`);
+    const { data } = await axios.get(`${ BASE }/orders/cart`,{ headers: {'Authorization':'Bearer '+token} });
+    console.log('API CART', data)
     return data;
   } catch (error) {
     throw error;

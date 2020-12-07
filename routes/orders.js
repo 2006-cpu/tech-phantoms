@@ -18,30 +18,25 @@ const { getProductById } = require('../db/products');
 
 ordersRouter.get('/', async (req, res, next)=>{
 try {
-  const orders = await getAllOrders()
-    console.log('REQUSER<<<: ', req.user);
-               res.send(orders)
-
-    // >>>>>>>>>>>>>>>TO BE ADJUSTED<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
-    // const prefix = 'Bearer ';
-    //     const auth = req.header('Authorization');
-    //     console.log('Request', req.headers)
-    //     if (auth.startsWith(prefix)) {
-    //     const token = auth.slice(prefix.length);
-    //     if (token){
-    //     const { id } = jwt.verify(token, JWT_SECRET);
-    //       if (id) {
-            
-    //         if (req.user.isAdmin===true){
-    //             const orders = await getAllOrders()
-    //             res.send(orders)
-    //         } else {
-    //             res.send({message:'Error: you must be an admin to view all orders'})
-    //         }
-    //       }
-    //     }
-    // }
+     const prefix = 'Bearer ';
+         const auth = req.header('Authorization');
+         console.log('Request', req.headers)
+         if (auth.startsWith(prefix)) {
+         const token = auth.slice(prefix.length);
+         if (token){
+         const { id } = jwt.verify(token, JWT_SECRET);
+           if (id) {
+            const user = await getUserById(id)
+             if (user.isAdmin===true){
+                 const orders = await getAllOrders()
+                 res.send(orders)
+             } else {
+                 res.send({message:'Error: you must be an admin to view all orders'})
+             }
+           }
+         }
+     }
 } catch (error) {
     console.error(error)
 }
@@ -58,7 +53,6 @@ ordersRouter.get('/cart', async (req, res, next)=>{
         const { id } = jwt.verify(token, JWT_SECRET);
           if (id) {
             const user = await getUserById(id)
-            console.log(user)
             if (user){
                 const orders = await getCartByUser({id})
                 res.send( orders )

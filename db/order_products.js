@@ -47,6 +47,7 @@ async function addProductToOrder({
 }) {
 try {
     const orderProducts = await getOrderProductsByOrderId(orderId)
+    
     if( orderProducts.length === 0){
     const { rows: [productOrder] } = await client.query(`
     INSERT INTO order_products ("productId", "orderId", price, quantity)
