@@ -28,6 +28,7 @@ productsRouter.get('/:productId', async (req,res,next)=>{
 //Only admins can create a new product
 productsRouter.post('/', async (req,res,next) => {
     try {
+      const {name, description, price, imageURL, inStock, category} = req.body
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
       if (auth.startsWith(prefix)) {
@@ -61,7 +62,7 @@ productsRouter.delete('/:productId', async (req,res,next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
         if (id && user.isAdmin===true) {
-          const deletedProduct = await destroyProduct({id})
+          const deletedProduct = await destroyProduct({id: productId})
           res.send(deletedProduct)
         } else {
           res.send({message:'You must be an admin to delete a product'})

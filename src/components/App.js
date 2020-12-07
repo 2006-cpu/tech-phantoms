@@ -141,8 +141,7 @@ const App = (props) => {
 
       <Route path={`/createProduct`}>
         <CreateProduct 
-          createProduct = {createProduct}
-          setCreateProduct = {setCreateProduct}
+          isAdmin={user.isAdmin} token={token}
         />
       </Route>
      

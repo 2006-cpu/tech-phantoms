@@ -82,7 +82,18 @@ const SingleProduct =  (props) => {
                 console.log('DELETEbuttonCLICK');
       
             const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
-
+            console.log(data)
+            if(data){
+                Swal.fire({
+                    position: 'absolute',
+                    icon: 'warning',
+                    title: name+" deleted.",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                
+                history.push("/Home");
+            }
           return data;
         } catch (error) {
           console.error(error);
