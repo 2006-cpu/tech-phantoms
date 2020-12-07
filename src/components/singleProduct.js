@@ -1,30 +1,74 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router";
-import { NavLink, useHistory } from 'react-router-dom';
-import { getProduct, getAllProducts, BASE } from '../api';
+import { useParams, useHistory } from "react-router";
+import { NavLink } from 'react-router-dom';
+import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE } from '../api';
+import EditProduct from './EditProduct';
 import './SingleProduct.css';
+import Swal from 'sweetalert2';
 
 const SingleProduct =  (props) => {
-    const {isAdmin, token} = props;
-    const {productId} = useParams()
-    console.log('ID', productId)
+    const {productId}= useParams()
+    const {token, isAdmin} = props;
     const [product,setProduct] = useState({})
-    console.log('product: ', product)
-    const[showError, setShowError] = useState('');
-    
+    const [cart,setCart] = useState([])
+    const [quantity, setQuantity] = useState(1)
+    const [editForm, setEditForm] = useState(false)
+
+    const [newName, setNewName] = useState('');
+    const [newCategory, setNewCategory] = useState('');
+    const [newImageURL, setNewImageURL] = useState('');
+    const [newDescription, setNewDescription] = useState('');
+    const [newPrice, setNewPrice] = useState('');
+    const [newInStock, setNewInStock] = useState('');
+
+    console.log('isADMIN: ', isAdmin);
+
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
             setProduct(responseProduct)
+            setNewName(responseProduct.name)
+            setNewCategory(responseProduct.category)
+            setNewImageURL(responseProduct.imageURL)
+            setNewDescription(responseProduct.description)
+            setNewPrice(responseProduct.price)
+            setNewInStock(responseProduct.inStock)
+            
           console.log('responseProduct: ', responseProduct);
           })
+        getOrdersCart(token).then(response=>{
+            setCart(response)
+            console.log('CART', response)})
     }, [])
+
     const {id, name, category, imageURL, description, price, inStock} = product
 
+    
+
+    const handleEditProduct = async (event) => {
+        try {
+            event.preventDefault()
+
+            const {data} = await axios.patch(`${BASE}/products/${productId}`, {newName, newDescription, newPrice, newImageURL, newInStock, newCategory});
+
+            setProduct(data)
+
+    
+          return data;  
+        } catch (error) {
+          console.error(error)
+          throw error
+        }
+    }
+
     const history = useHistory();
+    function handleClick() {
+        history.push(`/AllProducts/${productId}`);
+    }
+
     function editProductClick() {
-        history.push("/EditProduct");
+        setEditForm(true)
     }
     function returnHomeClick() {
         history.push("/Home");
@@ -34,39 +78,39 @@ const SingleProduct =  (props) => {
         try {
             event.preventDefault();
                 console.log('DELETEbuttonCLICK');
-            const productId = event.target.productId;
-            setShowError('');
+      
+            const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
 
-
-            const response = await fetch(`${BASE}/products/${productId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const deleteProduct = await response.json();
-
-
-            if(deleteProduct) {
-                getAllProducts();
-            } else {
-                setShowError(response.message);
-            }
-
-
-            const {data} = await axios.delete(`${BASE}/products/${productId}`)
-
+          return data;
         } catch (error) {
           console.error(error);
         }
     }
 
-    if(product===''){
-        return <div>
-            <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
-        </div>
-    } else {
+    const addToCart = async (event)=>{
+        try {
+            event.preventDefault()
+            const addedProduct = await addProductToCart(cart.id,product,quantity)
+            console.log('ADDED PRODUCT TO CART', addedProduct)
+            if(addedProduct){
+                Swal.fire({
+                    position: 'absolute',
+                    icon: 'success',
+                    title: name+" added to cart!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+if(product===''){
+    return <div>
+        <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
+    </div>
+} else {
 return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
         <div className="productCardData">
@@ -82,14 +126,15 @@ return <>
                     inStock
                     ?
                     <>
-                    <NavLink to="/orders/cart" className="cart">
-                        <button className="addToCart">
-                            Add To Cart  
-                        </button>
-                    </NavLink>
+                    <form onSubmit={addToCart}>
+                    <input name="quantity" type="number" min="1" value={quantity} onChange={(e) => {setQuantity(e.target.value)}} />
+                    <button type='submit' className="addToCart">
+                        Add To Cart  
+                    </button>
+                    </form>
                     </>
                     :
-                    <h3 className="outOfStock">In Stock: {inStock}</h3>
+                    <h3 className="outOfStock">Temporarily out of stock</h3>
                     }
 
                     {
@@ -112,13 +157,61 @@ return <>
             </div>
         </div>
     </div>
+    {
+    editForm
+    ?
+    <div className="editForm">
+    <form className="editProduct" onSubmit={handleEditProduct}>
+
+        <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
+            setNewName(event.target.value)}} />
+
+        <input name="description" type="text" placeholder="description" value={newDescription} onChange={(event) => {
+            setNewDescription(event.target.value)}} /> 
+
+        <input name="price" type="text" placeholder="price" value={newPrice} onChange={(event) => {
+            setNewPrice(event.target.value)}} /> 
+
+        <input name="imageURL" type="text" placeholder="imageURL" value={newImageURL} onChange={(event) => {
+            setNewImageURL(event.target.value)}} />   
+
+        <input name="inStock" type="text" placeholder="inStock" value={newInStock} onChange={(event) => {
+            setNewInStock(event.target.value)}} /> 
+
+        <input name="category" type="text" placeholder="category" value={newCategory} onChange={(event) => {
+            setNewCategory(event.target.value)}} />
+
+            <button className="editProductButton" type="submit" onClick={() => {
+                handleClick();
+            }}>
+                Edit product
+            </button>
+    </form>
+</div>
+    :
+    <></>
+    }
 </>
 }
 }
+
 export default SingleProduct;
 
 
-// handleDeleteProduct();
-// returnHomeClick();
 
 
+            // const response = await fetch(`${BASE}/products/${productId}`, {
+            //     method: 'DELETE',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Authorization': `Bearer ${token}`
+            //     }
+            // });
+            // const deleteProduct = await response.json();
+
+
+            // if(deleteProduct) {
+            //     getAllProducts();
+            // } else {
+            //     setShowError(response.message);
+            // }

@@ -70,9 +70,7 @@ const App = () => {
       :<></>
       }
 
-      <div className="welcomeDiv">Welcome to Dope Soap!<br />
-        Enjoy a clean view of all our products!
-      </div>
+    
      
       {!token
       ?
@@ -112,7 +110,7 @@ const App = () => {
       ?
       <>
       <Route path="/allOrders">
-        <AllOrders />
+        <AllOrders token={token}/>
       </Route>
 
       <Route path="/allUsers">
@@ -122,6 +120,10 @@ const App = () => {
       :<></>
       }
 
+      <Route path="/orders/cart">
+        <Cart token={token} user={user}/>
+      </Route>
+
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
@@ -130,7 +132,7 @@ const App = () => {
       </Route>
 
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct />
+        <SingleProduct token={token} isAdmin={user.isAdmin}/>
       </Route>
 
       {/* {
