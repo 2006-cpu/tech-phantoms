@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './SingleOrder.css';
-// import Stripecc from '../components/stripe';
+import Stripecc from '../components/Stripe';
 
 const SingleOrder = (props) => { 
     const {id, userId, datePlaced, status} = props.order;
@@ -11,7 +11,7 @@ return <>
         <h3 className="userId">CustomerName: {userId}</h3>
         <div className="datePlaced">Date of order: {datePlaced}</div>
         <div className="status">Status: {status}</div>
-          {/* <Stripecc to="/checkout" className="ordersButton"/> */}
+          <Stripecc to="/checkout" className="ordersButton"/>
 
         {
         id

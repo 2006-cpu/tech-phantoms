@@ -2,7 +2,6 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
 
-
 export default class Stripecc extends React.Component{
     constructor(prop){
         super(prop);
