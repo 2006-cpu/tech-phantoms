@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { BASE } from '../api';
 import storeCurrentUser, { storeCurrentToken } from '../auth';
 import './Register.css';
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { nextTick } from 'process';
 
