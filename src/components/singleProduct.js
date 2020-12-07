@@ -70,7 +70,7 @@ return <>
                     </form>
                     </>
                     :
-                    <h3 className="outOfStock">In Stock: {inStock}</h3>
+                    <h3 className="outOfStock">Temporarily out of stock</h3>
                     }
                   </div>
             </div>

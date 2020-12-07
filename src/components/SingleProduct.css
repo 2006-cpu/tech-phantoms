@@ -81,3 +81,9 @@
     color: white;
     text-decoration: none;
 }
+
+.outOfStock {
+    margin-top: 120px;
+    margin-left: 30px;
+    color: rgba(55, 8, 97, 0.879);
+}

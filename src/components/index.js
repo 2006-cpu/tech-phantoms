@@ -14,3 +14,4 @@ export { default as AdminTools } from './AdminTools';
 export { default as AllUsers } from './AllUsers';
 export { default as Order } from './Order';
 export { default as UserAccount } from './UserAccount';
+export { default as UsersOrders } from './UsersOrders';

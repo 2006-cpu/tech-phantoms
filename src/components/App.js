@@ -17,7 +17,8 @@ import {
   SingleProduct,
   AdminTools,
   AllUsers,
-  UserAccount} from './index';
+  UserAccount,
+  UsersOrders} from './index';
 
 import './App.css';
 
@@ -99,6 +100,13 @@ const App = () => {
         <AllUsers />
       </Route>
 
+  
+      <Route path="/usersOrders">
+        <UsersOrders token={token} user={user} />
+      </Route>
+   
+
+
       <Route path="/allOrders">
         <AllOrders token={token}/>
       </Route>
@@ -106,12 +114,14 @@ const App = () => {
       <Route path="/orders/cart">
         <Cart token={token} user={user}/>
       </Route>
+
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
         />
       </Route>
+
       <Route path={`/allProducts/:productId`}>
         <SingleProduct token={token}/>
       </Route>

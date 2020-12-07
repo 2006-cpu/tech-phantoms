@@ -62,6 +62,10 @@ return <>
         <NavLink to="/userAccount" className="userAccountLink">
           Account
         </NavLink>
+
+        <NavLink to="UsersOrders" className="usersOrdersLink">
+          Orders
+        </NavLink>
         </div>
 
         <button className="logoutButton"onClick={() => {

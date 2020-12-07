@@ -21,8 +21,8 @@ font-family: 'Thasadith', sans-serif; */
 .indivProductCardData {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 500px;
+    width: 450px;
+    height: 570px;
     padding: 40px;
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);

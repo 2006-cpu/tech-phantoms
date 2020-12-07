@@ -24,7 +24,12 @@ return <>
                 <button className="productDetailsButton">Details</button>
             </NavLink>
             :
-            <span className="outOfStockText">Out of stock.</span>
+            <>
+            <NavLink to={`/allProducts/${id}`}>
+                <button className="productDetailsButton">Details</button>
+            </NavLink>
+            <span className="outOfStockText">Temporarily out of stock</span>
+            </>
             }
         </div>
     </div>
