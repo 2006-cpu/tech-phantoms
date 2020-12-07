@@ -1,20 +1,40 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { NavLink } from 'react-router-dom';
-import { getProduct, getOrdersCart, addProductToCart } from '../api';
+import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE } from '../api';
+import EditProduct from './EditProduct';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
 
 const SingleProduct =  (props) => {
     const {productId}= useParams()
-    const {token} = props
+    const {token, isAdmin} = props;
     const [product,setProduct] = useState({})
     const [cart,setCart] = useState([])
     const [quantity, setQuantity] = useState(1)
+    const [editForm, setEditForm] = useState(false)
+
+    const [newName, setNewName] = useState('');
+    const [newCategory, setNewCategory] = useState('');
+    const [newImageURL, setNewImageURL] = useState('');
+    const [newDescription, setNewDescription] = useState('');
+    const [newPrice, setNewPrice] = useState('');
+    const [newInStock, setNewInStock] = useState('');
+
+    console.log('isADMIN: ', isAdmin);
+
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
             setProduct(responseProduct)
+            setNewName(responseProduct.name)
+            setNewCategory(responseProduct.category)
+            setNewImageURL(responseProduct.imageURL)
+            setNewDescription(responseProduct.description)
+            setNewPrice(responseProduct.price)
+            setNewInStock(responseProduct.inStock)
+            
           console.log('responseProduct: ', responseProduct);
           })
         getOrdersCart(token).then(response=>{
@@ -23,6 +43,49 @@ const SingleProduct =  (props) => {
     }, [])
 
     const {id, name, category, imageURL, description, price, inStock} = product
+
+    
+
+    const handleEditProduct = async (event) => {
+        try {
+            event.preventDefault()
+
+            const {data} = await axios.patch(`${BASE}/products/${productId}`, {newName, newDescription, newPrice, newImageURL, newInStock, newCategory});
+
+            setProduct(data)
+
+    
+          return data;  
+        } catch (error) {
+          console.error(error)
+          throw error
+        }
+    }
+
+    const history = useHistory();
+    function handleClick() {
+        history.push(`/AllProducts/${productId}`);
+    }
+
+    function editProductClick() {
+        setEditForm(true)
+    }
+    function returnHomeClick() {
+        history.push("/Home");
+    }
+
+    const handleDeleteProduct = async (event) => {
+        try {
+            event.preventDefault();
+                console.log('DELETEbuttonCLICK');
+      
+            const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
+
+          return data;
+        } catch (error) {
+          console.error(error);
+        }
+    }
 
     const addToCart = async (event)=>{
         try {
@@ -42,6 +105,7 @@ const SingleProduct =  (props) => {
             console.error(error)
         }
     }
+
 if(product===''){
     return <div>
         <h3 className="productName">This soap doesn't exist! Look for a different soap!</h3>
@@ -70,18 +134,65 @@ return <>
                     </form>
                     </>
                     :
-                    <h3 className="outOfStock">In Stock: {inStock}</h3>
+                    <h3 className="outOfStock">Temporarily out of stock</h3>
                     }
+
+                    {
+                    isAdmin
+                    ?
+                    <>
+                    <button className="editProductButton" onClick={editProductClick}>
+                        Edit Product
+                    </button>
+
+                    <button productId={productId} className="deleteProductButton" onClick={handleDeleteProduct}>
+                        Delete Product
+                    </button>
+                    </>
+                    :
+                    <></>
+                    }
+
                   </div>
             </div>
         </div>
     </div>
+    {
+    editForm
+    ?
+    <div className="editForm">
+    <form className="editProduct" onSubmit={handleEditProduct}>
+
+        <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
+            setNewName(event.target.value)}} />
+
+        <input name="description" type="text" placeholder="description" value={newDescription} onChange={(event) => {
+            setNewDescription(event.target.value)}} /> 
+
+        <input name="price" type="text" placeholder="price" value={newPrice} onChange={(event) => {
+            setNewPrice(event.target.value)}} /> 
+
+        <input name="imageURL" type="text" placeholder="imageURL" value={newImageURL} onChange={(event) => {
+            setNewImageURL(event.target.value)}} />   
+
+        <input name="inStock" type="text" placeholder="inStock" value={newInStock} onChange={(event) => {
+            setNewInStock(event.target.value)}} /> 
+
+        <input name="category" type="text" placeholder="category" value={newCategory} onChange={(event) => {
+            setNewCategory(event.target.value)}} />
+
+            <button className="editProductButton" type="submit" onClick={() => {
+                handleClick();
+            }}>
+                Edit product
+            </button>
+    </form>
+</div>
+    :
+    <></>
+    }
 </>
 }
 }
+
 export default SingleProduct;
-
-
-
-
-
