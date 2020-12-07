@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import { NavLink, useHistory } from 'react-router-dom';
-import BASE from '/';
-import { getProduct } from '../api';
+import { getProduct, getAllProducts, BASE } from '../api';
 import './SingleProduct.css';
 
 const SingleProduct =  (props) => {
@@ -31,37 +30,37 @@ const SingleProduct =  (props) => {
         history.push("/Home");
     }
 
-    // const handleDeleteProduct = async (event) => {
-    //     try {
-    //         event.preventDefault();
-    //             console.log('DELETEbuttonCLICK');
-    //         const productId = event.target.productId;
-    //         setShowError('');
+    const handleDeleteProduct = async (event) => {
+        try {
+            event.preventDefault();
+                console.log('DELETEbuttonCLICK');
+            const productId = event.target.productId;
+            setShowError('');
 
 
-            // const response = await fetch(`${BASE}/products/${productId}`, {
-            //     method: 'DELETE',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // });
-            // const deleteProduct = await response.json();
+            const response = await fetch(`${BASE}/products/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const deleteProduct = await response.json();
 
 
-            // if(deleteProduct) {
-            //     getAllProducts();
-            // } else {
-            //     setShowError(response.message);
-            // }
+            if(deleteProduct) {
+                getAllProducts();
+            } else {
+                setShowError(response.message);
+            }
 
 
-    //         const {data} = await axios.delete(`${BASE}/products/${productId}`)
+            const {data} = await axios.delete(`${BASE}/products/${productId}`)
 
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    // }
+        } catch (error) {
+          console.error(error);
+        }
+    }
 
     if(product===''){
         return <div>
@@ -93,7 +92,7 @@ return <>
                     <h3 className="outOfStock">In Stock: {inStock}</h3>
                     }
 
-                    {/* {
+                    {
                     isAdmin
                     ?
                     <>
@@ -107,7 +106,7 @@ return <>
                     </>
                     :
                     <></>
-                    } */}
+                    }
 
                   </div>
             </div>
