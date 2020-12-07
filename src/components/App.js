@@ -17,11 +17,16 @@ import {
   SingleProduct,
   AdminTools,
   AllUsers,
-  UserAccount} from './index';
+  UserAccount,
+  EditProduct,
+  CreateProduct
+  } from './index';
 
 import './App.css';
+// import CreateProduct from './CreateProduct';
 
-const App = () => {
+const App = (props) => {
+  const {createProduct, setCreateProduct} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
@@ -61,8 +66,12 @@ const App = () => {
       </Route>
 
       {
-      user.isAdmin ?
-      <AdminTools/>:<></>
+      user.isAdmin 
+      ?
+      <>
+      <AdminTools/>
+      </>
+      :<></>
       }
 
     
@@ -95,31 +104,55 @@ const App = () => {
       </Fragment>
      </div>
       }
-      <Route path="/allUsers">
-        <AllUsers />
+
+      <Route path="/orders/cart">
+        <Cart/>
       </Route>
 
+      {
+      user.isAdmin 
+      ?
+      <>
       <Route path="/allOrders">
         <AllOrders token={token}/>
       </Route>
 
+      <Route path="/allUsers">
+        <AllUsers />
+      </Route>
+      </>
+      :<></>
+      }
+
       <Route path="/orders/cart">
         <Cart token={token} user={user}/>
       </Route>
+
       <Route exact path={["/allProducts", "/Home"]}>
         <AllProducts
           allProducts = {allProducts}
           setAllProducts = {setAllProducts}
         />
       </Route>
+
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct token={token}/>
+        <SingleProduct token={token} isAdmin={user.isAdmin}/>
       </Route>
+
+      <Route path={`/createProduct`}>
+        <CreateProduct 
+          createProduct = {createProduct}
+          setCreateProduct = {setCreateProduct}
+        />
+      </Route>
+     
+  
 
       <div className="backDrop"></div>
 
         <Footer />
       
+
 
     </div>
   </>
