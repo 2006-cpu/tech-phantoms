@@ -24,7 +24,20 @@ return <>
         <div className="datePlaced">Date of order: {datePlaced}</div>
         <div className="status">Status: {status}</div>
           <Stripecc to="/checkout" className="ordersButton"/>
-
+        {
+            productObjects ?
+            productObjects.map((cartProduct)=>{
+                const {product, price, quantity} = cartProduct
+                return<div key={'cartProduct'+product.id} className = 'cartProduct'>
+                    <img src={product.imageURL} className='productImage'></img>
+                    <h3>{product.name}</h3>
+                    <span>Quantity:{quantity}</span>
+                    <span>Price: {price}</span>
+                </div>
+            })
+            :
+            <div>No products in order.</div>
+        }
         {
         id
         ?

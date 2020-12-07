@@ -65,12 +65,7 @@ const updateProduct = async ({id, ...fields})=>{
 
 async function destroyProduct({id}) {
     try {
-        const order = await getOrderById(id);
-        if(order.status === 
-            'completed'){
-                console.log("This order has been completed")
-                return;
-            }
+        
         await client.query(`
         DELETE from order_products
         WHERE "productId"=$1

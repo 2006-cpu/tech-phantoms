@@ -7,7 +7,7 @@ const AllProducts = (props) => {
 
 return <>
         <div className="welcomeDiv">Welcome to Dope Soap!<br />
-        Enjoy a clean view of all our products!
+        Enjoy a clean view of our products!
         </div>
         <div className="productsGrid">
         {
