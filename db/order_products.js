@@ -114,11 +114,25 @@ async function getOrderProductsByOrderId(orderId){
         console.error(error)
     }
 }
+
+// ***********************************************************************************
+
+async function getOrderProductIdByOrderAndProduct(orderId, productId){
+    try {
+        const {rows: [id]} = await client.query(`
+            SELECT id FROM order_products
+            WHERE "orderId" = $1 AND "productId" = $2
+        `,[orderId, productId])
+        return id
+    } catch (error) {
+        console.error(error)
+    }
+}
 module.exports={
     getOrderProductById,
     updateOrderProduct,
     addProductToOrder,
     destroyOrderProduct,
-    getOrderProductsByOrderId
-
+    getOrderProductsByOrderId,
+    getOrderProductIdByOrderAndProduct
 }
