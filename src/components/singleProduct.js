@@ -50,8 +50,8 @@ const SingleProduct =  (props) => {
         try {
             event.preventDefault()
 
-            const {data} = await axios.patch(`${BASE}/products/${productId}`, {newName, newDescription, newPrice, newImageURL, newInStock, newCategory});
-
+            const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
+            console.log('EDITDATA', data)
             setProduct(data)
 
     
@@ -63,6 +63,7 @@ const SingleProduct =  (props) => {
     }
 
     const history = useHistory();
+
     function handleClick() {
         history.push(`/AllProducts/${productId}`);
     }
@@ -70,6 +71,7 @@ const SingleProduct =  (props) => {
     function editProductClick() {
         setEditForm(true)
     }
+
     function returnHomeClick() {
         history.push("/Home");
     }
@@ -181,10 +183,8 @@ return <>
         <input name="category" type="text" placeholder="category" value={newCategory} onChange={(event) => {
             setNewCategory(event.target.value)}} />
 
-            <button className="editProductButton" type="submit" onClick={() => {
-                handleClick();
-            }}>
-                Edit product
+            <button className="editProductButton" type="submit">
+                Submit Changes
             </button>
     </form>
 </div>
