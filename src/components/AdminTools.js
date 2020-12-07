@@ -11,6 +11,10 @@ return <>
             Products
         </NavLink>
 
+        <NavLink to="/createProduct" className="adminProductsNav" activeClassName="adminActive">
+            Create New Product
+        </NavLink>
+
         <NavLink to="/allOrders" className="adminOrdersNav" activeClassName="adminActive">
             Orders
         </NavLink>

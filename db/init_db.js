@@ -242,7 +242,7 @@ console.log('Creating orderProducts')
 await Promise.all(initialOrderProducts.map(addProductToOrder))
 console.log('Finished creating ordersProducts')
 
-const initialRatings = [
+const initialReviews = [
   {
     title: "Fabulous!",
     content: "My skin feels great!",

@@ -47,6 +47,7 @@ async function addProductToOrder({
 }) {
 try {
     const orderProducts = await getOrderProductsByOrderId(orderId)
+    
     if( orderProducts.length === 0){
     const { rows: [productOrder] } = await client.query(`
     INSERT INTO order_products ("productId", "orderId", price, quantity)
@@ -113,11 +114,25 @@ async function getOrderProductsByOrderId(orderId){
         console.error(error)
     }
 }
+
+// ***********************************************************************************
+
+async function getOrderProductIdByOrderAndProduct(orderId, productId){
+    try {
+        const {rows: [id]} = await client.query(`
+            SELECT id FROM order_products
+            WHERE "orderId" = $1 AND "productId" = $2
+        `,[orderId, productId])
+        return id
+    } catch (error) {
+        console.error(error)
+    }
+}
 module.exports={
     getOrderProductById,
     updateOrderProduct,
     addProductToOrder,
     destroyOrderProduct,
-    getOrderProductsByOrderId
-
+    getOrderProductsByOrderId,
+    getOrderProductIdByOrderAndProduct
 }

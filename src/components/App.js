@@ -18,11 +18,16 @@ import {
   AdminTools,
   AllUsers,
   UserAccount,
-  AllReviews} from './index';
+  AllReviews,
+  EditProduct,
+  CreateProduct
+  } from './index';
 
 import './App.css';
 
-const App = () => {
+
+const App = (props) => {
+  const {createProduct, setCreateProduct} = props;
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
@@ -63,13 +68,15 @@ const App = () => {
       </Route>
 
       {
-      user.isAdmin ?
-      <AdminTools/>:<></>
+      user.isAdmin 
+      ?
+      <>
+      <AdminTools/>
+      </>
+      :<></>
       }
 
-      <div className="welcomeDiv">Welcome to Dope Soap!<br />
-        Enjoy a clean view of all our products!
-      </div>
+    
      
       {!token
       ?
@@ -99,28 +106,13 @@ const App = () => {
       </Fragment>
      </div>
       }
-      <Route path="/allUsers">
-        <AllUsers />
-      </Route>
 
       {
-      user.id
-      ?
-      <Fragment>
-        <Route exact path="/orders">
-          <AllOrders />
-        </Route>
-      </Fragment>
-      :
-          <span></span>
-      }
-
-      {
-      user.isAdmin
+      user.isAdmin 
       ?
       <>
       <Route path="/allOrders">
-        <AllOrders />
+        <AllOrders token={token}/>
       </Route>
 
       <Route path="/allReviews">
@@ -129,13 +121,17 @@ const App = () => {
           setAllReviews = {setAllReviews}
         />
       </Route>
+
+      <Route path="/allUsers">
+        <AllUsers />
+      </Route>
       </>
       :
-      <span></span>
+      <></>
       }
 
       <Route path="/orders/cart">
-        <Cart />
+        <Cart token={token} user={user}/>
       </Route>
 
       <Route exact path={["/allProducts", "/Home"]}>
@@ -146,8 +142,17 @@ const App = () => {
       </Route>
 
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct />
+        <SingleProduct token={token} isAdmin={user.isAdmin}/>
       </Route>
+
+      <Route path={`/createProduct`}>
+        <CreateProduct 
+          createProduct = {createProduct}
+          setCreateProduct = {setCreateProduct}
+        />
+      </Route>
+     
+  
 
  
 
@@ -155,6 +160,7 @@ const App = () => {
 
       <Footer />
       
+
 
     </div>
   </>
