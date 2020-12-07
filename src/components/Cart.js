@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import {getOrdersCart} from '../api';
 import './Cart.css';
+import Stripecc from './Stripe';
 
 const Cart = (props) => {
     const {token, user} = props
@@ -48,6 +49,8 @@ return <>
             })
         }
         <div>Total Price: {totalPrice}</div>
+        <Stripecc>Pay Order</Stripecc>
+
         </div>
     </div>
 </>
