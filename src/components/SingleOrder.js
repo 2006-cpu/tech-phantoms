@@ -20,7 +20,7 @@ const SingleOrder = (props) => {
     },[])
 return <>
     <div id={`order${id}`} className="orderCardData">
-        <h3 className="userId">CustomerName: {userId}</h3>
+        <h3 className="userId">CustomerId: {userId}</h3>
         <div className="datePlaced">Date of order: {datePlaced}</div>
         <div className="status">Status: {status}</div>
           <Stripecc to="/checkout" className="ordersButton"/>

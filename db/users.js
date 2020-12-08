@@ -79,11 +79,8 @@ async function getAllUsers() {
     try {
       const {rows: [user]} = await client.query(`
     SELECT * FROM users
-    WHERE id = ${id};
-    `);
-    if (!user) {
-      return null; 
-    }
+    WHERE id = $1;
+    `,[id]);
     delete user.password;
     return user;
     } catch (error) {
@@ -109,6 +106,7 @@ async function getAllUsers() {
   // ******************************************************************************
 
   const updateUser = async ({id, ...fields})=>{
+    console.log('UPDATING USER DB')
     const setString = Object.keys(fields).map(
         (key, index) => `"${ key }"=$${ index + 1}`
     ).join(', ');
@@ -127,9 +125,10 @@ async function getAllUsers() {
             WHERE id = $${objVal.length}
             RETURNING *;
         `, objVal);
+        delete user.password
         return user;
     } catch (error) {
-        throw error;
+        console.error(error);
     }
 };
 

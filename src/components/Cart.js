@@ -13,6 +13,7 @@ const Cart = (props) => {
 
     useEffect(() => {
         getOrdersCart(token).then( cart=> {
+            if(cart.orderProducts){
         const cartProductData = cart.orderProducts.map((orderProduct)=>{           
             const product = () =>{ for(let i=0; i<cart.products.length; i++){
                 if(cart.products[i].id===orderProduct.productId){
@@ -33,7 +34,7 @@ const Cart = (props) => {
                 total=total+cartProductData[i].price
             }
         setTotalPrice(total)
-        })
+        }})
     }, [updateCart])
 
     console.log('CARTPRODUCTDATA', cart)

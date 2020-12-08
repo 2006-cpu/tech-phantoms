@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router";
 import { NavLink } from 'react-router-dom';
-import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE } from '../api';
+import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE, newCart } from '../api';
 import EditProduct from './EditProduct';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ const SingleProduct =  (props) => {
     const {productId}= useParams()
     const {token, isAdmin} = props;
     const [product,setProduct] = useState({})
-    const [cart,setCart] = useState([])
+    const [cart,setCart] = useState({})
     const [quantity, setQuantity] = useState(1)
     const [editForm, setEditForm] = useState(false)
 
@@ -37,14 +37,33 @@ const SingleProduct =  (props) => {
             
           console.log('responseProduct: ', responseProduct);
           })
+          
         getOrdersCart(token).then(response=>{
-            setCart(response)
-            console.log('CART', response)})
+            setCart(response)}
+            )
+        
     }, [])
 
     const {id, name, category, imageURL, description, price, inStock} = product
 
-    
+    const checkForCart = async (cart)=>{
+        try {
+            if(!cart.id){
+            console.log('CREATING NEW CART')
+             const createdCart = await newCart(token)
+                console.log(createdCart)
+                setCart(createdCart)
+                return createdCart
+            }else{
+                console.log('CART EXISTS')
+                console.log(cart)
+                return cart
+            }
+            
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     const handleEditProduct = async (event) => {
         try {
@@ -103,7 +122,8 @@ const SingleProduct =  (props) => {
     const addToCart = async (event)=>{
         try {
             event.preventDefault()
-            const addedProduct = await addProductToCart(cart.id,product,quantity)
+            const cartCheck = await checkForCart(cart)
+            const addedProduct = await addProductToCart(cartCheck.id,product,quantity)
             console.log('ADDED PRODUCT TO CART', addedProduct)
             if(addedProduct){
                 Swal.fire({

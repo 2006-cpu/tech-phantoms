@@ -87,6 +87,7 @@ productsRouter.patch('/:productId', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
+      console.log('USEREDITING', user)
         if (id && user.isAdmin===true) {
           const updatedProduct = await updateProduct({id: productId, ...fields})
           res.send(updatedProduct)

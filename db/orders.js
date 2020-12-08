@@ -89,9 +89,10 @@ const getCartByUser = async ({id})=>{
             const product = await getProductById(orderProduct.productId)
             return product
         }))
+        if(orderProducts && products){
         cartOrder.orderProducts = orderProducts
-        cartOrder.products = products
-        console.log("CART", cartOrder)
+        cartOrder.products = products}
+        console.log("CARTDB", cartOrder)
         return cartOrder
     } catch (error) {
         console.error(error)

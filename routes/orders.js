@@ -54,7 +54,7 @@ ordersRouter.get('/cart', async (req, res, next)=>{
           if (id) {
             const user = await getUserById(id)
             if (user){
-                const orders = await getCartByUser({id})
+                const orders = await getCartByUser({userId: id})
                 res.send( orders )
             } else {
                 res.send({message:'You must be logged in to view your cart'})
@@ -99,7 +99,7 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
         let totalQuantity
         let totalPrice
 
-        if( orderProducts.length === 0){
+        if( !orderProducts.length){
             totalPrice = Number(totalQuantity) * Number(price)
             const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity})
             res.send(addedProduct)
