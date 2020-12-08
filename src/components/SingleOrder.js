@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './SingleOrder.css';
 import Stripecc from '../components/Stripe';
+import { centsToDollars } from './helpers'
 
 const SingleOrder = (props) => { 
     const {id, userId, datePlaced, status, orderProducts, products} = props.order;
@@ -32,7 +33,7 @@ return <>
                     <img src={product.imageURL} className='productImage'></img>
                     <h3>{product.name}</h3>
                     <span>Quantity:{quantity}</span>
-                    <span>Price: {price}</span>
+                    <span>Price: ${centsToDollars(price)}</span>
                 </div>
             })
             :
