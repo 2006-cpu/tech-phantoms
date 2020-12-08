@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {  Route } from 'react-router-dom';
-import Stripecc from './Stripe'
 
 import {
   getAllProducts,

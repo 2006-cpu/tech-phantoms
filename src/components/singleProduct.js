@@ -6,6 +6,7 @@ import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE } fro
 import EditProduct from './EditProduct';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
+import { centsToDollars } from './helpers'
 
 const SingleProduct =  (props) => {
     const {productId}= useParams()
@@ -133,7 +134,7 @@ return <>
                 <img src={imageURL} alt="productImage" className="allProductsImage" />
                 <div className="descrPriceQuantityDiv">
                     <h4 className="allProductsDescription">Description: {description}</h4>
-                    <h5 className="allProductsPrice">Price: {price}</h5>
+                    <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
 
                     {
                     inStock
