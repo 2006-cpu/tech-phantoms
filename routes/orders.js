@@ -128,6 +128,31 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
     }
 });
 
+ordersRouter.patch('/:orderId', async (req, res, next) => {
+    try {
+        const prefix = 'Bearer ';
+        const auth = req.header('Authorization');
+        if (auth.startsWith(prefix)) {
+        const token = auth.slice(prefix.length);
+        if (token){
+        const { id } = jwt.verify(token, JWT_SECRET);
+          if (id) {
+            const user = await getUserById(id);
+            const order = await getOrderById(id);
+            if(id === userId) {
+            const updatedOrder = await updateOrder({id, ...fields})
+            res.send(updatedOrder)}
+          } else {
+            res.send({message:'You must be the owner to update an order'})
+            }
+        }
+    }
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+  });
+
   ordersRouter.delete('/:orderId', async (req, res, next) => {
     try {
         const {orderId} = req.params;
