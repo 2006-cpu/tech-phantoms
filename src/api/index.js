@@ -13,6 +13,7 @@ export async function getAllProducts() {
   }
 }
 
+
 export async function getProduct(id) {
   try {
     const { data: product } = await axios.get(`${ BASE }/products/${id}`);
