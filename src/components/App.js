@@ -23,10 +23,8 @@ import {
   } from './index';
 
 import './App.css';
-// import CreateProduct from './CreateProduct';
 
-const App = (props) => {
-  const {createProduct, setCreateProduct} = props;
+const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
@@ -73,8 +71,6 @@ const App = (props) => {
       :<></>
       }
 
-    
-     
       {!token
       ?
       <Fragment>
@@ -97,7 +93,7 @@ const App = (props) => {
       <Fragment>
         <Route path="/userAccount">
           <UserAccount
-            user = {user}
+            user = {user} setUser= {setUser}
           />
         </Route>
       </Fragment>

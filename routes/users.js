@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'prestons-secret-isnt-secret' } = process.env ; 
 const SALT_COUNT = 10;
-const { createUser, getUser, getUserByUserName, getUserById, getAllUsers } = require('../db/users');
+const { createUser, getUser, getUserByUserName, getUserById, getAllUsers, updateUser } = require('../db/users');
 const { getOrdersByUser } = require('../db/orders');
 const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
@@ -99,21 +99,29 @@ usersRouter.get('/', async (req, res, next) => {
      }
  });
 
- usersRouter.patch('/:userId', requireUser, requireAdmin, async (req, res, next) => {
+ usersRouter.patch('/:userId', async (req, res, next) => {
     try {
+    console.log('UPDATING')
     const { userId } = req.params;
-    const { firstName, lastName, email, imageURL, username, password, isAdmin } = req.body;
-    const user = await getUserById(id);
+    console.log('USERID', userId)
+    const {...fields}  = req.body;
+    console.log('FIELDS',fields)
+    const user = await getUserById(userId);
+    console.log('USERTOUPDATE', user)
     if(!user) {
+        console.log('USER UNDEFINED')
         next({
             name: 'notfound',
             message: "This user was not found"
         });
         return;
     } else {
-        const updatedUser = await updateUser({id, ...fields});
+        console.log('UPDATING USER')
+        const updatedUser = await updateUser({id: userId, ...fields});
+        console.log('UPDATEDUSERROUTE', updatedUser)
         res.send(updatedUser);
     }
+    
 } catch (error) {
     console.log(error);
     next(error);

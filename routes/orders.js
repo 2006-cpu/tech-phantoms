@@ -95,10 +95,10 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
         
         const orderProducts = await getOrderProductsByOrderId(orderId)
         let totalQuantity
-        let totalPrice
+        let totalPrice 
 
-        if( orderProducts.length === 0){
-            totalPrice = Number(totalQuantity) * Number(price)
+        if( !orderProducts.length){
+            totalPrice = Number(quantity) * Number(price)
             const addedProduct = await addProductToOrder({orderId, productId, price: totalPrice, quantity})
             res.send(addedProduct)
             return

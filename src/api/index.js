@@ -71,6 +71,7 @@ export async function getUser(id) {
 export async function addProductToCart(orderId, product, quantity){
   try {
     const {data} = await axios.post(`${BASE}/orders/${orderId}/products`,{productId: product.id, price: product.price, quantity})
+    console.log(data)
     return data
   } catch (error) {
     throw error
@@ -79,12 +80,30 @@ export async function addProductToCart(orderId, product, quantity){
 
 export async function removeProductFromCart(orderId, productId, token){
   try {
-    console.log('GETTING', `${BASE}/order_products/${orderId}/${productId}`)
     const orderProductId = await axios.get(`${BASE}/order_products/${orderId}/${productId}`)
     const {data} = await axios.delete(`${BASE}/order_products/${orderProductId.data.id}`,{headers: {'Authorization': 'Bearer '+token}})
     return data
   } catch (error) {
-    
+    console.error(error)
   }
 
+}
+
+export async function editAccountInfo(id,{...fields}){
+  try {
+    const {data} = await axios.patch(`${BASE}/users/${id}`,{...fields})
+    console.log('UPDATEDUSER', data)
+    return data
+  } catch (error) {
+    
+  }
+}
+
+export async function newCart(token){
+  try {
+    const {data} = await axios.post(`${BASE}/orders`,{}, {headers: {'Authorization': `Bearer ${token}`}})
+    return data
+  } catch (error) {
+    
+  }
 }
