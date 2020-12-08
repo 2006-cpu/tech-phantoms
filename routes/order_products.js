@@ -21,14 +21,11 @@ orderProductsRouter.patch('/:orderProductId', async (req, res, next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
         if (id) {
           const user = await getUserById(id);
-          console.log("user in orderProducts patch", user);
           const userOrder = await getCartByUser({id});
-          console.log("userOrder in OP patch", userOrder);
           const orderProduct = await getOrderProductById(orderProductId);
           if (orderProduct.orderId===userOrder.id) {
           
           const updatedOrderProduct = await updateOrderProduct({id, price, quantity})
-          console.log("updatedOrderProduct in patch", updatedOrderProduct)
           res.send(updatedOrderProduct)}
         } else {
           res.send({message:'You must be logged in to update an order'})
@@ -43,7 +40,6 @@ orderProductsRouter.patch('/:orderProductId', async (req, res, next) => {
 
 orderProductsRouter.delete('/:orderProductId', async (req, res, next) => {
   try {
-    console.log('DELETING')
     const {orderProductId} = req.params;
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
@@ -53,14 +49,10 @@ orderProductsRouter.delete('/:orderProductId', async (req, res, next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
         if (id) {
           const user = await getUserById(id);
-          console.log("user in orderProducts delete", user);
           const userOrder = await getCartByUser({id});
-          console.log("userOrder in OP delete", userOrder);
           const orderProduct = await getOrderProductById(orderProductId);
-          console.log('ORDERPRODUCT', orderProduct)
           if (orderProduct.orderId===userOrder.id) {
           const deletedOrderProduct = await destroyOrderProduct(orderProduct.id)
-          console.log(deletedOrderProduct)
           res.send(deletedOrderProduct)}
         } else {
           res.send({message:'You must be the owner of this order to delete it'})

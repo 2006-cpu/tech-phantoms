@@ -6,15 +6,12 @@ import './Order.css';
 
 const Order = () => {
     const {orderId} = useParams()
-    console.log('ID', orderId)
     const [order, setOrder] = useState({});
-    console.log('order: ', order);
 
     useEffect(() => {
         getOrder(orderId)
             .then( responseOrder => {
                 setOrder(responseOrder)
-            console.log('responseOrder: ', responseOrder);
             })
     }, []);
     const {id, userId, datePlaced, status} = order;

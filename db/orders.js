@@ -97,7 +97,6 @@ const getCartByUser = async ({id})=>{
             cartOrder.products = []
         }
 
-        console.log("CARTDB", cartOrder)
         return cartOrder
     } catch (error) {
         console.error(error)

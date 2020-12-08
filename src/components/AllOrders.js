@@ -11,7 +11,6 @@ const AllOrders = (props) => {
         getAllOrders(token)
           .then( responseAllOrders => {
             setAllOrders(responseAllOrders)
-          console.log('responseAllOrders: ', responseAllOrders);
           })
       }
 

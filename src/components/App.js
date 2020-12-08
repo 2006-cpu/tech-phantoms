@@ -44,7 +44,6 @@ const App = () => {
     getAllProducts()
       .then( responseAllProducts => {
         setAllProducts(responseAllProducts)
-      console.log('responseAllProducts: ', responseAllProducts);
       })
   }
 

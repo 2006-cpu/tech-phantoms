@@ -6,6 +6,7 @@ import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE, newC
 import EditProduct from './EditProduct';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
+import { centsToDollars } from './helpers'
 
 const SingleProduct =  (props) => {
     const {productId}= useParams()
@@ -22,8 +23,6 @@ const SingleProduct =  (props) => {
     const [newPrice, setNewPrice] = useState('');
     const [newInStock, setNewInStock] = useState('');
 
-    console.log('isADMIN: ', isAdmin);
-
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
@@ -35,7 +34,7 @@ const SingleProduct =  (props) => {
             setNewPrice(responseProduct.price)
             setNewInStock(responseProduct.inStock)
             
-          console.log('responseProduct: ', responseProduct);
+
           })
           
         getOrdersCart(token).then(response=>{
@@ -70,7 +69,6 @@ const SingleProduct =  (props) => {
             event.preventDefault()
 
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
-            console.log('EDITDATA', data)
             setProduct(data)
 
     
@@ -98,10 +96,8 @@ const SingleProduct =  (props) => {
     const handleDeleteProduct = async (event) => {
         try {
             event.preventDefault();
-                console.log('DELETEbuttonCLICK');
       
             const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
-            console.log(data)
             if(data){
                 Swal.fire({
                     position: 'absolute',
@@ -124,7 +120,6 @@ const SingleProduct =  (props) => {
             event.preventDefault()
             const cartCheck = await checkForCart(cart)
             const addedProduct = await addProductToCart(cartCheck.id,product,quantity)
-            console.log('ADDED PRODUCT TO CART', addedProduct)
             if(addedProduct){
                 Swal.fire({
                     position: 'absolute',
@@ -153,7 +148,7 @@ return <>
                 <img src={imageURL} alt="productImage" className="allProductsImage" />
                 <div className="descrPriceQuantityDiv">
                     <h4 className="allProductsDescription">Description: {description}</h4>
-                    <h5 className="allProductsPrice">Price: {price}</h5>
+                    <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
 
                     {
                     inStock

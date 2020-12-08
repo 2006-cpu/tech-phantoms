@@ -108,7 +108,6 @@ async function getOrderProductsByOrderId(orderId){
             SELECT * FROM order_products
             WHERE "orderId" = $1
         `,[orderId])
-        console.log('ORDERPRODUCTS',orderProducts)
         return orderProducts
     } catch (error) {
         console.error(error)
