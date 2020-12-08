@@ -105,10 +105,6 @@ const App = (props) => {
      </div>
       }
 
-      <Route path="/orders/cart">
-        <Cart/>
-      </Route>
-
       {
       user.isAdmin 
       ?
