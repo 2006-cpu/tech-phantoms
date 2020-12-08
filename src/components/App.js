@@ -20,7 +20,8 @@ import {
   UserAccount,
   AllReviews,
   EditProduct,
-  CreateProduct
+  CreateProduct,
+  EditReview
   } from './index';
 
 import './App.css';
@@ -115,13 +116,6 @@ const App = (props) => {
         <AllOrders token={token}/>
       </Route>
 
-      <Route path="/allReviews">
-        <allReviews 
-          allReviews = {allReviews}
-          setAllReviews = {setAllReviews}
-        />
-      </Route>
-
       <Route path="/allUsers">
         <AllUsers />
       </Route>
@@ -150,10 +144,13 @@ const App = (props) => {
           isAdmin={user.isAdmin} token={token}
         />
       </Route>
-     
-  
 
- 
+      <Route path="/allReviews">
+        <allReviews 
+          allReviews = {allReviews}
+          setAllReviews = {setAllReviews}
+        />
+      </Route>
 
       <div className="backDrop"></div>
 
