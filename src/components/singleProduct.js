@@ -23,8 +23,6 @@ const SingleProduct =  (props) => {
     const [newPrice, setNewPrice] = useState('');
     const [newInStock, setNewInStock] = useState('');
 
-    console.log('isADMIN: ', isAdmin);
-
    useEffect(() => {
         getProduct(productId)
           .then( responseProduct => {
@@ -36,11 +34,11 @@ const SingleProduct =  (props) => {
             setNewPrice(responseProduct.price)
             setNewInStock(responseProduct.inStock)
             
-          console.log('responseProduct: ', responseProduct);
+
           })
         getOrdersCart(token).then(response=>{
             setCart(response)
-            console.log('CART', response)})
+        })
     }, [])
 
     const {id, name, category, imageURL, description, price, inStock} = product
@@ -52,7 +50,6 @@ const SingleProduct =  (props) => {
             event.preventDefault()
 
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
-            console.log('EDITDATA', data)
             setProduct(data)
 
     
@@ -80,10 +77,8 @@ const SingleProduct =  (props) => {
     const handleDeleteProduct = async (event) => {
         try {
             event.preventDefault();
-                console.log('DELETEbuttonCLICK');
       
             const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
-            console.log(data)
             if(data){
                 Swal.fire({
                     position: 'absolute',
@@ -105,7 +100,6 @@ const SingleProduct =  (props) => {
         try {
             event.preventDefault()
             const addedProduct = await addProductToCart(cart.id,product,quantity)
-            console.log('ADDED PRODUCT TO CART', addedProduct)
             if(addedProduct){
                 Swal.fire({
                     position: 'absolute',

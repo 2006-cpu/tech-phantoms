@@ -46,7 +46,6 @@ const App = (props) => {
     getAllProducts()
       .then( responseAllProducts => {
         setAllProducts(responseAllProducts)
-      console.log('responseAllProducts: ', responseAllProducts);
       })
   }
 

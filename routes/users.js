@@ -32,7 +32,6 @@ usersRouter.post('/register', async (req, res, next) => {
               }, JWT_SECRET, {
                 expiresIn: '1w'
               })
-            console.log(user)
             res.send({
                 user,
                 message: "Thank you for signing up",
@@ -85,7 +84,6 @@ usersRouter.post('/login', async (req, res, next) => {
 usersRouter.get('/', async (req, res, next) => {
     try {
         const allUsers = await getAllUsers();
-        console.log('ALLUSERS: ', allUsers);
         res.send(allUsers)
     } catch (error) {
       res.send(error);
