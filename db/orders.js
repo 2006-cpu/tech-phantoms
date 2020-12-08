@@ -120,7 +120,6 @@ const createOrder = async ({status='created', userId})=>{
         `, [status, userId, date])
 
         return order
-
     } 
         else{
             return {
