@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Product.css';
+import { centsToDollars } from './helpers';
 
 const Product = (props) => {
     const {id, name, description, price, imageURL, inStock, category} = props.product;
@@ -15,7 +16,7 @@ return <>
                 </NavLink>
 
                 <h4 className="indivProductsDescription">Description: {description}</h4>
-                <h5 className="indivProductsPrice">Price: {price}</h5>
+                <h5 className="indivProductsPrice">Price: ${centsToDollars(price)}</h5>
 
             {
             inStock
