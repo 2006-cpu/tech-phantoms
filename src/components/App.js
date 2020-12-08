@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {  Route } from 'react-router-dom';
+import Stripecc from './Stripe'
 
 import {
   getAllProducts,
@@ -104,10 +105,6 @@ const App = (props) => {
       </Fragment>
      </div>
       }
-
-      <Route path="/orders/cart">
-        <Cart/>
-      </Route>
 
       {
       user.isAdmin 

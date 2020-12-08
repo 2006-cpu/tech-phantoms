@@ -49,9 +49,10 @@ return <>
             })
         }
         <div>Total Price: {totalPrice}</div>
-        <Stripecc >Pay Order</Stripecc>
+        <Stripecc>Pay Order</Stripecc>
 
         </div>
+        
     </div>
 </>
 }
