@@ -2,6 +2,8 @@ const express = require('express')
 const productsRouter = express.Router()
 const { getAllProducts, getProductById, updateProduct, createProduct, destroyProduct, getOrdersByProduct } = require('../db/products');
 const { getUserById } = require('../db/users');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET = 'prestons-secret-isnt-secret' }  = process.env; 
 
 productsRouter.get('/', async (req,res,next)=>{
     try {
@@ -26,6 +28,7 @@ productsRouter.get('/:productId', async (req,res,next)=>{
 //Only admins can create a new product
 productsRouter.post('/', async (req,res,next) => {
     try {
+      const {name, description, price, imageURL, inStock, category} = req.body
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
       if (auth.startsWith(prefix)) {
@@ -59,7 +62,7 @@ productsRouter.delete('/:productId', async (req,res,next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
         if (id && user.isAdmin===true) {
-          const deletedProduct = await destroyProduct({id})
+          const deletedProduct = await destroyProduct({id: productId})
           res.send(deletedProduct)
         } else {
           res.send({message:'You must be an admin to delete a product'})
@@ -76,6 +79,7 @@ productsRouter.delete('/:productId', async (req,res,next) => {
 productsRouter.patch('/:productId', async (req,res,next) => {
     try {
       const {productId} = req.params;
+      const {...fields}= req.body
       const prefix = 'Bearer ';
       const auth = req.header('Authorization');
       if (auth.startsWith(prefix)) {
@@ -84,7 +88,7 @@ productsRouter.patch('/:productId', async (req,res,next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
         if (id && user.isAdmin===true) {
-          const updatedProduct = await updateProduct({id, ...fields})
+          const updatedProduct = await updateProduct({id: productId, ...fields})
           res.send(updatedProduct)
         } else {
           res.send({message:'You must be an admin to updated a product'})

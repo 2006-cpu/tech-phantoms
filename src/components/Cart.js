@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import {getOrdersCart} from '../api';
+import {getOrdersCart, removeProductFromCart } from '../api';
 import './Cart.css';
+import Stripecc from './Stripe';
+import axios from 'axios'
+import { centsToDollars } from './helpers'
 
 const Cart = (props) => {
     const {token, user} = props
@@ -43,12 +46,15 @@ return <>
                     <img src={product.imageURL} className='productImage'></img>
                     <h3>{product.name}</h3>
                     <span>Quantity:{quantity}</span>
-                    <span>Price: {price}</span>
+                    <span>Price: ${centsToDollars(price)}</span>
+                    <button onClick={()=>{removeProductFromCart(cart.id, product.id, token).then((removed)=>{setUpdateCart('Removed'+removed.name)})}}>Remove</button>
                 </div>
             })
         }
-        <div>Total Price: {totalPrice}</div>
+        <div>Total Price: ${centsToDollars(totalPrice)}</div>
+        <Stripecc/>
         </div>
+        
     </div>
 </>
 }

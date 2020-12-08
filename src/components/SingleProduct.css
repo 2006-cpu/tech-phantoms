@@ -17,8 +17,8 @@
 .productCardData {
     display: flex;
     flex-direction: column;
-    width: 700px;
-    height: 500px;
+    width: 800px;
+    min-height: 500px;
     padding: 40px;
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
