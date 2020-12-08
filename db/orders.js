@@ -91,7 +91,6 @@ const getCartByUser = async ({id})=>{
         }))
         cartOrder.orderProducts = orderProducts
         cartOrder.products = products
-        console.log("CART", cartOrder)
         return cartOrder
     } catch (error) {
         console.error(error)

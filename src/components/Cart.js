@@ -33,8 +33,6 @@ const Cart = (props) => {
         })
     }, [updateCart])
 
-    console.log('CARTPRODUCTDATA', cart)
-
 return <>
     <div className="cartDiv">
         <div className="cartItems">

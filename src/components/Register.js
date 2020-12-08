@@ -27,8 +27,6 @@ export default props => {
             }
             const {data} = await axios.post(`${BASE}/users/register`, { firstName, lastName, email, imageURL, username, password });
 
-            console.log('DATA: ', data);
-
             if(data && data.token) {
                 setImageURL('');
                 setFirstName('');

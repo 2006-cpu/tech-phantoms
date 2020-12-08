@@ -8,9 +8,7 @@ import swal from 'sweetalert';
 
 const EditProduct = () => {
     const {productId} = useParams();
-    console.log('productID: ', productId);
     const [editProduct, setEditProduct] = useState({});
-    console.log('editPRODUCT: ', editProduct);
     const {name, category, imageURL, description, price, inStock} = editProduct;
 
     const [newName, setNewName] = useState('');
@@ -24,7 +22,6 @@ const EditProduct = () => {
         getProduct(productId)
             .then( responseEditProduct => {
                 setEditProduct(responseEditProduct)
-            console.log('responseEditProduct: ', responseEditProduct);
             })
     }, []);
 

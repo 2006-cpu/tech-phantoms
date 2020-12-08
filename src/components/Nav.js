@@ -19,9 +19,6 @@ const Nav = (props) => {
       history.push("/Home");
     }
 
-    console.log('imageURL: ', imageURL);
-    console.log('USER: ', user);
-
 return <>
     <div className="header">
       <NavLink to="/allProducts" className="logoNav" activeClassName="activeLogo">

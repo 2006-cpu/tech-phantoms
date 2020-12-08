@@ -10,7 +10,6 @@ const AllUsers = () => {
         getAllUsers()
           .then( responseAllUsers => {
             setAllUsers(responseAllUsers)
-          console.log('responseAllUsers: ', responseAllUsers);
           })
       }
 
