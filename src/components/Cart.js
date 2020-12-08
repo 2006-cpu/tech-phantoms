@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {getOrdersCart, removeProductFromCart} from '../api';
 import './Cart.css';
 import axios from 'axios'
+import { centsToDollars } from './helpers'
 
 const Cart = (props) => {
     const {token, user} = props
@@ -49,14 +50,14 @@ return <>
                     <img src={product.imageURL} className='productImage'></img>
                     <h3>{product.name}</h3>
                     <span>Quantity:{quantity}</span>
-                    <span>Price: {price}</span>
+                    <span>Price: ${centsToDollars(price)}</span>
                     <button onClick={()=>{removeProductFromCart(cart.id, product.id, token).then((removed)=>{setUpdateCart('Removed'+removed.name)})}}>Remove</button>
                 </div>
             })
             :
             <div>Cart is Empty!</div>
         }
-        <div>Total Price: {totalPrice}</div>
+        <div>Total Price: ${centsToDollars(totalPrice)}</div>
         </div>
     </div>
 </>
