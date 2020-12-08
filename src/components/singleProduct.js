@@ -141,7 +141,7 @@ return <>
                     ?
                     <>
                     <form onSubmit={addToCart}>
-                    <input name="quantity" type="number" min="1" value={quantity} onChange={(e) => {setQuantity(e.target.value)}} />
+                    <input className="quantityInput" name="quantity" type="number" min="1" value={quantity} onChange={(e) => {setQuantity(e.target.value)}} />
                     <button type='submit' className="addToCart">
                         Add To Cart  
                     </button>
@@ -155,13 +155,15 @@ return <>
                     isAdmin
                     ?
                     <>
-                    <button className="editProductButton" onClick={editProductClick}>
-                        Edit Product
-                    </button>
+                    <div className="editDeleteButtonsDiv">
+                        <button className="editProductButton" onClick={editProductClick}>
+                            Edit Product
+                        </button>
 
-                    <button productId={productId} className="deleteProductButton" onClick={handleDeleteProduct}>
-                        Delete Product
-                    </button>
+                        <button productId={productId} className="deleteProductButton" onClick={handleDeleteProduct}>
+                            Delete Product
+                        </button>
+                    </div>
                     </>
                     :
                     <></>
@@ -175,7 +177,8 @@ return <>
     editForm
     ?
     <div className="editForm">
-    <form className="editProduct" onSubmit={handleEditProduct}>
+    <form className="editSingleProductForm" onSubmit={handleEditProduct}>
+        <h2 className="editProductTitle">Edit Product Form</h2>
 
         <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
             setNewName(event.target.value)}} />
@@ -195,7 +198,7 @@ return <>
         <input name="category" type="text" placeholder="category" value={newCategory} onChange={(event) => {
             setNewCategory(event.target.value)}} />
 
-            <button className="editProductButton" type="submit">
+            <button className="editProductFormButton" type="submit">
                 Submit Changes
             </button>
     </form>

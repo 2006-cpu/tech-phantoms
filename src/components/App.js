@@ -18,8 +18,10 @@ import {
   AdminTools,
   AllUsers,
   UserAccount,
+  AllReviews,
   EditProduct,
-  CreateProduct
+  CreateProduct,
+  EditReview
   } from './index';
 
 import './App.css';
@@ -29,6 +31,7 @@ const App = (props) => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
  
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
@@ -116,7 +119,8 @@ const App = (props) => {
         <AllUsers />
       </Route>
       </>
-      :<></>
+      :
+      <></>
       }
 
       <Route path="/orders/cart">
@@ -139,12 +143,17 @@ const App = (props) => {
           isAdmin={user.isAdmin} token={token}
         />
       </Route>
-     
-  
+
+      <Route path="/allReviews">
+        <allReviews 
+          allReviews = {allReviews}
+          setAllReviews = {setAllReviews}
+        />
+      </Route>
 
       <div className="backDrop"></div>
 
-        <Footer />
+      <Footer />
       
 
 

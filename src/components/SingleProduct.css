@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     width: 800px;
-    min-height: 500px;
+    height: 600px;
     padding: 40px;
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
@@ -41,6 +41,7 @@
 .innerProductCardInfo {
     display: flex;
     flex-direction: row;
+    /* border: 2px solid gray; */
 }
 
 .allProductsImage {
@@ -64,12 +65,13 @@
     color: rgba(55, 8, 97, 0.879);
 }
 
+.quantityInput {
+    width: 200px;
+}
+
 .addToCart {
-    left: 450px;
     width: 180px;
-    height: 40px;
-    margin-top: 50px;
-    margin-left: 160px;
+    height: 40px; 
     font-size: 1.3em;
     color: white;
     border-radius: 3px;
@@ -82,8 +84,64 @@
     text-decoration: none;
 }
 
-.outOfStock {
-    margin-top: 120px;
-    margin-left: 30px;
+.editDeleteButtonsDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 600px;
+    margin-left: -170px;
+    margin-top: 100px;
+    /* border: 2px solid gray; */
+}
+
+.editProductButton {
+    width: 180px;
+    height: 40px; 
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(167, 44, 228, 0.879);
+    border: 2px solid white;
+}
+
+.deleteProductButton {
+    width: 180px;
+    height: 40px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(228, 44, 154, 0.879);
+    border: 2px solid white;
+}
+
+.editSingleProductForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    width: 31%;
+    height: 680px;
+    background-color: rgba(249, 243, 255, 0.879);
+    border: 2px solid gray;
+}
+
+.editProductTitle {
     color: rgba(55, 8, 97, 0.879);
+    text-align: center;
+    margin: 30px;
+}
+
+.editProductFormButton {
+    width: 180px;
+    height: 40px; 
+    margin: 30px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(167, 44, 228, 0.879);
+    border: 2px solid white;
 }

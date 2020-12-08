@@ -25,7 +25,7 @@ return <>
                 <button className="productDetailsButton">Details</button>
             </NavLink>
             :
-            <span className="outOfStockText">Temporarily out of stock.</span>
+            <span className="outOfStockText">Out of stock.</span>
             }
         </div>
     </div>

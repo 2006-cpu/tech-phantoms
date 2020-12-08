@@ -71,6 +71,25 @@ export async function getUser(id) {
   }
 }
 
+export async function getAllReviews() {
+  try {
+    const { data } = await axios.get(`${ BASE }/reviews`);
+    console.log('REVIEWS-DATA: ', data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getReview(id) {
+  try {
+    const { data: review } = await axios.get(`${ BASE }/reviews/${id}`);
+    return review;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function addProductToCart(orderId, product, quantity){
   try {
     const {data} = await axios.post(`${BASE}/orders/${orderId}/products`,{productId: product.id, price: product.price, quantity})
@@ -88,7 +107,7 @@ export async function removeProductFromCart(orderId, productId, token){
     const {data} = await axios.delete(`${BASE}/order_products/${orderProductId.data.id}`,{headers: {'Authorization': 'Bearer '+token}})
     return data
   } catch (error) {
-    
+    throw error
   }
 
 }
