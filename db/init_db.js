@@ -66,39 +66,90 @@ async function populateInitialData() {
   try {
     const initialSoaps = [
       {
-        name: "Riley's Favorite Soap",
-        description: "A very lovely soap. Riley recommends it for all soaping purposes.",
-        price:"799",
-        inStock: false,
-        category: 'Natural'
+      name: "Riley's Favorite Soap",
+      description: "A very lovely soap. Riley recommends it for all soaping purposes.",
+      price:"799",
+      inStock: false,
+      category: 'Natural',
+      imageURL: 'https://i.imgur.com/itPR9Lpb.jpg'
+      },
+      {
+        name: "Eileen's Favorite Soap",
+        description: "A sweet floral scent!",
+        price:"1499",
+        inStock: true,
+        category: 'Decorative',
+        imageURL: 'https://i.imgur.com/96LPzPu.jpg'
+      },
+      {
+        name: "Eric's Favorite Soap",
+        description: "Delicious to see, but not to eat!",
+        price:"599",
+        inStock: true,
+        category: 'Fun',
+        imageURL: 'https://i.imgur.com/WXdBRA2.jpg'
       },
       {
         name: "Tammy's Favorite Soap",
-        description: "A lovely scented soap!",
+        description: "Who doesn't love popcorn?!?",
         price:"1299",
         inStock: true,
-        category: 'Natural'
+        category: 'Fun',
+        imageURL: 'https://i.imgur.com/3hFPp99.jpg'
+      },
+      {
+        name: "Citrus Soap",
+        description: "Handmade with natural ingredients",
+        price:"2499",
+        inStock: true,
+        category: 'Natural',
+        imageURL: 'https://image.freepik.com/free-photo/handmade-soap_144627-15104.jpg'
+      },
+      {
+        name: "Cinnamon Soap",
+        description: "It smells yummy!",
+        price:"1399",
+        inStock: true,
+        category: 'Natural',
+        imageURL: 'https://img.freepik.com/free-photo/handmade-soap_144627-15099.jpg?size=626&ext=jpg&uid=P22432927&ga=GA1.2.514530135.1598543628'
+      },{
+        name: "Lavender Soap",
+        description: "Breathe deeply and relax!",
+        price:"1199",
+        inStock: true,
+        category: 'Decorative',
+        imageURL: 'https://img.freepik.com/free-photo/female-hands-with-lavender-soap_160139-776.jpg?size=626&ext=jpg&uid=P22432927&ga=GA1.2.514530135.1598543628'
+      },{
+        name: "Peppermint Soap",
+        description: "Recommended by Peppermint Patty!",
+        price:"1299",
+        inStock: true,
+        category: 'Decorative',
+        imageURL: 'https://i.imgur.com/T1n0aRl.jpg'
       },
       {
         name: "Pizza Soap",
         description: "Contains authentic New York pizza grease.",
         price: "1999",
         inStock: true,
-        category: 'Fun'
+        category: 'Fun',
+        imageURL: 'https://i.imgur.com/cpuj9Q8.jpg'
       },
       {
-        name: "Poop Soap",
-        description: "You can have our poopy.",
-        price: "1599",
+        name: "Girly-Girl Pink Soap",
+        description: "Makes you feel all bubbly inside!",
+        price: "1499",
         inStock: false,
-        category: 'Fun'
+        category: 'Decorative',
+        imageURL: 'https://i.imgur.com/em7aojo.jpg'
       },
       {
         name: "Gold Soap",
-        description: "Yes it's real gold.",
+        description: "Yes, it has real gold in it.",
         price: "14999",
         inStock: true,
-        category: 'Decorative'
+        category: 'Fun',
+        imageURL: 'https://img.freepik.com/free-photo/high-angle-home-made-soap_23-2148290930.jpg?size=626&ext=jpg&uid=P22432927&ga=GA1.2.514530135.1598543628'
 
       },
       {
@@ -106,7 +157,8 @@ async function populateInitialData() {
         description: "Made with salt water and embedded with real sea shells.",
         price: "4999",
         inStock: true,
-        category: 'Decorative'
+        category: 'Natural',
+        imageURL: 'https://img.freepik.com/free-photo/sponge-seashell-soap-brush-towel-moisturizing-cream-wooden-surface_23-2147926826.jpg?size=338&ext=jpg&uid=P22432927&ga=GA1.2.514530135.1598543628'
       },
     ]
     console.log('Creating Products')
