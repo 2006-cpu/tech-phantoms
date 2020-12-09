@@ -4,6 +4,7 @@ import './Cart.css';
 import Stripecc from './Stripe';
 import { centsToDollars } from './helpers'
 
+
 const Cart = (props) => {
     const {token, user} = props
     const [cart, setCart] = useState([]);
@@ -59,7 +60,6 @@ return <>
         <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
         <Stripecc/>
         </div>
-        
     </div>
 </>
 }
