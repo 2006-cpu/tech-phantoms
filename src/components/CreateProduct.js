@@ -5,7 +5,7 @@ import './CreateProduct.css';
 import Swal from 'sweetalert2';
 
 const CreateProduct = (props) => {
-    const {token, isAdmin} = props;
+    const {token, isAdmin, setUpdateProducts} = props;
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -29,6 +29,7 @@ const CreateProduct = (props) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  setUpdateProducts(data)
             }
             return data;
         } catch (error) {
