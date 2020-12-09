@@ -58,12 +58,8 @@ return <>
             })
         }
         <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
-        <Stripecc>
-        
-        </Stripecc>
-        
+        <Stripecc></Stripecc>
         </div>
-        
     </div>
 </>
 }
