@@ -126,11 +126,11 @@ return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
         <div className="productCardData">
             <h3 className="productName">{name}</h3>
-            <div className="allProductsCategory">Product category: {category}</div>
+            <div className="allProductsCategory">Category: {category}</div>
             <div className="innerProductCardInfo">
                 <img src={imageURL} alt="productImage" className="allProductsImage" />
                 <div className="descrPriceQuantityDiv">
-                    <h4 className="allProductsDescription">Description: {description}</h4>
+                    <h4 className="allProductsDescription">{description}</h4>
                     <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
 
                     {

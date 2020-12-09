@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './UserAccount.css';
 import { editAccountInfo } from '../api';
+import bubble02 from './images/bubble02.png';
 import Swal from 'sweetalert2'
 
 const UserAccount = (props) => {
@@ -38,51 +39,66 @@ const UserAccount = (props) => {
     } else {
 return <>
 <div className="userAccountCard">
+    
+    <div className="userAccountBubbleDivOne">
+        <img src={bubble02} className="userAccountBubbleOne" alt="bubble" width="400px" height="400px" />
+        <img src={bubble02} className="userAccountBubblethree" alt="bubble" width="150px" height="150px" />
+    </div>
+
    <div id={`userAccount${id}`} className="userAccountId">
         <div className="userAccountData">
-            <h2 className="userAccountTitle">Account information for {firstName} {lastName}</h2>
-            <img src={imageURL} alt="userImage" className="userAccountImage" />
-            <h4 className="userAccountFirstName">First name: {firstName}</h4>
-            <h4 className="userAccountLastName">Last name: {lastName}</h4>
-            <h4 className="userAccountEmail">email: {email}</h4>
-            <h4 className="userAccountUsername">username: {username}</h4>
-            <h4 className="userAccountIsAdmin">{isAdmin}</h4>
+            <h2 className="userAccountTitle">User Profile for {firstName} {lastName}</h2>
 
-                {/* <button className="userAccountEditButton" onClick={()=>{setEditForm(true)}}>Edit</button> */}
+                <img src={imageURL} alt="userImage" className="userAccountImage" />
+                <h4 className="userAccountFirstName">First name: {firstName}</h4>
+                <h4 className="userAccountLastName">Last name: {lastName}</h4>
+                <h4 className="userAccountEmail">email: {email}</h4>
+                <h4 className="userAccountUsername">username: {username}</h4>
+                <h4 className="userAccountIsAdmin">{isAdmin}</h4>
+
+                <button className="userAccountEditButton" onClick={()=>{setEditForm(true)}}>Edit</button>
                 
-           
         </div>
     </div>
+
+    <div className="userAccountBubbleDivTwo">
+        <img src={bubble02} className="userAccountBubbleTwo" alt="bubble" width="200px" height="200px" />
+    </div>
+
 </div>
-{/* {
+{
     editForm
     ?
-    <div className="userAccountEditForm">
+    <div className="userAccountEditDiv">
     <form className="userAccountEditUser" onSubmit={handleEditUser}>
 
-        <input name="First Name" type="text" placeholder="name" value={newFirstName} onChange={(event) => {
-            setNewFirstName(event.target.value)}} />
+        <div className="userAccountEditForm">
+            <h2 className="editUserAccountTitle">Edit User Profile</h2>
 
-        <input name="Last Name" type="text" placeholder="description" value={newLastName} onChange={(event) => {
-            setNewLastName(event.target.value)}} /> 
+            <input name="First Name" type="text" placeholder="name" value={newFirstName} onChange={(event) => {
+                setNewFirstName(event.target.value)}} />
 
-        <input name="price" type="text" placeholder="price" value={newEmail} onChange={(event) => {
-            setNewEmail(event.target.value)}} /> 
+            <input name="Last Name" type="text" placeholder="description" value={newLastName} onChange={(event) => {
+                setNewLastName(event.target.value)}} /> 
 
-        <input name="imageURL" type="text" placeholder="imageURL" value={newImageURL} onChange={(event) => {
-            setNewImageURL(event.target.value)}} />   
+            <input name="price" type="text" placeholder="price" value={newEmail} onChange={(event) => {
+                setNewEmail(event.target.value)}} /> 
 
-        <input name="inStock" type="text" placeholder="inStock" value={newUsername} onChange={(event) => {
-            setNewUsername(event.target.value)}} /> 
+            <input name="imageURL" type="text" placeholder="imageURL" value={newImageURL} onChange={(event) => {
+                setNewImageURL(event.target.value)}} />   
+
+            <input name="inStock" type="text" placeholder="inStock" value={newUsername} onChange={(event) => {
+                setNewUsername(event.target.value)}} /> 
 
             <button className="editProductButton" type="submit">
                 Submit Changes
             </button>
+        </div>
     </form>
 </div>
     :
     <></>
-    } */}
+    }
 </>
 }
 }

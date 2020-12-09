@@ -167,6 +167,7 @@ async function populateInitialData() {
     
     const initialUsers = [
       {
+        imageURL: 'https://i.imgur.com/xspvkpr.png',
         firstName: 'The',
         lastName: 'Boss',
         email: 'theboss@example.com',
@@ -175,6 +176,7 @@ async function populateInitialData() {
         isAdmin: true
       },
       {
+        imageURL: 'https://i.imgur.com/SJJh5xq.png',
         firstName: 'Lucky',
         lastName: 'Ducky',
         email: 'luckyducky@example.com',
@@ -183,6 +185,7 @@ async function populateInitialData() {
         isAdmin: false
       },
       {
+        imageURL: 'https://i.imgur.com/ybGB0aC.png',
         firstName: 'Green',
         lastName: 'Giant',
         email: 'greengiant@example.com',
@@ -191,6 +194,7 @@ async function populateInitialData() {
         isAdmin: false
       },
       {
+        imageURL: 'https://i.imgur.com/vxcPhEF.png',
         firstName: 'Sally',
         lastName: 'Fields',
         email: 'sallyfields@example.com',
@@ -215,19 +219,19 @@ const initialOrders = [
   {
     status: 'cancelled',
     userId: 3
-},
-{
-  status: 'cancelled',
-  userId: 1
-},
-{
-  status: 'completed',
-  userId: 4
-},
-{
-  status: 'completed',
-  userId: 2
-}
+  },
+  {
+    status: 'cancelled',
+    userId: 1
+  },
+  {
+    status: 'completed',
+    userId: 4
+  },
+  {
+    status: 'completed',
+    userId: 2
+  }
 ]
 
 console.log('Creating Orders')
