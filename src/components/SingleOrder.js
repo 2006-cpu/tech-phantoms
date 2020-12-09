@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './SingleOrder.css';
-import Stripecc from '../components/Stripe';
 import { centsToDollars } from './helpers'
 
 const SingleOrder = (props) => { 
@@ -23,7 +22,7 @@ return <>
         <h3 className="userIdOrderNumber">Order# {userId}</h3>
         <div className="dateOrderPlaced">Date of order: {datePlaced}</div>
         <div className="orderStatus">Status: {status}</div>
-          <Stripecc to="/checkout" className="ordersButton"/>
+          <div to="/checkout" className="ordersButton"/>
         {
             productObjects ?
             productObjects.map((cartProduct)=>{
