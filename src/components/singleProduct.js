@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router";
-import { NavLink } from 'react-router-dom';
-import { getProduct, getOrdersCart, addProductToCart, getAllProducts, BASE, newCart } from '../api';
-import EditProduct from './EditProduct';
+import { getProduct, getOrdersCart, addProductToCart, BASE, newCart } from '../api';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
 import { centsToDollars } from './helpers'
@@ -33,14 +31,11 @@ const SingleProduct =  (props) => {
             setNewDescription(responseProduct.description)
             setNewPrice(responseProduct.price)
             setNewInStock(responseProduct.inStock)
-            
-
           })
           
         getOrdersCart(token).then(response=>{
             setCart(response)}
             )
-        
     }, [])
 
     const {id, name, category, imageURL, description, price, inStock} = product
@@ -71,7 +66,6 @@ const SingleProduct =  (props) => {
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
             setProduct(data)
 
-    
           return data;  
         } catch (error) {
           console.error(error)
@@ -80,23 +74,13 @@ const SingleProduct =  (props) => {
     }
 
     const history = useHistory();
-
-    function handleClick() {
-        history.push(`/AllProducts/${productId}`);
-    }
-
     function editProductClick() {
         setEditForm(true)
-    }
-
-    function returnHomeClick() {
-        history.push("/Home");
     }
 
     const handleDeleteProduct = async (event) => {
         try {
             event.preventDefault();
-      
             const {data} = await axios.delete(`${BASE}/products/${productId}`,{headers: {'Authorization': `Bearer ${token}`}})
             if(data){
                 Swal.fire({
@@ -106,7 +90,6 @@ const SingleProduct =  (props) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                
                 history.push("/Home");
             }
           return data;
@@ -155,7 +138,10 @@ return <>
                     ?
                     <>
                     <form onSubmit={addToCart}>
+                    <div className="quantityDiv">
+                    <h4>Quantity</h4>
                     <input name="quantity" type="number" min="1" value={quantity} onChange={(e) => {setQuantity(e.target.value)}} />
+                    </div>
                     <button type='submit' className="addToCart">
                         Add To Cart  
                     </button>
@@ -169,13 +155,15 @@ return <>
                     isAdmin
                     ?
                     <>
-                    <button className="editProductButton" onClick={editProductClick}>
-                        Edit Product
-                    </button>
+                    <div className="productEditDeleteButtonDiv">
+                        <button className="editProductButton" onClick={editProductClick}>
+                            Edit Product
+                        </button>
 
-                    <button productId={productId} className="deleteProductButton" onClick={handleDeleteProduct}>
-                        Delete Product
-                    </button>
+                        <button productId={productId} className="deleteProductButton" onClick={handleDeleteProduct}>
+                            Delete Product
+                        </button>
+                    </div>
                     </>
                     :
                     <></>
@@ -188,8 +176,10 @@ return <>
     {
     editForm
     ?
-    <div className="editForm">
-    <form className="editProduct" onSubmit={handleEditProduct}>
+    <div className="editProductDiv">
+    <form className="editProductFormData" onSubmit={handleEditProduct}>
+
+        <h2 className="editProductTitle">Edit Product</h2>
 
         <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
             setNewName(event.target.value)}} />

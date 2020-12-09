@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import './SingleOrder.css';
 import Stripecc from '../components/Stripe';
 import { centsToDollars } from './helpers'
@@ -21,9 +20,9 @@ const SingleOrder = (props) => {
     },[])
 return <>
     <div id={`order${id}`} className="orderCardData">
-        <h3 className="userId">CustomerId: {userId}</h3>
-        <div className="datePlaced">Date of order: {datePlaced}</div>
-        <div className="status">Status: {status}</div>
+        <h3 className="userIdOrderNumber">Order# {userId}</h3>
+        <div className="dateOrderPlaced">Date of order: {datePlaced}</div>
+        <div className="orderStatus">Status: {status}</div>
           <Stripecc to="/checkout" className="ordersButton"/>
         {
             productObjects ?
@@ -39,7 +38,7 @@ return <>
             :
             <div>No products in order.</div>
         }
-        {
+        {/* {
         id
         ?
         <NavLink to={`/orders${id}`} className="ordersButton">
@@ -47,7 +46,7 @@ return <>
         </NavLink>
         :
         <span className="noOrderText">No order found {id}</span>
-        }
+        } */}
     </div>
 </>
 }

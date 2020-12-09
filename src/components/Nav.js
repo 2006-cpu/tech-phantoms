@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { clearCurrentUser, clearCurrentToken } from '../auth/index';
 import swal from 'sweetalert'; 
+import bubble02 from './images/bubble02.png';
 import './Nav.css';
        
 
@@ -21,9 +22,26 @@ const Nav = (props) => {
 
 return <>
     <div className="header">
-      <NavLink to="/allProducts" className="logoNav" activeClassName="activeLogo">
-        <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" className="logoNav" width="auto" height="240px" />
-      </NavLink>
+      <div className="bubbleSetOne">
+        <img src={bubble02} className="bubbleOne" alt="bubble" width="300px" height="300px" />
+
+        <img src={bubble02} className="bubbleTwo" alt="bubble" width="130px" height="130px" />
+      </div> 
+
+        <div className="headerFrame">
+          <div className="headerBorder">
+            <NavLink to="/allProducts" className="logoNav" activeClassName="activeLogo">
+              <img src="https://i.imgur.com/qL1MTOH.png" alt="logo" className="logoNav" width="auto" height="240px" />
+            </NavLink>
+          </div>
+        </div>
+      <div className="bubbleSetTwo">
+        <img src={bubble02} className="bubbleThree" alt="bubble" width="250px" height="250px" />
+
+        <img src={bubble02} className="bubbleFour" alt="bubble" width="180px" height="180px" />
+
+        <img src={bubble02} className="bubbleFive" alt="bubble" width="70px" height="70px" />
+      </div>
     </div> 
 
     <div className="nav">

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { BASE, getProduct } from '../api';
+import { BASE } from '../api';
 import './CreateProduct.css';
 import Swal from 'sweetalert2';
 
@@ -43,6 +42,8 @@ return <>
 
 <div className="createProductForm">
     <form className="createProduct" onSubmit={handleCreateProduct}>
+        <div className="createProductFrame">
+        <h2 className="createProductTitle">Create New Product</h2>
 
         <input name="name" type="text" placeholder="name" value={name} onChange={(event) => {
             setName(event.target.value)}} />
@@ -65,6 +66,7 @@ return <>
             <button className="createProductButton" type="submit">
                 Create product
             </button>
+        </div>
     </form>
 </div>
 :

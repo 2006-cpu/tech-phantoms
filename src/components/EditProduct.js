@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { BASE, getProduct } from '../api';
 import './EditProduct.css';
-import swal from 'sweetalert';
 
 const EditProduct = () => {
     const {productId} = useParams();
@@ -28,11 +27,8 @@ const EditProduct = () => {
     const handleEditProduct = async (event) => {
         try {
             event.preventDefault()
-
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {newName, newDescription, newPrice, newImageURL, newInStock, newCategory});
-            
             setEditProduct(data)
-    
           return data;  
         } catch (error) {
           console.error(error)

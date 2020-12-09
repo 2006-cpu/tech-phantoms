@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* font-family: 'Bad Script', cursive;
-font-family: 'Thasadith', sans-serif; */
-
 * {
     margin: 0;
     font-family: 'Thasadith', sans-serif;
@@ -14,6 +11,7 @@ font-family: 'Thasadith', sans-serif; */
     align-items: center;
     width: 100vw;
     height: 60px;
+    font-size: 1.3em;
     background-color: #fefaf7;
     border: 1px solid transparent;
     border-top: none;
@@ -22,7 +20,6 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 .adminText {
-    font-size: 1.3em;
     font-weight: bold;
     font-family: 'Bad Script', cursive;
     color: #500852;
@@ -31,21 +28,18 @@ font-family: 'Thasadith', sans-serif; */
 }
 
 .adminProductsNav {
-    font-size: 1.4em;
     color: #7a0d7e;
     text-decoration: none;
     margin-right: 40px;
 }
 
 .adminOrdersNav {
-    font-size: 1.4em;
     color: #7a0d7e;
     text-decoration: none;
     margin-right: 40px;
 }
 
 .adminUsersNav {
-    font-size: 1.4em;
     color: #7a0d7e;
     text-decoration: none;
     margin-right: 80px;

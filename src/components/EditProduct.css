@@ -7,3 +7,11 @@ font-family: 'Thasadith', sans-serif; */
   margin: 0;
   font-family: 'Thasadith', sans-serif;
 }
+
+.editProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F8EEE7;
+}
