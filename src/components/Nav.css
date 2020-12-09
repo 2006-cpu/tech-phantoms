@@ -65,7 +65,7 @@
 .headerBorder {
     display: flex;
     justify-content: center;
-    width: 580px;
+    width: 97%;
     height: 260px;
     margin-top: 10px;
     border-radius: 20px;
@@ -93,6 +93,25 @@
     font-size: 1.4em;
     font-weight: bold;
     color: rgba(55, 8, 97, 0.879);
+}
+
+.clickProdBubble {
+    width: 20px;
+    height: 20px;
+}
+
+.bubbleSix {
+    float: left;
+    z-index: -1;
+    margin-left: -70px;
+    margin-top: -50px;
+}
+
+.bubbleSeven {
+    float: left;
+    z-index: -1;
+    margin-left: -50px;
+    margin-top: -80px;
 }
 
 .productsNav {

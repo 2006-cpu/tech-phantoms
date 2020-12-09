@@ -8,7 +8,7 @@ import { centsToDollars } from './helpers'
 
 const SingleProduct =  (props) => {
     const {productId}= useParams()
-    const {token, isAdmin} = props;
+    const {token, isAdmin, setUpdateProducts} = props;
     const [product,setProduct] = useState({})
     const [cart,setCart] = useState({})
     const [quantity, setQuantity] = useState(1)
@@ -65,7 +65,7 @@ const SingleProduct =  (props) => {
 
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
             setProduct(data)
-
+            setUpdateProducts(data)
           return data;  
         } catch (error) {
           console.error(error)
@@ -126,11 +126,11 @@ return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
         <div className="productCardData">
             <h3 className="productName">{name}</h3>
-            <div className="allProductsCategory">Product category: {category}</div>
+            <div className="allProductsCategory">Category: {category}</div>
             <div className="innerProductCardInfo">
                 <img src={imageURL} alt="productImage" className="allProductsImage" />
                 <div className="descrPriceQuantityDiv">
-                    <h4 className="allProductsDescription">Description: {description}</h4>
+                    <h4 className="allProductsDescription">{description}</h4>
                     <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
 
                     {

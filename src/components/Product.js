@@ -9,13 +9,13 @@ return <>
     <div id={`product${id}`} className="indivProductCard">
         <div className="indivProductCardData">
             <h3 className="indivProductName">{name}</h3>
-            <div className="indivProductsCategory">Product category: {category}</div>
+            <div className="indivProductsCategory">Category: {category}</div>
            
                 <NavLink to={`/allProducts/${id}`}>
                     <img src={imageURL} alt="productImage" className="indivProductsImage" /> 
                 </NavLink>
 
-                <h4 className="indivProductsDescription">Description: {description}</h4>
+                <h4 className="indivProductsDescription">{description}</h4>
                 <h5 className="indivProductsPrice">Price: ${centsToDollars(price)}</h5>
 
             {

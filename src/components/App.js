@@ -18,7 +18,6 @@ import {
   AdminTools,
   AllUsers,
   UserAccount,
-  EditProduct,
   CreateProduct
   } from './index';
 
@@ -28,6 +27,7 @@ const App = () => {
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [allProducts, setAllProducts] = useState([]);
+  const [updateProducts, setUpdateProducts] = useState([])
  
   useEffect(() => {
     const currentUser = localStorage.getItem('user')
@@ -49,7 +49,7 @@ const App = () => {
 
   useEffect(()=>{
     fetchProducts()
-  },[])
+  },[updateProducts])
 
   return <>
     <div id="App">
@@ -127,12 +127,12 @@ const App = () => {
       </Route>
 
       <Route path={`/allProducts/:productId`}>
-        <SingleProduct token={token} isAdmin={user.isAdmin}/>
+        <SingleProduct token={token} isAdmin={user.isAdmin} setUpdateProducts={setUpdateProducts}/>
       </Route>
 
       <Route path={`/createProduct`}>
         <CreateProduct 
-          isAdmin={user.isAdmin} token={token}
+          isAdmin={user.isAdmin} token={token} setUpdateProducts={setUpdateProducts}
         />
       </Route>
      
