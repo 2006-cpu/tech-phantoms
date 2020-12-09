@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import {getOrdersCart, removeProductFromCart} from '../api';
 import './Cart.css';
 import Stripecc from './Stripe';
-import axios from 'axios'
 import { centsToDollars } from './helpers'
 
 const Cart = (props) => {
@@ -42,15 +40,23 @@ return <>
             cart.map((cartProduct)=>{
                 const {product, price, quantity} = cartProduct
                 return<div key={'cartProduct'+product.id} className = 'cartProduct'>
-                    <img src={product.imageURL} className='productImage'></img>
-                    <h3>{product.name}</h3>
-                    <span>Quantity:{quantity}</span>
-                    <span>Price: ${centsToDollars(price)}</span>
-                    <button onClick={()=>{removeProductFromCart(cart.id, product.id, token).then((removed)=>{setUpdateCart('Removed'+removed.name)})}}>Remove</button>
+
+                    <div className="cartItemsStyle">
+                        <img src={product.imageURL} className='productImage'></img>
+                        <div className="cartItemText">
+                            <h3>{product.name}</h3>
+                            <span>Quantity:{quantity}</span>
+                            <span>Price: ${centsToDollars(price)}</span>
+                        </div>
+                    </div>
+
+                    <button className="cartRemoveButton" onClick={()=>{removeProductFromCart(cart.id, product.id, token).then((removed)=>{setUpdateCart('Removed'+removed.name)})}}>Remove</button>
+
+
                 </div>
             })
         }
-        <div>Total Price: ${centsToDollars(totalPrice)}</div>
+        <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
         <Stripecc/>
         </div>
         

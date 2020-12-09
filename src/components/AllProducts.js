@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from './Product.js';
+import bubble02 from './images/bubble02.png';
 import './AllProducts.css'
 
 const AllProducts = (props) => {

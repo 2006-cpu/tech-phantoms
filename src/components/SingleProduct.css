@@ -2,6 +2,7 @@
 
 * {
     margin: 0;
+    color: rgba(55, 8, 97, 0.879);
     font-family: 'Thasadith', sans-serif;
 }
 
@@ -9,7 +10,7 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: 700px;
     padding: 40px;
     background-color: #F8EEE7;
 }
@@ -18,24 +19,21 @@
     display: flex;
     flex-direction: column;
     width: 800px;
-    min-height: 500px;
     padding: 40px;
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
-    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
 }
 
 .productName {
     text-align: center;
     font-size: 2em;
-    color: rgba(55, 8, 97, 0.879);
 }
 
 .allProductsCategory {
     text-align: center;
     font-size: 1.5em;
-    color: rgba(55, 8, 97, 0.879);
 }
 
 .innerProductCardInfo {
@@ -55,29 +53,94 @@
 .allProductsDescription {
     margin-top: 80px;
     margin-left: 30px;
-    color: rgba(55, 8, 97, 0.879);
 }
 
 .allProductsPrice {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-left: 30px;
-    color: rgba(55, 8, 97, 0.879);
+}
+
+.quantityDiv {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    width: 150px;
 }
 
 .addToCart {
-    left: 450px;
     width: 180px;
     height: 40px;
     margin-top: 50px;
-    margin-left: 160px;
+    margin-left: 180px;
     font-size: 1.3em;
     color: white;
     border-radius: 3px;
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(136, 95, 177, 0.879);
 }
 
-.cart {
-    color: white;
-    text-decoration: none;
+.outOfStock {
+    margin-left: 30px;
+    margin-top: 20px;
 }
+
+.editProductForm {
+    border: 1px solid gray;
+}
+
+.productEditDeleteButtonDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -140px;
+    margin-top: 100px;
+    width: 500px;
+}
+
+.editProductButton {
+    width: 180px;
+    height: 40px;
+    font-size: 1.3em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(233, 123, 255, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(176, 108, 189, 0.879)
+}
+
+.deleteProductButton {
+    width: 180px;
+    height: 40px;
+    font-size: 1.3em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(247, 26, 129, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(172, 70, 118, 0.879)
+}
+
+.editProductDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F8EEE7;
+}
+
+.editProductFormData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    margin-top: -150px;
+    padding: 30px 0px;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+}
+

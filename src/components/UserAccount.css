@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* font-family: 'Bad Script', cursive;
-font-family: 'Thasadith', sans-serif; */
-
 * {
     margin: 0;
+    color: rgba(55, 8, 97, 0.879);
     font-family: 'Thasadith', sans-serif;
 }
 
@@ -23,7 +21,6 @@ font-family: 'Thasadith', sans-serif; */
     width: 700px;
     height: 500px;
     padding: 40px;
-    color: rgba(55, 8, 97, 0.879);
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
@@ -39,6 +36,10 @@ font-family: 'Thasadith', sans-serif; */
     height: auto;
     width: 80px;
     margin-bottom: 40px;
+}
+
+.userSpan {
+    Margin-right: 50px;
 }
 
 .userAccountEditButton {

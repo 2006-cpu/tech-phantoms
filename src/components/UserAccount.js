@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import './UserAccount.css';
 import { editAccountInfo } from '../api';
 import Swal from 'sweetalert2'
@@ -43,23 +42,23 @@ return <>
         <div className="userAccountData">
             <h2 className="userAccountTitle">Account information for {firstName} {lastName}</h2>
             <img src={imageURL} alt="userImage" className="userAccountImage" />
-            <h4 className="userAccountFirstName">{firstName}</h4>
-            <h4 className="userAccountLastName">{lastName}</h4>
-            <h4 className="userAccountEmail">{email}</h4>
-            <h4 className="userAccountUsername">{username}</h4>
+            <h4 className="userAccountFirstName">First name: {firstName}</h4>
+            <h4 className="userAccountLastName">Last name: {lastName}</h4>
+            <h4 className="userAccountEmail">email: {email}</h4>
+            <h4 className="userAccountUsername">username: {username}</h4>
             <h4 className="userAccountIsAdmin">{isAdmin}</h4>
 
-                <button className="userAccountEditButton" onClick={()=>{setEditForm(true)}}>Edit</button>
+                {/* <button className="userAccountEditButton" onClick={()=>{setEditForm(true)}}>Edit</button> */}
                 
            
         </div>
     </div>
 </div>
-{
+{/* {
     editForm
     ?
-    <div className="editForm">
-    <form className="editUser" onSubmit={handleEditUser}>
+    <div className="userAccountEditForm">
+    <form className="userAccountEditUser" onSubmit={handleEditUser}>
 
         <input name="First Name" type="text" placeholder="name" value={newFirstName} onChange={(event) => {
             setNewFirstName(event.target.value)}} />
@@ -83,7 +82,7 @@ return <>
 </div>
     :
     <></>
-    }
+    } */}
 </>
 }
 }

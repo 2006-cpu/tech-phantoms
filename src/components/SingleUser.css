@@ -5,17 +5,18 @@ font-family: 'Thasadith', sans-serif; */
 
 * {
     margin: 0;
+    color: rgba(55, 8, 97, 0.879);
     font-family: 'Thasadith', sans-serif;
 }
 
 .singleUserCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    background-color: none;
-    /* border: 1px solid gray; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: #F8EEE7;
 }
 
 .userCardData {
@@ -30,35 +31,15 @@ font-family: 'Thasadith', sans-serif; */
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
 }
 
+.singleUserTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .userImage {
     width: 80px;
     height: auto;
     margin-bottom: 20px;
-}
-
-.userFirstName {
-    font-size: 1.3em;
-    color: rgba(55, 8, 97, 0.879);
-}
-
-.userLastName {
-    font-size: 1.3em;
-    color: rgba(55, 8, 97, 0.879);
-}
-
-.userEmail {
-    font-size: 1.3em;
-    color: rgba(55, 8, 97, 0.879);
-}
-
-.username {
-    font-size: 1.3em;
-    color: rgba(55, 8, 97, 0.879);
-}
-
-.isAdmin {
-    font-size: 1.3em;
-    color: rgba(55, 8, 97, 0.879);
 }
 
 .singleUserId {
@@ -95,6 +76,4 @@ font-family: 'Thasadith', sans-serif; */
         margin-left: -115px;
         width: 300px;
     }
-
-
 }

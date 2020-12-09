@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import './SingleUser.css';
 
 const SingleUser = (props) => {
@@ -7,17 +6,19 @@ const SingleUser = (props) => {
 
 return <>
 <div className="singleUserCard">
+ 
    <div id={`singleUser${id}`} className="singleUserId">
         <div className="userCardData">
+            <h2 className="singleUserTitle">User Profile</h2>
             <img src={imageURL} alt="userImage" className="userImage" />
-            <h4 className="userFirstName">{firstName}</h4>
-            <h4 className="userLastName">{lastName}</h4>
-            <h4 className="userEmail">{email}</h4>
-            <h4 className="username">{username}</h4>
+            <h4 className="userFirstName">First name: {firstName}</h4>
+            <h4 className="userLastName">Last name: {lastName}</h4>
+            <h4 className="userEmail">email: {email}</h4>
+            <h4 className="username">username: {username}</h4>
             <h4 className="password">{password}</h4>
             <h4 className="isAdmin">{isAdmin}</h4>
 
-                {
+                {/* {
                 id
                 ?
                 <NavLink to={`/allUsers/${id}`} className="singleUserId">
@@ -25,7 +26,7 @@ return <>
                 </NavLink>
                 :
                 <h4 className="noSingleUser">{id} not found</h4>
-                }
+                } */}
         </div>
     </div>
 </div>
