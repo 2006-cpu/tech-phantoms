@@ -1,12 +1,18 @@
 import React from 'react';
+import bubble02 from './images/bubble02.png';
 import './SingleUser.css';
 
 const SingleUser = (props) => {
     const {id, imageURL, firstName, lastName, email, username, password, isAdmin} = props.user;
 
 return <>
+
+{/* <div className="singleUserBubbleDiv">
+    <img src={bubble02} className="singleUserBubbleOne" alt="bubble" width="400px" height="400px" />
+    <img src={bubble02} className="singleUserBubbletwo" alt="bubble" width="150px" height="150px" />
+</div> */}
+
 <div className="singleUserCard">
- 
    <div id={`singleUser${id}`} className="singleUserId">
         <div className="userCardData">
             <h2 className="singleUserTitle">User Profile</h2>

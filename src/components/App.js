@@ -18,7 +18,6 @@ import {
   AdminTools,
   AllUsers,
   UserAccount,
-  EditProduct,
   CreateProduct
   } from './index';
 

@@ -51,6 +51,10 @@ return <>
           here
         </NavLink>
         {' '}to see our product line!
+        <div className="clickProdBubble">
+          <img src={bubble02} className="bubbleSix" alt="bubble" width="60px" height="60px" />
+          <img src={bubble02} className="bubbleSeven" alt="bubble" width="100px" height="100px" />
+        </div>
       </div>
 
       {!token
