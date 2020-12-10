@@ -6,16 +6,10 @@ const SingleUser = (props) => {
     const {id, imageURL, firstName, lastName, email, username, password, isAdmin} = props.user;
 
 return <>
-
-{/* <div className="singleUserBubbleDiv">
-    <img src={bubble02} className="singleUserBubbleOne" alt="bubble" width="400px" height="400px" />
-    <img src={bubble02} className="singleUserBubbletwo" alt="bubble" width="150px" height="150px" />
-</div> */}
-
 <div className="singleUserCard">
    <div id={`singleUser${id}`} className="singleUserId">
         <div className="userCardData">
-            <h2 className="singleUserTitle">User Profile</h2>
+            <h2 className="singleUserTitle">User Profile for {firstName}{' '}{lastName}</h2>
             <img src={imageURL} alt="userImage" className="userImage" />
             <h4 className="userFirstName">First name: {firstName}</h4>
             <h4 className="userLastName">Last name: {lastName}</h4>

@@ -7,11 +7,8 @@
 }
 
 .singleUserCard {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    grid-gap: 1em;
-    width: 100vw;
-    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
     z-index: 1;
     background-color: #F8EEE7;
 }
@@ -39,37 +36,8 @@
     margin-bottom: 20px;
 }
 
-.singleUserId {
-    margin-top: 40px;
-    width: 120Px;
-    height: 35px;
-    border: none;
-    border-radius: 3px;
-    background-color: rgba(158, 120, 196, 0.879);
-}
-
-.singleUserEditButton {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin-top: 5px;
-    background-color: rgba(158, 120, 196, 0.879);
-}
-
-@media screen and (max-width: 1440px) {
-    .singleUserCard {
-        display: flex;
-        width: 120px;
-        height: 0px;
-        margin-bottom: 400px;
-    }
-}
-
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 625px) {
     .userCardData {
-        display: flex;
-        flex-direction: column;
         margin-left: -115px;
         width: 300px;
     }
