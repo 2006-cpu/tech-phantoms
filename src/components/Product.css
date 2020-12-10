@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.indivProductCard {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.indivProductCardData {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 550px;
+    padding: 40px;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.indivProductName {
+    text-align: center;
+    font-size: 2em;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.indivProductsCategory {
+    text-align: center;
+    font-size: 1.5em;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.indivProductsImage {
+    margin-top: 20px;
+    width: 40%;
+    height:auto;
+}
+
+.indivProductsDescription {
+    margin-top: 30px;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.indivProductsPrice {
+    margin-top: 20px;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.outOfStockText {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.productDetailsButton {
+    margin-top: 30px;
+    width: 160Px;
+    height: 40px;
+    font-size: 1.4em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(136, 95, 177, 0.879);
+}
+
+@media screen and (max-width: 1440px) {
+    .indivProductName {
+        font-size: 1.8em;
+    }
+
+    .indivProductsCategory {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 1024) {
+    .indivProductCard {
+        display: flex;
+        width: auto;
+        height: 100%;
+        padding: 40px;
+        background-color: #F8EEE7;
+    }
+}

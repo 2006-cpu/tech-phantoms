@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* font-family: 'Bad Script', cursive;
+font-family: 'Thasadith', sans-serif; */
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 350px;
+    right: 0px;
+    padding: 20px;
+    width: 550px;
+    height: 600px;
+    background-color: rgb(248, 244, 252);
+}
+
+.registerText {
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.registerButtonsDiv {
+    display: flex;
+}
+
+.registerButton {
+    width: 160Px;
+    height: 40px;
+    margin-left: 20px;
+    border: none;
+    font-size: 1.4em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+}

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    color: rgba(55, 8, 97, 0.879);
+    font-family: 'Thasadith', sans-serif;
+}
+
+.userAccountCard {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.userAccountBubbleDivOne {
+    width: 30%;
+}
+
+.userAccountBubbleOne {
+    flex: left;
+    margin-top: 50px;
+    margin-left: 270px;
+}
+
+.userAccountBubblethree {
+    flex: left;
+    margin-top: -300px;
+    margin-left: 300px;
+}
+
+.userAccountBubbleDivTwo {
+    width: 30%;
+}
+
+.userAccountBubbleTwo {
+    flex: right;
+    margin-top: 300px;
+}
+
+.userAccountData {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    padding: 40px;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.userAccountTitle {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.userAccountImage {
+    height: auto;
+    width: 120px;
+    margin-bottom: 40px;
+}
+
+.userAccountFirstName {
+    margin-left: 200px;
+    margin-top: -110px;
+}
+
+.userAccountLastName {
+    margin-left: 200px;
+}
+
+.userAccountEmail {
+    margin-left: 200px;
+}
+
+.userAccountUsername {
+    margin-left: 200px;
+}
+
+.userAccountIsAdmin {
+    margin-left: 200px;
+}
+
+.userAccountEditButton {
+    margin-top: 100px;
+    margin-left: 30px;
+    width: 160Px;
+    height: 40px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
+}
+
+.userAccountEditDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 700px;
+    margin-top: -480px;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.userAccountEditForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin-top: 100px;
+    padding: 40px;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+}
+
+@media screen and (max-width: 1440px) {
+    .userAccountBubbleOne {
+        margin-left: 150px;
+    }
+    
+    .userAccountBubblethree {
+        margin-left: 230px;
+    }
+}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.allOrders {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    width: 100vw;
+    height: 100%;
+    z-index: 1;
+    background-color: #F8EEE7;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .allOrders {
+        height: 100%;
+    }
+}

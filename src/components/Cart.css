@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    color: rgba(55, 8, 97, 0.879);
+    font-family: 'Thasadith', sans-serif;
+}
+
+.cartDiv {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+    background-color: #F8EEE7;
+}
+
+.cartItems {
+    display: flex;
+    flex-direction: column;
+  
+    align-items: center;
+    width: 900px;
+    height: 130%;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+    padding: 2rem;
+}
+
+.userId{
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.cartProduct{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 15rem;
+    width: 80%;
+    border: 2px solid rgba(229, 194, 255, 0.879);
+}
+
+.cartItemsStyle {
+    display: flex;
+}
+
+.productImage{
+    height: auto;
+    width: 100px;
+}
+
+.cartItemText {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.cartRemoveButton {
+    width: 140px;
+    height: 35px;
+    margin-left: 450px;
+    font-size: 1.2em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(247, 26, 129, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(172, 70, 118, 0.879)
+}
+
+.cartTotalPrice {
+    margin: 20px;
+}
+
+.stripePayOrderButton {
+    height: 150px;
+    padding: 20px;
+}

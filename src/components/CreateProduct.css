@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.createProductForm {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 800px;
+    background-color: #F8EEE7;
+}
+
+.createProductBubbleDivOne {
+    width: 30%;
+}
+
+.createProductBubbleOne {
+    float: left;
+    margin-top: 300px;
+    margin-left: 450px;
+}
+
+.createProductBubblethree {
+    float: left;
+    margin-top: -200px;
+    margin-left: 450px;
+}
+
+.createProductBubbleDivTwo {
+    width: 30%;
+}
+
+.createProductBubbleTwo {
+    float: right;
+    margin-right: 550px;
+    margin-top: 100px;
+}
+
+.createProduct {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    padding-top: 30px;
+    background-color: #F8EEE7;
+}
+
+.createProductFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+}
+
+.createProductTitle {
+    margin: 30px;
+}
+
+.createProductButton {
+    width: 180px;
+    height: 40px;
+    margin: 30px;
+    font-size: 1.3em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(136, 95, 177, 0.879);
+}
+
+@media screen and (max-width: 1440px) {
+    .createProductBubbleOne {
+        margin-left: 150px;
+    }
+    
+    .createProductBubblethree {
+        margin-left: 230px;
+    }
+
+    .createProductBubbleTwo {
+        float: right;
+        margin-right: 250px;
+        margin-top: 100px;
+    }
+}

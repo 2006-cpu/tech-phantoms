@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    color: rgba(55, 8, 97, 0.879);
+    font-family: 'Thasadith', sans-serif;
+}
+
+.singleUserCard {
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 1;
+    background-color: #F8EEE7;
+}
+
+.userCardData {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    padding: 40px;
+    background-color: white;
+    border: 3px solid rgba(229, 194, 255, 0.879);
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
+}
+
+.singleUserTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.userImage {
+    width: 80px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 625px) {
+    .userCardData {
+        margin-left: -115px;
+        width: 300px;
+    }
+}
