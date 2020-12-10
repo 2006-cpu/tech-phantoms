@@ -9,7 +9,8 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 320px;
+    height: 400px;
+    padding-top: 40px;
     background-color: #f7eadf;
 }
 
@@ -211,7 +212,6 @@
     text-decoration: none;
 }
 
-
 @media screen and (max-width: 1440px) {
     .clickForSoaps {
         font-size: 1.3em;
@@ -257,7 +257,7 @@
     .loginUserImage {
         position: absolute;
         top: 25px;
-        right: 130px;
+        right: 110px;
         width: 30px;
         height: auto;
     }

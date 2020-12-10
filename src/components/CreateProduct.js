@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { BASE } from '../api';
 import './CreateProduct.css';
+import bubble02 from './images/bubble02.png';
 import Swal from 'sweetalert2';
 
 const CreateProduct = (props) => {
@@ -42,6 +43,12 @@ return <>
 {isAdmin?
 
 <div className="createProductForm">
+
+    <div className="createProductBubbleDivOne">
+        <img src={bubble02} className="createProductBubbleOne" alt="bubble" width="400px" height="400px" />
+        <img src={bubble02} className="createProductBubblethree" alt="bubble" width="150px" height="150px" />
+    </div>
+
     <form className="createProduct" onSubmit={handleCreateProduct}>
         <div className="createProductFrame">
         <h2 className="createProductTitle">Create New Product</h2>
@@ -69,6 +76,11 @@ return <>
             </button>
         </div>
     </form>
+  
+    <div className="createProductBubbleDivTwo">
+        <img src={bubble02} className="createProductBubbleTwo" alt="bubble" width="200px" height="200px" />
+    </div>
+
 </div>
 :
 <div>How did you get here? You must be an admin to create products!</div>

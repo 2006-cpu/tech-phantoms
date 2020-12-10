@@ -75,7 +75,7 @@ async function populateInitialData() {
       },
       {
         name: "Eileen's Favorite Soap",
-        description: "A sweet floral scent!",
+        description: "A berryliscious aroma!",
         price:"1499",
         inStock: true,
         category: 'Decorative',

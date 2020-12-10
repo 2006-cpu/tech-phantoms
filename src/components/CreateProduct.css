@@ -7,10 +7,36 @@
 
 .createProductForm {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+    height: 800px;
     background-color: #F8EEE7;
+}
+
+.createProductBubbleDivOne {
+    width: 30%;
+}
+
+.createProductBubbleOne {
+    float: left;
+    margin-top: 300px;
+    margin-left: 450px;
+}
+
+.createProductBubblethree {
+    float: left;
+    margin-top: -200px;
+    margin-left: 450px;
+}
+
+.createProductBubbleDivTwo {
+    width: 30%;
+}
+
+.createProductBubbleTwo {
+    float: right;
+    margin-right: 550px;
+    margin-top: 100px;
 }
 
 .createProduct {
@@ -51,4 +77,20 @@
     background-color: rgba(158, 120, 196, 0.879);
     border: 2px solid white;
     box-shadow: 3px 3px 8px rgba(136, 95, 177, 0.879);
+}
+
+@media screen and (max-width: 1440px) {
+    .createProductBubbleOne {
+        margin-left: 150px;
+    }
+    
+    .createProductBubblethree {
+        margin-left: 230px;
+    }
+
+    .createProductBubbleTwo {
+        float: right;
+        margin-right: 250px;
+        margin-top: 100px;
+    }
 }

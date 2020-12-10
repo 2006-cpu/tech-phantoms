@@ -66,10 +66,10 @@
 
 @media screen and (max-width: 425px) {
     .adminText {
-        font-size: 1.2em;
+        font-size: .8em;
     }
 
     .adminProductsNav, .adminUsersNav, .adminOrdersNav {
-        font-size: 1.2em;
+        font-size: .8em;
     }
 }

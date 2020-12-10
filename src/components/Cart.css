@@ -18,10 +18,10 @@
 .cartItems {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+  
     align-items: center;
     width: 900px;
-    height: auto;
+    height: 130%;
     background-color: white;
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
@@ -49,7 +49,7 @@
 
 .productImage{
     height: auto;
-    width: 150px;
+    width: 100px;
 }
 
 .cartItemText {
