@@ -82,6 +82,7 @@ export async function addProductToCart(orderId, product, quantity){
 export async function removeProductFromCart(orderId, productId, token){
   try {
     const orderProductId = await axios.get(`${BASE}/order_products/${orderId}/${productId}`)
+    console.log(orderProductId)
     const {data} = await axios.delete(`${BASE}/order_products/${orderProductId.data.id}`,{headers: {'Authorization': 'Bearer '+token}})
     return data
   } catch (error) {

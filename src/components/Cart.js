@@ -55,7 +55,7 @@ return <>
                         </div>
                     </div>
 
-                    <button className="cartRemoveButton" onClick={()=>{removeProductFromCart(cart.id, product.id, token).then((removed)=>{setUpdateCart('Removed'+removed.name)})}}>Remove</button>
+                    <button className="cartRemoveButton" onClick={()=>{removeProductFromCart(orderId, product.id, token).then((removed)=>{setUpdateCart('Removed'+orderId+totalPrice+1)})}}>Remove</button>
 
 
                 </div>
