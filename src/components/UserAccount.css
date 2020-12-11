@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     padding: 40px;
     background-color: #F8EEE7;
 }
@@ -121,6 +121,24 @@
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
+}
+
+.userAccountOrdersText {
+    padding: 40px;
+    text-align: center;
+    box-shadow: inset 0 5px 3px #ad5cb0ba, 0 -1px 1px #FFF, 0 1px 0 #FFF;
+    background-color: #fefaf7;
+}
+
+.userAccountOrdersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    width: 100vw;
+    height: 100%;
+    padding-bottom: 40px;
+    background-color: #fefaf7;
+    border-bottom: 1px solid #ad5cb0ba;
 }
 
 @media screen and (max-width: 1440px) {
