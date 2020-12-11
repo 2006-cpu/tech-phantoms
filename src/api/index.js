@@ -1,8 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import {useHistory} from 'react-router-dom'
 
-const history = useHistory()
 export const BASE = '/api'
 
 
@@ -122,7 +120,6 @@ export async function completeOrder(token, orderId){
         showConfirmButton: false,
         timer: 1500
       });
-      history.push('/Home')
     }
     return data
   } catch (error) {
