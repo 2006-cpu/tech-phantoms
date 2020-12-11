@@ -46,7 +46,7 @@ return <>
                         <img src={product.imageURL} className='productImage'></img>
                         <div className="cartItemText">
                             <h3>{product.name}</h3>
-                            <span>Quantity:{quantity}</span>
+                            <span>Quantity: {quantity}</span>
                             <span>Price: ${centsToDollars(price)}</span>
                         </div>
                     </div>
