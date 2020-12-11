@@ -41,6 +41,14 @@ try {
 }
 })
 
+ordersRouter.get('/myOrders', async (req, res, next)=>{
+    try {
+        
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 ordersRouter.get('/cart', async (req, res, next)=>{
     try {
         const prefix = 'Bearer ';
