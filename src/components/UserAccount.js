@@ -105,10 +105,13 @@ return <>
     :
     <></>
     }
+<h2 className="userAccountOrdersText">All Orders for {firstName} {lastName}</h2>
+<div className="userAccountOrdersGrid">
 {
     orders.map((order) => <SingleOrder key={order.id} 
     order={order} />)
 }
+</div>
 </>
 }
 }
