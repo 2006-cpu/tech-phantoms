@@ -93,7 +93,7 @@ const App = () => {
       <Fragment>
         <Route path="/userAccount">
           <UserAccount
-            user = {user} setUser= {setUser}
+            user = {user} setUser= {setUser} token={token}
           />
         </Route>
       </Fragment>

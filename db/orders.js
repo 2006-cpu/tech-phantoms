@@ -46,7 +46,7 @@ const getOrdersByUser = async ({ id })=>{
             SELECT * FROM orders
             WHERE "userId"=$1
         `,[id])
-        orders.forEach(async order=>{
+        const completeOrders = await Promise.all(orders.map(async order=>{
             const orderProducts = await getOrderProductsByOrderId(order.id)
             const products = await Promise.all(orderProducts.map(async (orderProduct) =>{
     
@@ -55,8 +55,9 @@ const getOrdersByUser = async ({ id })=>{
             }))
             order.orderProducts = orderProducts
             order.products = products
-        })
-        return orders
+            return order
+        }))
+        return completeOrders
     } catch (error) {
         console.error(error)
     }

@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UserAccount.css';
-import { editAccountInfo } from '../api';
+import { editAccountInfo, getMyOrders } from '../api';
 import bubble02 from './images/bubble02.png';
 import Swal from 'sweetalert2'
+import SingleOrder from './SingleOrder'
 
 const UserAccount = (props) => {
     const {id, imageURL, firstName, lastName, email, username, isAdmin} = props.user;
-    const {setUser}= props
+    const {setUser, token}= props
     const [editForm, setEditForm] = useState(false)
     const [newImageURL, setNewImageURL]=useState(imageURL)
     const [newFirstName, setNewFirstName]=useState(firstName)
     const [newLastName, setNewLastName]=useState(lastName)
     const [newEmail, setNewEmail]=useState(email)
     const [newUsername, setNewUsername]=useState(username)
+    const [orders, setOrders]=useState([])
+
+    useEffect(()=>{
+        getMyOrders(token).then(response=>{setOrders(response)})
+    },[])
 
     const handleEditUser = async (event)=>{
         event.preventDefault()
@@ -99,6 +105,10 @@ return <>
     :
     <></>
     }
+{
+    orders.map((order) => <SingleOrder key={order.id} 
+    order={order} />)
+}
 </>
 }
 }
