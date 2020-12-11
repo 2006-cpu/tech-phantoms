@@ -41,6 +41,25 @@ try {
 }
 })
 
+ordersRouter.get('/myOrders', async (req, res, next)=>{
+    try {
+        const prefix = 'Bearer ';
+         const auth = req.header('Authorization');
+         if (auth.startsWith(prefix)) {
+         const token = auth.slice(prefix.length);
+         if (token){
+         const { id } = jwt.verify(token, JWT_SECRET);
+           if (id) {
+             const orders = await getOrdersByUser({id})
+             res.send(orders)
+           }
+         }
+     }
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 ordersRouter.get('/cart', async (req, res, next)=>{
     try {
         const prefix = 'Bearer ';

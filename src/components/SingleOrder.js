@@ -6,6 +6,7 @@ const SingleOrder = (props) => {
     const {id, userId, datePlaced, status, orderProducts, products} = props.order;
     const [productObjects, setProductObjects] = useState([])
     useEffect(()=>{
+        if(orderProducts){
         const productData = orderProducts.map((orderProduct)=>{           
             const product = () =>{ for(let i=0; i<products.length; i++){
                 if(products[i].id===orderProduct.productId){
@@ -15,7 +16,7 @@ const SingleOrder = (props) => {
             }}
             return product()
         })
-        setProductObjects(productData)
+        setProductObjects(productData)}
     },[])
 return <>
     <div id={`order${id}`} className="orderCardData">

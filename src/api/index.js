@@ -127,3 +127,12 @@ export async function completeOrder(token, orderId){
     console.error(error)
   }
 }
+
+export async function getMyOrders(token){
+  try {
+    const {data} = await axios.get(`${BASE}/orders/myOrders`, {headers: {'Authorization': `Bearer ${token}`}})
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+}
