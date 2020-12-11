@@ -1,6 +1,8 @@
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import {useHistory} from 'react-router-dom'
 
-
+const history = useHistory()
 export const BASE = '/api'
 
 
@@ -96,7 +98,7 @@ export async function editAccountInfo(id,{...fields}){
     console.log('UPDATEDUSER', data)
     return data
   } catch (error) {
-    
+    console.error(error)
   }
 }
 
@@ -105,6 +107,25 @@ export async function newCart(token){
     const {data} = await axios.post(`${BASE}/orders`,{}, {headers: {'Authorization': `Bearer ${token}`}})
     return data
   } catch (error) {
-    
+    console.error(error)
+  }
+}
+
+export async function completeOrder(token, orderId){
+  try {
+    const {data} = await axios.patch(`${BASE}/orders/${orderId}`, {status:'completed'}, {headers: {'Authorization': `Bearer ${token}`}})
+    if(data){
+      Swal.fire({
+        position: 'absolute',
+        icon: 'success',
+        title: "Order Submitted. Thank you for shopping at Dope Soap!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      history.push('/Home')
+    }
+    return data
+  } catch (error) {
+    console.error(error)
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {getOrdersCart, removeProductFromCart} from '../api';
+import {useHistory} from 'react-router-dom'
+import {getOrdersCart, removeProductFromCart, completeOrder} from '../api';
 import './Cart.css';
 import Stripecc from './Stripe';
 import { centsToDollars } from './helpers'
@@ -8,9 +9,11 @@ import { centsToDollars } from './helpers'
 const Cart = (props) => {
     const {token, user} = props
     const [cart, setCart] = useState([]);
+    const [orderId, setOrderId] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [updateCart, setUpdateCart]= useState('');
     const {username} = user
+    const history = useHistory()
 
     useEffect(() => {
         getOrdersCart(token).then( cart=> {
@@ -30,6 +33,7 @@ const Cart = (props) => {
                 total=total+cartProductData[i].price
             }
         setTotalPrice(total)
+        setOrderId(cart.id)
         }})
     }, [updateCart])
 
@@ -58,7 +62,7 @@ return <>
             })
         }
         <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
-        <Stripecc/>
+        <Stripecc />
         </div>
     </div>
 </>

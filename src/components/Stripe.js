@@ -1,5 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import completeOrder from '../api'
+import {token, orderId} from './Cart'
 
 const PKSECRET = process.env.NODE_ENV === 'production'
   ? 'pk_test_51Ht0x3E3GFmNRfP2y3zQEwL39Agff3XwI80izmf3M8Uy4LNsLTFQf04FDw6dwomXIp9RqHG9slWonTc5xJIO5jQp001IQpFHC6'
@@ -7,6 +9,7 @@ const PKSECRET = process.env.NODE_ENV === 'production'
 
 class Stripecc extends React.Component{
 render(){
+
     return<>
             
                 <StripeCheckout
@@ -21,6 +24,7 @@ render(){
                   email="theboss@dopesoap.com"
                   shippingAddress
                   billingAddress
+                  success_url='/allproducts'
                 >{this.props.children}</StripeCheckout>
         </>
    }

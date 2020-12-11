@@ -66,6 +66,14 @@ const SingleProduct =  (props) => {
             const {data} = await axios.patch(`${BASE}/products/${productId}`, {name: newName, description: newDescription, price: newPrice, imageURL: newImageURL, inStock: newInStock, category: newCategory},{headers: {'Authorization': 'Bearer '+token}});
             setProduct(data)
             setUpdateProducts(data)
+            Swal.fire({
+                position: 'absolute',
+                icon: 'Success',
+                title: name+" updated.",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              setEditForm(false)
           return data;  
         } catch (error) {
           console.error(error)
@@ -74,6 +82,7 @@ const SingleProduct =  (props) => {
     }
 
     const history = useHistory();
+    
     function editProductClick() {
         setEditForm(true)
     }
