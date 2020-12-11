@@ -130,6 +130,8 @@ ordersRouter.post('/:orderId/products', async (req, res, next) => {
 
 ordersRouter.patch('/:orderId', async (req, res, next) => {
     try {
+        const {orderId} = req.params
+        const {...fields} = req.body
         const prefix = 'Bearer ';
         const auth = req.header('Authorization');
         if (auth.startsWith(prefix)) {
@@ -138,9 +140,8 @@ ordersRouter.patch('/:orderId', async (req, res, next) => {
         const { id } = jwt.verify(token, JWT_SECRET);
           if (id) {
             const user = await getUserById(id);
-            const order = await getOrderById(id);
-            if(id === userId) {
-            const updatedOrder = await updateOrder({id, ...fields})
+            if(id === user.id) {
+            const updatedOrder = await updateOrder({id: orderId, ...fields})
             res.send(updatedOrder)}
           } else {
             res.send({message:'You must be the owner to update an order'})
