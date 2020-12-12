@@ -10,9 +10,37 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 700px;
+    height: 100%;
+    margin-bottom: 50px;
     padding: 40px;
     background-color: #F8EEE7;
+    border: 1px solid gray;
+}
+
+.bubbleSetFive {
+    width: 30%;
+}
+
+.bubbleTen {
+    float: left;
+    margin-right: -200px;
+    margin-top: -100px;
+}
+
+.bubbleSetSix {
+    width: 30%;
+}
+
+.bubbleTwelve {
+    float: right;
+    margin-right: 300px;
+    margin-top: 500px;
+}
+
+.bubbleThirteen {
+    float: right;
+    margin-top: -200px;
+    margin-right: 170px;
 }
 
 .productCardData {
@@ -126,6 +154,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    margin-top: -50px;
     background-color: #F8EEE7;
 }
 

@@ -12,22 +12,12 @@ font-family: 'Thasadith', sans-serif; */
     position: relative;
     top: 0px;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     z-index: -1;
     background-color: #F8EEE7;
 }
 
-.welcomeDiv {
-    width: 100vw;
-    height: 230px;
-    padding: 50px;
-    text-align: center;
-    font-size: 2em;
-    font-family: 'Bad Script', cursive;
-    color: rgba(55, 8, 97, 0.879);
-    /* background-color: rgba(247, 238, 255, 0.879); */
-    background-color: #fee8d4;
-}
+
 
 
 @media screen and (max-width: 1440px) {
