@@ -11,7 +11,6 @@ return <div>
 
             <div className="bubbleSetOneOne">
                 <img src={bubble02} className="bubbleOneOne" alt="bubbleOne" width="100px" height="100px" />
-
                 <img src={bubble02} className="bubbleTwoTwo" alt="bubbleTwo" width="150px" height="150px" />
             </div> 
 
