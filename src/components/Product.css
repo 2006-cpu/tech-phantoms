@@ -12,15 +12,17 @@
     height: 100%;
     padding: 40px;
     background-color: #F8EEE7;
+    margin-bottom:30px;
 }
 
 .indivProductCardData {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 550px;
+    align-items:center;
+    width: 400px;
+    height: 500px;
     padding: 40px;
-    background-color: white;
+    background-color: rgba(255,255,255,0.6);
     border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);;
@@ -40,8 +42,9 @@
 
 .indivProductsImage {
     margin-top: 20px;
-    width: 40%;
-    height:auto;
+    width: auto;
+    height: 200px;
+    border: 2px solid rgba(55, 8, 97, 0.879);
 }
 
 .indivProductsDescription {

@@ -6,7 +6,7 @@ import './AllProducts.css'
 const AllProducts = (props) => {
     const {allProducts} = props;
 
-return <>
+return <div>
         <div className="welcomeDiv">
 
             <div className="bubbleSetOneOne">
@@ -29,7 +29,7 @@ return <>
         allProducts.map((product) => <Product key={product.id} product={product} />)
         }
         </div>
-</>
+</div>
 }
 
 export default AllProducts;
