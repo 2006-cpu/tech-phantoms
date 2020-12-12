@@ -34,6 +34,7 @@ const UserAccount = (props) => {
               });
         
               setUser(newInfo)
+              setEditForm(false);
         }
 
     }
