@@ -45,11 +45,10 @@ const UserAccount = (props) => {
         </div>
     } else {
 return <>
-<div className="userAccountCard">
-    
-    <div className="userAccountBubbleDivOne">
-        <img src={bubble02} className="userAccountBubbleOne" alt="bubble" width="400px" height="400px" />
-        <img src={bubble02} className="userAccountBubblethree" alt="bubble" width="150px" height="150px" />
+<div className="userAccountCard" style={{marginBottom: "-300px"}}>
+        <div className="userAccountBubbleDivOne">
+            <img src={bubble02} className="userAccountBubbleOne" alt="bubble" width="400px" height="400px" />
+            <img src={bubble02} className="userAccountBubblethree" alt="bubble" width="150px" height="150px" />
     </div>
 
    <div id={`userAccount${id}`} className="userAccountId">
