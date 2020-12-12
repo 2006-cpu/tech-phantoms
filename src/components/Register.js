@@ -75,12 +75,12 @@ export default props => {
     { !token
     ? <form className="registerForm" onSubmit={handleRegister}>
         <h3 className="registerText">Please register</h3>
-        <input name="imageURL" type="text" placeholder="image" onChange={(e) => {setImageURL(e.target.value)}} />
+        <input name="imageURL" type="text" placeholder="image (optional)" onChange={(e) => {setImageURL(e.target.value)}} />
         <input name="firstName" type="text" placeholder="First name" required value={firstName} onChange={(e) => {setFirstName(e.target.value)}} />
         <input name="lastName" type="text" placeholder="Last name" required value={lastName} onChange={(e) => {setLastName(e.target.value)}} />
         <input name="email" type="email" placeholder="email" required value={email} onChange={(e) => {setEmail(e.target.value)}} />
         <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
-        <input name="password" type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
+        <input name="password" type="password" placeholder="Password (minimum of 8 characters)" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
 
     <div className="registerButtonsDiv">
         <button className="registerButton" type="submit">REGISTER</button>
