@@ -20,7 +20,7 @@ const AllUsers = () => {
 return <>
     <div className="allUsersGrid">
         {
-        allUsers.map((singleUser) => <SingleUser key={singleUser.id} user={singleUser} />)
+        allUsers.map((singleUser) => <SingleUser key={singleUser.id} user={singleUser} fetchUsers={fetchUsers}/>)
         }
         </div>
     </>

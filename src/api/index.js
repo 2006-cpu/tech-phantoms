@@ -24,8 +24,9 @@ export async function getProduct(id) {
   }
 }
 
-export default async function getAllOrders(token) {
+export async function getAllOrders(token) {
   try {
+    console.log('GETTING ORDERS')
     const { data } = await axios.get(`${ BASE }/orders`,{ headers: {'Authorization':'Bearer '+token} });
     return data;
   } catch (error) {
@@ -53,6 +54,7 @@ export async function getOrdersCart(token) {
 
 export async function getAllUsers() {
   try {
+    console.log('GETTING USERS')
     const { data } = await axios.get(`${ BASE }/users`);
     return data;
   } catch (error) {
@@ -93,6 +95,7 @@ export async function removeProductFromCart(orderId, productId, token){
 
 export async function editAccountInfo(id,{...fields}){
   try {
+    console.log('UPDATING USER')
     const {data} = await axios.patch(`${BASE}/users/${id}`,{...fields})
     console.log('UPDATEDUSER', data)
     return data
