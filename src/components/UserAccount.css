@@ -10,18 +10,19 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     padding: 40px;
     background-color: #F8EEE7;
 }
 
 .userAccountBubbleDivOne {
     width: 30%;
+    height: 300px;
 }
 
 .userAccountBubbleOne {
     flex: left;
-    margin-top: 50px;
+    margin-top: -40px;
     margin-left: 270px;
 }
 
@@ -33,11 +34,12 @@
 
 .userAccountBubbleDivTwo {
     width: 30%;
+    height: 300px;
 }
 
 .userAccountBubbleTwo {
     flex: right;
-    margin-top: 300px;
+    margin-top: 400px;
 }
 
 .userAccountData {
@@ -103,7 +105,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 700px;
+    height: 100%;
     margin-top: -480px;
     padding: 40px;
     background-color: #F8EEE7;
