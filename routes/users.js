@@ -101,24 +101,17 @@ usersRouter.get('/', async (req, res, next) => {
 
  usersRouter.patch('/:userId', async (req, res, next) => {
     try {
-    console.log('UPDATING')
     const { userId } = req.params;
-    console.log('USERID', userId)
     const {...fields}  = req.body;
-    console.log('FIELDS',fields)
     const user = await getUserById(userId);
-    console.log('USERTOUPDATE', user)
     if(!user) {
-        console.log('USER UNDEFINED')
         next({
             name: 'notfound',
             message: "This user was not found"
         });
         return;
     } else {
-        console.log('UPDATING USER')
         const updatedUser = await updateUser({id: userId, ...fields});
-        console.log('UPDATEDUSERROUTE', updatedUser)
         res.send(updatedUser);
     }
     

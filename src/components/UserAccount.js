@@ -23,7 +23,6 @@ const UserAccount = (props) => {
     const handleEditUser = async (event)=>{
         event.preventDefault()
         const newInfo = await editAccountInfo(id,{firstName: newFirstName, lastName:newLastName, email: newEmail, username: newUsername})
-        console.log('UPDATED USER',newInfo)
         if(newInfo.username){
             Swal.fire({
                 position: 'absolute',

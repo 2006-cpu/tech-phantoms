@@ -44,14 +44,10 @@ const SingleProduct =  (props) => {
     const checkForCart = async (cart)=>{
         try {
             if(!cart.id){
-            console.log('CREATING NEW CART')
              const createdCart = await newCart(token)
-                console.log(createdCart)
                 setCart(createdCart)
                 return createdCart
             }else{
-                console.log('CART EXISTS')
-                console.log(cart)
                 return cart
             }
             
@@ -138,15 +134,14 @@ return <>
         <img src={bubble02} className="bubbleTen" alt="bubbleTen" width="350px" height="350px" />
     </div> 
 
-        <div className="productCardData">
+        <div className={`productCardData ${category}`}>
             <h3 className="productName">{name}</h3>
             <div className="allProductsCategory">Category: {category}</div>
             <div className="innerProductCardInfo">
-                <img src={imageURL} alt="productImage" className="allProductsImage" />
+                <img src={imageURL} alt="productImage" className="allProductsImage"/>
                 <div className="descrPriceQuantityDiv">
                     <h4 className="allProductsDescription">{description}</h4>
                     <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
-
                     {
                     inStock
                     ?

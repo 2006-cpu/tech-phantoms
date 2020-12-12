@@ -9,29 +9,18 @@ return <>
     <div id={`product${id}`} className="indivProductCard">
         <div className="indivProductCardData">
             <h3 className="indivProductName">{name}</h3>
-            <div className="indivProductsCategory">Category: {category}</div>
-           
+            {inStock
+                ?
+                <p>&nbsp;</p>:<span className="outOfStockText">Temporarily out of stock.</span>
+                }
                 <NavLink to={`/allProducts/${id}`}>
                     <img src={imageURL} alt="productImage" className="indivProductsImage" /> 
                 </NavLink>
-
-                <h4 className="indivProductsDescription">{description}</h4>
                 <h5 className="indivProductsPrice">Price: ${centsToDollars(price)}</h5>
-
-            {
-            inStock
-            ?
-            <NavLink to={`/allProducts/${id}`}>
+                <NavLink to={`/allProducts/${id}`}>
                 <button className="productDetailsButton">Details</button>
-            </NavLink>
-            :
-            <>
-            <NavLink to={`/allProducts/${id}`}>
-            <button className="productDetailsButton">Details</button>
-            </NavLink>
-            <span className="outOfStockText">Temporarily out of stock.</span>
-            </>
-            }
+             </NavLink>
+
         </div>
     </div>
 </>
