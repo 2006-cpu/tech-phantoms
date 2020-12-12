@@ -25,7 +25,6 @@ productsRouter.get('/:productId', async (req,res,next)=>{
     }
 })
 
-//Only admins can create a new product
 productsRouter.post('/', async (req,res,next) => {
     try {
       const {name, description, price, imageURL, inStock, category} = req.body
@@ -49,8 +48,7 @@ productsRouter.post('/', async (req,res,next) => {
       next(error);
     }
 });
-    
-//Only admins can delete a product
+
 productsRouter.delete('/:productId', async (req,res,next) => {
     try {
       const {productId} = req.params;
@@ -75,7 +73,6 @@ productsRouter.delete('/:productId', async (req,res,next) => {
     }
 });
 
-//Only admins can update a product
 productsRouter.patch('/:productId', async (req,res,next) => {
     try {
       const {productId} = req.params;
@@ -87,7 +84,6 @@ productsRouter.patch('/:productId', async (req,res,next) => {
       if (token){
       const { id } = jwt.verify(token, JWT_SECRET);
       const user = await getUserById(id);
-      console.log('USEREDITING', user)
         if (id && user.isAdmin===true) {
           const updatedProduct = await updateProduct({id: productId, ...fields})
           res.send(updatedProduct)
@@ -102,7 +98,6 @@ productsRouter.patch('/:productId', async (req,res,next) => {
     }
 });
 
-//Get a list of all orders which have that product in them
 productsRouter.get('/:productId/orders', async (req,res,next) => {
     try {
       const {productId} = req.params;

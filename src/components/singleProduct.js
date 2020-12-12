@@ -44,14 +44,10 @@ const SingleProduct =  (props) => {
     const checkForCart = async (cart)=>{
         try {
             if(!cart.id){
-            console.log('CREATING NEW CART')
              const createdCart = await newCart(token)
-                console.log(createdCart)
                 setCart(createdCart)
                 return createdCart
             }else{
-                console.log('CART EXISTS')
-                console.log(cart)
                 return cart
             }
             
