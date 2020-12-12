@@ -1,9 +1,21 @@
 import React from 'react';
-import bubble02 from './images/bubble02.png';
 import './SingleUser.css';
+import {editAccountInfo} from '../api'
 
 const SingleUser = (props) => {
-    const {id, imageURL, firstName, lastName, email, username, password, isAdmin} = props.user;
+    const {id, imageURL, firstName, lastName, email, username, isAdmin} = props.user;
+    const {fetchUsers} = props
+
+    const makeAdmin = async () =>{
+        try {
+            console.log("MAKING ADMIN", username , id)
+            const newAdmin = await editAccountInfo(id, {isAdmin: true})
+            console.log('NEWADMIN', newAdmin)
+            await fetchUsers()
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
 return <>
 <div className="singleUserCard">
@@ -15,8 +27,13 @@ return <>
             <h4 className="userLastName">Last name: {lastName}</h4>
             <h4 className="userEmail">email: {email}</h4>
             <h4 className="username">username: {username}</h4>
-            <h4 className="password">{password}</h4>
-            <h4 className="isAdmin">{isAdmin}</h4>
+            {
+                isAdmin
+                ?
+                <h3>Admin</h3>
+                :
+                <button onClick={makeAdmin}>Make Admin</button>
+            }
 
                 {/* {
                 id
