@@ -8,9 +8,7 @@ const SingleUser = (props) => {
 
     const makeAdmin = async () =>{
         try {
-            console.log("MAKING ADMIN", username , id)
             const newAdmin = await editAccountInfo(id, {isAdmin: true})
-            console.log('NEWADMIN', newAdmin)
             await fetchUsers()
         } catch (error) {
             console.error(error)

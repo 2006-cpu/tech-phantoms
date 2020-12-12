@@ -106,7 +106,6 @@ async function getAllUsers() {
   // ******************************************************************************
 
   const updateUser = async ({id, ...fields})=>{
-    console.log('UPDATING USER DB')
     const setString = Object.keys(fields).map(
         (key, index) => `"${ key }"=$${ index + 1}`
     ).join(', ');
