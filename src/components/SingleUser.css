@@ -36,6 +36,18 @@
     margin-bottom: 20px;
 }
 
+.makeAdminButton {
+    width: 180px;
+    height: 40px;
+    margin: 30px;
+    font-size: 1.3em;
+    color: white;
+    border-radius: 3px;
+    background-color: rgba(158, 120, 196, 0.879);
+    border: 2px solid white;
+    box-shadow: 3px 3px 8px rgba(136, 95, 177, 0.879);
+}
+
 @media screen and (max-width: 625px) {
     .userCardData {
         margin-left: -115px;

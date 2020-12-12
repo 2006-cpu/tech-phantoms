@@ -83,7 +83,6 @@ const SingleProduct =  (props) => {
     }
 
     const history = useHistory();
-    
     function editProductClick() {
         setEditForm(true)
     }
@@ -202,7 +201,6 @@ return <>
     <form className="editProductFormData" onSubmit={handleEditProduct}>
 
         <h2 className="editProductTitle">Edit Product</h2>
-
         <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
             setNewName(event.target.value)}} />
 

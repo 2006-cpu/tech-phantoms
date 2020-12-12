@@ -4,12 +4,10 @@ import { clearCurrentUser, clearCurrentToken } from '../auth/index';
 import swal from 'sweetalert'; 
 import bubble02 from './images/bubble02.png';
 import './Nav.css';
-       
 
 const Nav = (props) => {
     const {user, setUser, token, setToken} = props;
     const {username, imageURL} = user;
-
     const history = useHistory();
 
     function handleClick() {
@@ -24,7 +22,6 @@ return <>
     <div className="header">
       <div className="bubbleSetOne">
         <img src={bubble02} className="bubbleOne" alt="bubble" width="300px" height="300px" />
-
         <img src={bubble02} className="bubbleTwo" alt="bubble" width="130px" height="130px" />
       </div> 
 
@@ -35,11 +32,10 @@ return <>
             </NavLink>
           </div>
         </div>
+
       <div className="bubbleSetTwo">
         <img src={bubble02} className="bubbleThree" alt="bubble" width="250px" height="250px" />
-
         <img src={bubble02} className="bubbleFour" alt="bubble" width="180px" height="180px" />
-
         <img src={bubble02} className="bubbleFive" alt="bubble" width="70px" height="70px" />
       </div>
     </div> 
@@ -75,14 +71,12 @@ return <>
       <Fragment>
 
         <img src={imageURL} className="loginUserImage" alt="UserImage" width="auto" height="50px" />
-
         <div className="userDataNav">
         <p className="loginUsername">{username}</p>
         <NavLink to="/userAccount" className="userAccountLink">
           Account
         </NavLink>
         </div>
-
         <button className="logoutButton"onClick={() => {
           handleClick();
           swal("You've Successfully Logged Out!", "Have A Clean Day!", "success");

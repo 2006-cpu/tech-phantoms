@@ -52,7 +52,6 @@ export default props => {
                 }
             } else {
                 throw data.message
-                
             }
         } catch (error) {
             Swal.fire({

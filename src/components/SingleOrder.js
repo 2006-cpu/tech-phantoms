@@ -38,15 +38,7 @@ return <>
             :
             <div>No products in order.</div>
         }
-        {/* {
-        id
-        ?
-        <NavLink to={`/orders${id}`} className="ordersButton">
-            <button className="detailsButton">Details</button>
-        </NavLink>
-        :
-        <span className="noOrderText">No order found {id}</span>
-        } */}
+  
     </div>
 </>
 }

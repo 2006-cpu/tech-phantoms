@@ -9,24 +9,21 @@ const PKSECRET = process.env.NODE_ENV === 'production'
 
 class Stripecc extends React.Component{
 render(){
-
     return<>
-            
-                <StripeCheckout
-                name="Dope Soap" 
-                  description="Enter Payment Info Below" 
-                  image="https://i.imgur.com/SPml8u7.png" 
-                  panelLabel="Process Order"  
-                  currency="USD"
-                  amount
-                  stripeKey= {PKSECRET} 
-                  locale="en"
-                  email="theboss@dopesoap.com"
-                  shippingAddress
-                  billingAddress
-                  success_url='/allproducts'
-                >{this.props.children}</StripeCheckout>
-        </>
+      <StripeCheckout
+      name="Dope Soap" 
+        description="Enter Payment Info Below" 
+        image="https://i.imgur.com/SPml8u7.png" 
+        panelLabel="Process Order"  
+        currency="USD"
+        amount
+        stripeKey= {PKSECRET} 
+        locale="en"
+        email="theboss@dopesoap.com"
+        shippingAddress
+        billingAddress
+        success_url='/allproducts'>{this.props.children}</StripeCheckout>
+    </>
    }
 }
 

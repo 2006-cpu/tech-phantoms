@@ -110,10 +110,10 @@ Lastly `/public` and `/src` are the two puzzle pieces for our React front-end. `
 
 ## Contributors
 Tammy Allen, Eric Ochoa, Eileen Ratcliff, and Riley Smith.  You can see all of their gitHub profiles here:
-[Tammy](https://github.com/tjgallen)
-[Eric](https://github.com/techniguy)
-[Eileen](https://github.com/Eileenhr)
-[Riley](https://github.com/rileyshizzle)
+[Tammy](https://github.com/tjgallen), 
+[Eric](https://github.com/techniguy), 
+[Eileen](https://github.com/Eileenhr), 
+[Riley](https://github.com/rileyshizzle), 
 
 
 
