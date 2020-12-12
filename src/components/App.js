@@ -104,11 +104,11 @@ const App = () => {
       user.isAdmin 
       ?
       <>
-      <Route path="/allOrders">
+      <Route exact path="/allOrders">
         <AllOrders token={token}/>
       </Route>
 
-      <Route path="/allUsers">
+      <Route exact path="/allUsers">
         <AllUsers />
       </Route>
       </>
