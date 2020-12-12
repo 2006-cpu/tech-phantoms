@@ -44,7 +44,7 @@
 
 .bubbleThreeThree {
     margin-top: -80px;
-    margin-left: 200px;
+    margin-left: 50px;
 }
 
 .productsGrid {
@@ -57,8 +57,27 @@
 }
 
 
+@media screen and (max-width: 1440px) {
+    .welcomeText {
+        font-size: 1.4em;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .productsGrid {
         height: 100%;
+    }
+
+    .bubbleThreeThree {
+        margin-top: -80px;
+        margin-left: -150px;
+        width: 50%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .welcomeText {
+        font-size: 1.2em;
     }
 }

@@ -20,13 +20,14 @@
 .createProductBubbleOne {
     float: left;
     margin-top: 300px;
-    margin-left: 450px;
+    margin-left: 20px;
+    z-index: 2;
 }
 
 .createProductBubblethree {
     float: left;
     margin-top: -200px;
-    margin-left: 450px;
+    margin-left: 250px;
 }
 
 .createProductBubbleDivTwo {
@@ -36,7 +37,7 @@
 .createProductBubbleTwo {
     float: right;
     margin-right: 550px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .createProduct {

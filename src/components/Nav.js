@@ -34,7 +34,6 @@ return <>
         </div>
 
       <div className="bubbleSetTwo">
-        <img src={bubble02} className="bubbleThree" alt="bubble" width="250px" height="250px" />
         <img src={bubble02} className="bubbleFour" alt="bubble" width="180px" height="180px" />
         <img src={bubble02} className="bubbleFive" alt="bubble" width="70px" height="70px" />
       </div>
