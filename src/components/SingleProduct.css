@@ -48,7 +48,6 @@
     width: auto;
     padding: 40px;
     background-color: white;
-    border: 3px solid rgba(229, 194, 255, 0.879);
     border-radius: 3px;
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
 }
@@ -171,3 +170,15 @@
     box-shadow: 3px 3px 5px rgba(224, 212, 235, 0.879);
 }
 
+.Fun{
+    border: 3px solid rgba(126, 236, 255, 0.879);
+}
+
+.Decorative{
+    border: 3px solid rgba(229, 194, 255, 0.879);
+}
+
+.Natural{
+    border: 3px solid rgba(159, 253, 167, 0.879);
+
+}

@@ -56,6 +56,9 @@
     background-color: #F8EEE7;
 }
 
+.spacer{
+    margin-bottom: 60px;
+}
 
 @media screen and (max-width: 1024px) {
     .productsGrid {
