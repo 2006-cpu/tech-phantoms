@@ -5,11 +5,16 @@
     font-family: 'Thasadith', sans-serif;
 }
 
+.RegisterFormDiv {
+    height: 100vh;
+    background-color: #F8EEE7;
+}
+
 .registerForm {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 350px;
+    top: 610px;
     right: 0px;
     padding: 20px;
     width: 550px;

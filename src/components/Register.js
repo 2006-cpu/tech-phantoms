@@ -73,7 +73,8 @@ export default props => {
     return <>
     {showError ? showError : null}
     { !token
-    ? <form className="registerForm" onSubmit={handleRegister}>
+    ?   <div className="RegisterFormDiv">
+        <form className="registerForm" onSubmit={handleRegister}>
         <h3 className="registerText">Please register</h3>
         <input name="imageURL" type="text" placeholder="image (optional)" onChange={(e) => {setImageURL(e.target.value)}} />
         <input name="firstName" type="text" placeholder="First name" required value={firstName} onChange={(e) => {setFirstName(e.target.value)}} />
@@ -89,6 +90,7 @@ export default props => {
         }}>CANCEL</button>
     </div>
     </form>
+    </div>
     : <h1>Thank you for registering, {user && user.username}!</h1>
     }
     </>

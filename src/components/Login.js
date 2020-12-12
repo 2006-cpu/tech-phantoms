@@ -48,7 +48,8 @@ export default props => {
   return <>
   {showError ? showError : null}
   { !token
-    ? <form className="loginForm" onSubmit={handleLogin}>
+    ? <div className="loginFormDiv">
+    <form className="loginForm" onSubmit={handleLogin}>
       <h3 className="loginText">Please Log In</h3>
       <input name="username" type="text" placeholder="username" required value={username} onChange={(e) => {setUsername(e.target.value)}} />
       <input name="password" type="password" placeholder="password" required value={password} onChange={(e) => {setPassword(e.target.value)}} />
@@ -60,6 +61,7 @@ export default props => {
           }}>CANCEL</button>
       </div>
     </form>
+    </div>
     : <h1>Welcome back, {user && user.username}!</h1>
   } 
     </>
