@@ -135,15 +135,8 @@ const App = () => {
           isAdmin={user.isAdmin} token={token} setUpdateProducts={setUpdateProducts}
         />
       </Route>
-     
-  
-
       <div className="backDrop"></div>
-
         <Footer />
-      
-
-
     </div>
   </>
 }

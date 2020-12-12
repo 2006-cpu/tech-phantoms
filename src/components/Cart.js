@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {useHistory} from 'react-router-dom'
 import {getOrdersCart, removeProductFromCart, completeOrder} from '../api';
 import './Cart.css';
 import Stripecc from './Stripe';
 import { centsToDollars } from './helpers'
-
 
 const Cart = (props) => {
     const {token, user} = props
@@ -13,8 +11,7 @@ const Cart = (props) => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [updateCart, setUpdateCart]= useState('');
     const {username} = user
-    const history = useHistory()
-
+ 
     useEffect(() => {
         getOrdersCart(token).then( cart=> {
             if(cart.orderProducts){
@@ -47,7 +44,7 @@ return <>
                 return<div key={'cartProduct'+product.id} className = 'cartProduct'>
 
                     <div className="cartItemsStyle">
-                        <img src={product.imageURL} className='productImage'></img>
+                        <img src={product.imageURL} alt="productImage" className='productImage'></img>
                         <div className="cartItemText">
                             <h3>{product.name}</h3>
                             <span>Quantity: {quantity}</span>
@@ -56,8 +53,6 @@ return <>
                     </div>
 
                     <button className="cartRemoveButton" onClick={()=>{removeProductFromCart(orderId, product.id, token).then((removed)=>{setUpdateCart('Removed'+orderId+totalPrice+1)})}}>Remove</button>
-
-
                 </div>
             })
         }

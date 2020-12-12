@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router";
 import { getProduct, getOrdersCart, addProductToCart, BASE, newCart } from '../api';
+import bubble02 from './images/bubble02.png';
 import './SingleProduct.css';
 import Swal from 'sweetalert2';
 import { centsToDollars } from './helpers'
@@ -82,7 +83,6 @@ const SingleProduct =  (props) => {
     }
 
     const history = useHistory();
-    
     function editProductClick() {
         setEditForm(true)
     }
@@ -133,6 +133,11 @@ if(product===''){
 } else {
 return <>
     <div id={`singleProduct${id}`} className="singleProductCard">
+
+    <div className="bubbleSetFive">
+        <img src={bubble02} className="bubbleTen" alt="bubbleTen" width="350px" height="350px" />
+    </div> 
+
         <div className="productCardData">
             <h3 className="productName">{name}</h3>
             <div className="allProductsCategory">Category: {category}</div>
@@ -181,6 +186,13 @@ return <>
                   </div>
             </div>
         </div>
+
+    <div className="bubbleSetSix">
+        <img src={bubble02} className="bubbleTwelve" alt="bubbleTwelve" width="100px" height="100px" />
+
+        <img src={bubble02} className="bubbleThirteen" alt="bubbleThirteen" width="250px" height="250px" />
+    </div> 
+
     </div>
     {
     editForm
@@ -189,7 +201,6 @@ return <>
     <form className="editProductFormData" onSubmit={handleEditProduct}>
 
         <h2 className="editProductTitle">Edit Product</h2>
-
         <input name="name" type="text" placeholder="name" value={newName} onChange={(event) => {
             setNewName(event.target.value)}} />
 

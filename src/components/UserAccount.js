@@ -32,11 +32,9 @@ const UserAccount = (props) => {
                 showConfirmButton: false,
                 timer: 1500
               });
-        
               setUser(newInfo)
               setEditForm(false);
         }
-
     }
 
     if(id==='') {
@@ -54,16 +52,13 @@ return <>
    <div id={`userAccount${id}`} className="userAccountId">
         <div className="userAccountData">
             <h2 className="userAccountTitle">User Profile for {firstName} {lastName}</h2>
-
                 <img src={imageURL} alt="userImage" className="userAccountImage" />
                 <h4 className="userAccountFirstName">First name: {firstName}</h4>
                 <h4 className="userAccountLastName">Last name: {lastName}</h4>
                 <h4 className="userAccountEmail">email: {email}</h4>
                 <h4 className="userAccountUsername">username: {username}</h4>
                 <h4 className="userAccountIsAdmin">{isAdmin}</h4>
-
                 <button className="userAccountEditButton" onClick={()=>{setEditForm(true)}}>Edit</button>
-                
         </div>
     </div>
 

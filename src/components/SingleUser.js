@@ -32,18 +32,8 @@ return <>
                 ?
                 <h3>Admin</h3>
                 :
-                <button onClick={makeAdmin}>Make Admin</button>
+                <button className="makeAdminButton" onClick={makeAdmin}>Make Admin</button>
             }
-
-                {/* {
-                id
-                ?
-                <NavLink to={`/allUsers/${id}`} className="singleUserId">
-                <button className="singleUserEditButton">Edit</button>
-                </NavLink>
-                :
-                <h4 className="noSingleUser">{id} not found</h4>
-                } */}
         </div>
     </div>
 </div>

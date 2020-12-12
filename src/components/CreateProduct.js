@@ -41,14 +41,11 @@ const CreateProduct = (props) => {
 
 return <>
 {isAdmin?
-
-<div className="createProductForm">
-
-    <div className="createProductBubbleDivOne">
-        <img src={bubble02} className="createProductBubbleOne" alt="bubble" width="400px" height="400px" />
-        <img src={bubble02} className="createProductBubblethree" alt="bubble" width="150px" height="150px" />
-    </div>
-
+    <div className="createProductForm">
+        <div className="createProductBubbleDivOne">
+            <img src={bubble02} className="createProductBubbleOne" alt="bubble" width="400px" height="400px" />
+            <img src={bubble02} className="createProductBubblethree" alt="bubble" width="150px" height="150px" />
+        </div>
     <form className="createProduct" onSubmit={handleCreateProduct}>
         <div className="createProductFrame">
         <h2 className="createProductTitle">Create New Product</h2>
@@ -80,13 +77,11 @@ return <>
     <div className="createProductBubbleDivTwo">
         <img src={bubble02} className="createProductBubbleTwo" alt="bubble" width="200px" height="200px" />
     </div>
-
 </div>
 :
 <div>How did you get here? You must be an admin to create products!</div>
         }
 </>
 }
-
 
 export default CreateProduct;

@@ -1,24 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* Our fonts:
-font-family: 'Bad Script', cursive;
-font-family: 'Thasadith', sans-serif; */
-
 * {
     margin: 0;
     font-family: 'Thasadith', sans-serif;
 }
 
+.welcomeDiv {
+    display: flex;
+    width: 100vw;
+    height: 230px;
+    padding: 50px;
+    background-color: #fee8d4;
+}
+
+.welcomeText {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    font-size: 2em;
+    font-family: 'Bad Script', cursive;
+    color: rgba(55, 8, 97, 0.879);
+}
+
+.bubbleSetOneOne {
+    width: 30%;
+}
+
+.bubbleOneOne {
+    float: left;
+    margin-top: -30px;
+    margin-left: 200px;
+}
+
+.bubbleTwoTwo {
+    float: left;
+    margin-left: -50px;
+    margin-left: 300px;
+}
+
+.bubbleSetTwoTwo {
+    width: 30%;
+}
+
+.bubbleThreeThree {
+    margin-top: -80px;
+    margin-left: 200px;
+}
+
 .productsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    /* grid-gap: 1em; */
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    /* padding: 20px; */
     background-color: #F8EEE7;
-    /* border: 2px solid gray; */
 }
 
 
