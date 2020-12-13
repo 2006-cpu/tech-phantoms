@@ -25,9 +25,6 @@ const successPayment = data => {
 const stripeOrderComplete = completeOrder;
 
 const errorPayment = data => {
-  // swal("Order Submitted. Thank you for shopping at Dope Soap!","success").then(function(){
-  //  window.location = stripeOrderComplete;
-  // })
 };
 
  
@@ -51,8 +48,8 @@ const Stripecc = ({ description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={PKSECRET}
-    // shippingAddress
-    // billingAddress
+    shippingAddress
+    billingAddress
   />
  
 export default Stripecc;
