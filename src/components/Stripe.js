@@ -18,13 +18,16 @@ const CURRENCY = 'USD';
 const centsToDollar = amount => amount * 100;
  
 const successPayment = data => {
+  swal("Order Submitted. Thank you for shopping at Dope Soap!","success").then(function(){
+    window.location = stripeOrderComplete;
+   })
 };
 const stripeOrderComplete = completeOrder;
 
 const errorPayment = data => {
-  swal("Order Submitted. Thank you for shopping at Dope Soap!","success",).then(function(result){
-   window.location = stripeOrderComplete;
-  })
+  // swal("Order Submitted. Thank you for shopping at Dope Soap!","success").then(function(){
+  //  window.location = stripeOrderComplete;
+  // })
 };
 
  
@@ -48,8 +51,8 @@ const Stripecc = ({ description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={PKSECRET}
-    shippingAddress
-    billingAddress
+    // shippingAddress
+    // billingAddress
   />
  
 export default Stripecc;
