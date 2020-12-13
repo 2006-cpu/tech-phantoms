@@ -18,7 +18,8 @@ import {
   AdminTools,
   AllUsers,
   UserAccount,
-  CreateProduct
+  CreateProduct,
+  Success
   } from './index';
 
 import './App.css';
@@ -137,6 +138,10 @@ const App = () => {
       </Route>
       <div className="backDrop"></div>
         <Footer />
+
+        <Route exact path={`/Success`}>
+          <Success token={token} />
+        </Route>
     </div>
   </>
 }

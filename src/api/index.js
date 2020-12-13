@@ -46,6 +46,7 @@ export async function getOrder(id) {
 export async function getOrdersCart(token) {
   try {
     const { data } = await axios.get(`${ BASE }/orders/cart`,{ headers: {'Authorization':'Bearer '+token} });
+    console.log('CARTAPI', data)
     return data;
   } catch (error) {
     throw error;

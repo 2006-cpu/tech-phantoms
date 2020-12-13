@@ -57,7 +57,7 @@ return <>
             })
         }
         <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
-        <Stripecc/>
+        <Stripecc token={token} orderId={orderId}/>
         </div>
     </div>
 </>
