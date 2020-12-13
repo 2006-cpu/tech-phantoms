@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
+import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert';
-import { completeOrder } from '../api';
 
  
 const PKSECRET = process.env.NODE_ENV === 'production'
@@ -14,21 +14,11 @@ const PKSECRET = process.env.NODE_ENV === 'production'
   : 'http://localhost:3000';
  
 const CURRENCY = 'USD';
- 
+
 const centsToDollar = amount => amount * 100;
  
-const successPayment = data => {
-  swal("Order Submitted. Thank you for shopping at Dope Soap!","success").then(function(){
-    window.location = stripeOrderComplete;
-   })
-};
-const stripeOrderComplete = completeOrder;
-
-const errorPayment = data => {
-};
-
- 
-const onToken = (amount, description) => token =>
+ /*
+const onToken = (amount, description) => token =>{
   axios.post(PAYMENT_SERVER_URL,
     {
       description,
@@ -37,10 +27,32 @@ const onToken = (amount, description) => token =>
       amount: centsToDollar(amount)
     })
     .then(successPayment)
-    .catch(errorPayment);
- 
-const Stripecc = ({ description, amount }) =>
-  <StripeCheckout
+    .catch(errorPayment);}
+ */
+const Stripecc = ({ description, amount }) =>{
+
+  const history = useHistory();
+
+  const successPayment = () => {  
+  swal("Order Submitted. Thank you for shopping at Dope Soap!","success")
+  history.push('/Success')
+  };
+
+const errorPayment = data => {
+};
+
+    const onToken = (amount, description) => token =>{
+      axios.post(PAYMENT_SERVER_URL,
+        {
+          description,
+          source: token.id,
+          currency: CURRENCY,
+          amount: centsToDollar(amount)
+        })
+        .then(successPayment)
+        .catch(errorPayment);}
+
+  return <StripeCheckout
     name="Dope Soap" 
     description="Enter Payment Info Below" 
     image="https://i.imgur.com/SPml8u7.png" 
@@ -51,5 +63,5 @@ const Stripecc = ({ description, amount }) =>
     shippingAddress
     billingAddress
   />
- 
+}
 export default Stripecc;
