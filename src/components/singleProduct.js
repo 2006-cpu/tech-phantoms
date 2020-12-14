@@ -143,7 +143,8 @@ return <>
                     <h4 className="allProductsDescription">{description}</h4>
                     <h5 className="allProductsPrice">Price: ${centsToDollars(price)}</h5>
                     {
-                    inStock
+                    token ? 
+                    inStock 
                     ?
                     <>
                     <form onSubmit={addToCart}>
@@ -158,6 +159,8 @@ return <>
                     </>
                     :
                     <h3 className="outOfStock">Temporarily out of stock</h3>
+                    :
+                    <h3 className="outOfStock">Please log in to add to cart</h3>
                     }
 
                     {
