@@ -123,7 +123,6 @@ export async function completeOrder(token, orderId){
         icon: 'success',
         title: "Order Submitted. Thank you for shopping at Dope Soap!",
         showConfirmButton: false,
-        timer: 1500
       });
     }
     return data

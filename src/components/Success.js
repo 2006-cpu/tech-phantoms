@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react'
 import { completeOrder, getOrdersCart } from '../api';
+import './Success.css';
+import bubble02 from './images/bubble02.png';
+import thankyou from './images/thankyou.jpg';
 
 const Success = (props) =>{
     const {token} = props
@@ -9,7 +12,16 @@ const Success = (props) =>{
         console.log('SUCCESS', cart)
     },[])
     
-    return <h1>Thank you for your Order!</h1>
+    return <div>
+    <div className="success">
+        <div>
+        <h1>We Hope You Shop with Us Again!!</h1>
+        </div>
+    </div>
+    <div>
+        <img src={thankyou} alt="thankyou" className="success" width="100%" height="150%"></img>
+    </div>
+</div>
 }
 
 export default Success
