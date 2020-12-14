@@ -38,7 +38,11 @@ return <>
             :
             <div>No products in order.</div>
         }
-  
+        {
+            status==='completed'?
+            <button>Cancel Order</button>:
+            <></>
+        }
     </div>
 </>
 }

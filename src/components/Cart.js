@@ -35,8 +35,10 @@ const Cart = (props) => {
     }, [updateCart])
 
 return <>
-    <div className="cartDiv">
+ <div className="cartDiv">
         <div className="cartItems">
+    {token?
+        <>
         <h2 className="userId">{username}'s Cart</h2>
         {
             cart.map((cartProduct)=>{
@@ -57,10 +59,13 @@ return <>
             })
         }
         <h3 className="cartTotalPrice">Total Price: ${centsToDollars(totalPrice)}</h3>
-        <Stripecc token={token} orderId={orderId}/>
-        </div>
+        <Stripecc token={token} orderId={orderId}/></>
+        :<h2>Please Log in to View Cart</h2>
+}
+</div>
     </div>
 </>
+    
 }
 
 export default Cart;
