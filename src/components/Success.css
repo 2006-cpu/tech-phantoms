@@ -5,31 +5,16 @@
     font-family: 'Thasadith', sans-serif;
 }
 
-.success {
-    position: relative;
-    top: 0px;
+.success h1 {
+    text-align: center;
+    margin: auto;
+    font-size: 3em;
+    font-family: 'Bad Script', cursive;
+    color: rgba(55, 8, 97, 0.879);
+    background-color: #fee8d4;
     width: 100vw;
-    height: 100%;
-    z-index: -1;
-    background-color: #F8EEE7;
 }
 
-@media screen and (max-width: 1440px) {
-    .success {
-        font-size: 1.1em;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .success {
-        height: 100%;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .success {
-        height: 160px;
-        padding: 40px;
-        font-size: 1.3em;
-    }
+@media screen and (max-width: 1024) {
+   
 }

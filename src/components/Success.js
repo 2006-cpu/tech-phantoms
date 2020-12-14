@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { completeOrder, getOrdersCart } from '../api';
 import './Success.css';
 import bubble02 from './images/bubble02.png';
+import thankyou from './images/thankyou.jpg';
 
 const Success = (props) =>{
     const {token} = props
@@ -12,27 +13,15 @@ const Success = (props) =>{
     },[])
     
     return <div>
-    <div className="welcomeDiv">
-
-        <div className="bubbleSetOneOne">
-            <img src={bubble02} className="bubbleOneOne" alt="bubbleOne" width="100px" height="100px" />
-            <img src={bubble02} className="bubbleTwoTwo" alt="bubbleTwo" width="150px" height="150px" />
-        </div> 
-
-        <div><br /><br/>
-        <h1>Thank you for your Order!</h1></div>
-
-        <div className="bubbleSetTwoTwo">
-            <img src={bubble02} className="bubbleThreeThree" alt="bubbleThree" width="300px" height="300px" />
-        </div> 
-
+    <div className="success">
+        <div>
+        <h1>We Hope You Shop with Us Again!!</h1>
+        </div>
     </div>
-
+    <div>
+        <img src={thankyou} alt="thankyou" className="success" width="100%" height="150%"></img>
+    </div>
 </div>
-    
-    
-    
-    // <h1 className="success">Thank you for your Order!</h1>
 }
 
 export default Success
