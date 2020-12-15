@@ -7,9 +7,7 @@ const PKSECRET = process.env.NODE_ENV === 'production'
   ? 'pk_test_51Ht0x3E3GFmNRfP2y3zQEwL39Agff3XwI80izmf3M8Uy4LNsLTFQf04FDw6dwomXIp9RqHG9slWonTc5xJIO5jQp001IQpFHC6'
   : 'pk_test_51Ht0x3E3GFmNRfP2y3zQEwL39Agff3XwI80izmf3M8Uy4LNsLTFQf04FDw6dwomXIp9RqHG9slWonTc5xJIO5jQp001IQpFHC6';
 
-  const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'https://warm-savannah-72362.herokuapp.com/'
-  : 'http://localhost:3000';
+const PAYMENT_SERVER_URL = process.env.NODE_ENV;
  
 const CURRENCY = 'USD';
 
@@ -20,7 +18,6 @@ const Stripecc = ({ description, amount }) =>{
   const history = useHistory();
 
   const successPayment = () => {  
-  // history.push('/Success')
   };
 
   const errorPayment = () => {
