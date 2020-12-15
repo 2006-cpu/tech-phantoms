@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import { completeOrder, getOrdersCart } from '../api';
 import './Success.css';
-import bubble02 from './images/bubble02.png';
 import thankyou from './images/thankyou.jpg';
 
 const Success = (props) =>{
